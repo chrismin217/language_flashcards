@@ -1,0 +1,11 @@
+{
+  "name": "language_flashcards",
+  "version": "1.0.0",
+  "description": "This is a personal project that I was very passionate about creating at the time of my bootcamp graduation. I wanted a different way to use language learning flashcards, and I thought this was the best way to do it.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
