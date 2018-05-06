@@ -6,8 +6,24 @@
     <link rel="stylesheet" type="text/css" href="/styles.css">
   </head>
   <body>
-  	<h1>Welcome</h1>
-  	<h3>Flashcards</h3>
+  	
+  	<div id="grid">
+  		
+  	</div>
+
+
+  	<div id="options">
+  		<input type="text" name="Columns" placeholder="Columns..">
+  		<input type="text" name="Rows" placeholder="Rows..">
+
+  		<input type="number" name="Time" placeholder="Time Constraint" value="1.0" min="0.25" max="3.0" step="0.25">
+
+  		<input type="range" name="Ratio">
+
+  		<input type="reset" value="Default">
+  		<input type="button" value="Generate" id="generate">
+
+  	</div>
   	<script type="text/javascript" src="/app.js"></script>
   </body>
 </html>
