@@ -7,20 +7,28 @@
   </head>
   <body>
   	
+  	<div id="time-options">
+  		<div><img alt="" src="/assets/clock.png" width="90px" height="80px" /><span id="current-time"></span></div>
+  		<input id="toggle-plus" type="image" alt="" src="/assets/plus.png" />
+  		<input id="toggle-minus" type="image" alt="" src="/assets/minus.png" />
+  	</div>
+
   	<div id="grid">
   		
   	</div>
 
 
-  	<div id="options">
+  	<form id="options">
 
   		<input type="number" id="gridsize" placeholder="Grid Size" min="3" max="6" step="1.0">
-  		<input type="number" id="time" placeholder="Time Difficulty" min="0.25" max="3.0" step="0.25">
+  		
   		<input type="range" id="ratio">
   		<input type="reset" value="Reset Options" id="reset">
   		<input type="button" value="Generate" id="generate">
 
-  	</div>
+  	</form>
+
+
   	<script type="text/javascript" src="/app.js"></script>
   </body>
 </html>
