@@ -13,20 +13,39 @@
   		<input id="toggle-minus" type="image" alt="" src="/assets/minus.png" />
   	</div>
 
-  	<div id="grid">
-  		
+  	<div id="ratio-options">
+
+  		<input type="range" list="tickmarks" id="ratio" value="0" min="0" max="100" step="10">
+
+  		<datalist id="tickmarks">
+		  <option value="0" label="N">
+		  <option value="10">
+		  <option value="20">
+		  <option value="30">
+		  <option value="40">
+		  <option value="50" label="H">
+		  <option value="60">
+		  <option value="70">
+		  <option value="80">
+		  <option value="90">
+		  <option value="100" label="T">
+		</datalist>
+
+  	</div>
+
+  	<div id="gridsize-options">
+  		<input type="number" id="gridsize" placeholder="Grid Size" min="3" max="6" step="1.0">
   	</div>
 
 
-  	<form id="options">
 
-  		<input type="number" id="gridsize" placeholder="Grid Size" min="3" max="6" step="1.0">
-  		
-  		<input type="range" id="ratio">
-  		<input type="reset" value="Reset Options" id="reset">
-  		<input type="button" value="Generate" id="generate">
+  	<div id="grid">
+  		<!-- MAIN GRID IS HERE!! -->
+  	</div>
 
-  	</form>
+  	<input type="reset" value="Set Defaults" id="reset">
+  	<input type="button" value="Generate" id="generate">
+
 
 
   	<script type="text/javascript" src="/app.js"></script>
