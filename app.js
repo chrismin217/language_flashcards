@@ -10,41 +10,55 @@ function renderGrid() {
     grid.innerHTML = '';
   } 
 
-  let gridSize = document.getElementById('gridsize').value;
-  let wh = 100 / gridSize;
+  let rows = document.getElementById('toggle-rows').value;
+  let cols = document.getElementById('toggle-cols').value;
 
-  for (let i = 0; i < gridSize * gridSize; i++) {
+  for (let i = 0; i < rows; i++) {
+
+    let rowContainer = document.createElement("div");
+    let h = 100 / rows; 
+
+    rowContainer.style.position = "relative";
+    rowContainer.style.display = "block";
+    rowContainer.style.height = h + "%";
     
-    let cardContainer = document.createElement("div");
+    grid.appendChild(rowContainer);
 
-    cardContainer.style.width = wh - 5 + '%';
-    cardContainer.style.height = wh - 5 + '%';
-    cardContainer.style.border = "1px solid cyan";
-    cardContainer.style.margin = '2.5%';
-    cardContainer.style.float = 'left';
-   
-    var cardsReq = new XMLHttpRequest();
-    cardsReq.addEventListener("load", function() {
-      let randomCard = JSON.parse(this.responseText);
-      cardContainer.question = randomCard.question;
-      cardContainer.answer = randomCard.answer;
-      cardContainer.innerHTML = randomCard.question;
-    });
-    cardsReq.open("GET", "http://127.0.0.1:3000/api/cards");
-    cardsReq.send();
+    for (let j = 0; j < cols; j++) {
 
-    cardContainer.addEventListener("click", function() {
+      let cardContainer = document.createElement("div");
 
-      this.innerHTML = cardContainer.answer;
-      let timeDifficulty = document.getElementById('time').value;
+      cardContainer.style.width = 100 / cols + "%";
+      cardContainer.style.height = "100%";
+      cardContainer.style.border = "1px solid cyan";
+      cardContainer.style.float = 'left';
+     
+     /*Grab a flashcard from the fake server*/
+      var cardsReq = new XMLHttpRequest();
+      cardsReq.addEventListener("load", function() {
+        let randomCard = JSON.parse(this.responseText);
+        cardContainer.question = randomCard.question;
+        cardContainer.answer = randomCard.answer;
+        cardContainer.innerHTML = randomCard.question;
+      });
+      cardsReq.open("GET", "http://127.0.0.1:3000/api/cards");
+      cardsReq.send();
 
-      setTimeout(() => {
-      	this.innerHTML = cardContainer.question; 
-      }, timeDifficulty * 1000);
+      /*Basic pseudo flip functionality for now through event listener*/
+      cardContainer.addEventListener("click", function() {
 
-    });
+        this.innerHTML = cardContainer.answer;
+        let timeDifficulty = document.getElementById('time').value;
 
-    grid.appendChild(cardContainer);
+        setTimeout(() => {
+        	this.innerHTML = cardContainer.question; 
+        }, timeDifficulty * 1000);
+
+      });
+
+      rowContainer.appendChild(cardContainer);
+
+    }
 
   }
 
@@ -77,3 +91,10 @@ const minus = document.getElementById('toggle-minus').addEventListener("click", 
   }
 
 });;
+
+/*FUNCTIONALITY FOR RATIO BOX*/
+
+const ratio = document.getElementById('ratio').addEventListener("input", function() {
+  const ratioVal = document.getElementById('ratio-val');
+  ratioVal.innerHTML = this.value + "%";
+});

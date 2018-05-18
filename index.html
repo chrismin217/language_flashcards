@@ -13,31 +13,30 @@
   		<input id="toggle-minus" type="image" alt="" src="/assets/minus.png" />
   	</div>
 
-  	<div id="ratio-options">
+  	<fieldset id="ratio-options">
+  		<label id="ratio-label" for="ratio">Set Target Language %</label>
+  		<input type="range" id="ratio" value="0" min="0" max="100" step="10" list="steplist" />
+  		<span id="ratio-val" style="font-style: normal;"></span>
 
-  		<input type="range" list="tickmarks" id="ratio" value="0" min="0" max="100" step="10">
-
-  		<datalist id="tickmarks">
-		  <option value="0" label="N">
-		  <option value="10">
-		  <option value="20">
-		  <option value="30">
-		  <option value="40">
-		  <option value="50" label="H">
-		  <option value="60">
-		  <option value="70">
-		  <option value="80">
-		  <option value="90">
-		  <option value="100" label="T">
+  		<datalist id="steplist">
+    		<option>0</option>
+    		<option>10</option>
+    		<option>20</option>
+    		<option>30</option>
+    		<option>40</option>
+    		<option>50</option>
+    		<option>60</option>
+    		<option>70</option>
+    		<option>80</option>
+    		<option>90</option>
+    		<option>100</option>
 		</datalist>
-
-  	</div>
+  	</fieldset>
 
   	<div id="gridsize-options">
-  		<input type="number" id="gridsize" placeholder="Grid Size" min="3" max="6" step="1.0">
+  		<input type="number" id="toggle-rows" placeholder="Rows" min="2" max="6" step="1.0">
+  		<input type="number" id="toggle-cols" placeholder="Cols" min="2" max="6" step="1.0">
   	</div>
-
-
 
   	<div id="grid">
   		<!-- MAIN GRID IS HERE!! -->
@@ -45,8 +44,6 @@
 
   	<input type="reset" value="Set Defaults" id="reset">
   	<input type="button" value="Generate" id="generate">
-
-
 
   	<script type="text/javascript" src="/app.js"></script>
   </body>
