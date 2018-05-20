@@ -1,3 +1,31 @@
+/*FUNCTIONALITY FOR TIME CONSTRAINT BOX*/
+const currentTime = document.getElementById('current-time');
+let timeConstraint = 0.25;
+
+currentTime.innerHTML = timeConstraint + ' sec';
+
+const plus = document.getElementById('toggle-plus').addEventListener("click", function() {
+  if (timeConstraint < 3) {
+    timeConstraint += 0.25;
+    currentTime.innerHTML = timeConstraint + ' sec';
+  } 
+});
+const minus = document.getElementById('toggle-minus').addEventListener("click", function() {
+  if (timeConstraint > 0.25) {
+    timeConstraint -= 0.25;
+    currentTime.innerHTML = timeConstraint + ' sec';
+  }
+});;
+
+
+
+/*FUNCTIONALITY FOR TARGET LANG RATIO BOX*/
+const ratio = document.getElementById('ratio').addEventListener("input", function() {
+  const ratioVal = document.getElementById('ratio-val');
+  ratioVal.innerHTML = this.value + "%";
+});
+
+
 /*FUNCTIONALITY FOR RENDERING CARDS ON GRID*/
 const grid = document.getElementById('grid');
 grid.hasCards = false;
@@ -13,6 +41,14 @@ function renderGrid() {
   let rows = document.getElementById('toggle-rows').value;
   let cols = document.getElementById('toggle-cols').value;
 
+  let totalCards = rows * cols;
+
+  let targetLangRatio = parseInt(document.getElementById('ratio').value) / 100;
+
+  let totalTarget = Math.round(totalCards * targetLangRatio);
+  let totalNative = Math.floor(totalCards - totalTarget);
+      
+  /*Loop for rows*/
   for (let i = 0; i < rows; i++) {
 
     let rowContainer = document.createElement("div");
@@ -24,6 +60,7 @@ function renderGrid() {
     
     grid.appendChild(rowContainer);
 
+    /*Loop for columns*/
     for (let j = 0; j < cols; j++) {
 
       let cardContainer = document.createElement("div");
@@ -33,13 +70,41 @@ function renderGrid() {
       cardContainer.style.border = "1px solid cyan";
       cardContainer.style.float = 'left';
      
-     /*Grab a flashcard from the fake server*/
       var cardsReq = new XMLHttpRequest();
       cardsReq.addEventListener("load", function() {
+
         let randomCard = JSON.parse(this.responseText);
-        cardContainer.question = randomCard.question;
-        cardContainer.answer = randomCard.answer;
-        cardContainer.innerHTML = randomCard.question;
+        let { answer, question } = randomCard;
+
+        //if either target or native has run out of cards, unconditionally render whichever has cards
+        if (totalTarget == 0 || totalNative == 0) {
+    
+          if (totalTarget == 0) {
+            cardContainer.question = question;
+            cardContainer.answer = answer;
+            totalNative -= 1;
+          } else {
+            cardContainer.question = answer;
+            cardContainer.answer = question;
+            totalTarget -= 1; 
+          }
+
+        } else {
+          //otherwise, use a random dice roll to determine the render
+          let diceRoll = Math.random();
+          if (diceRoll < targetLangRatio) {
+            cardContainer.question = answer;
+            cardContainer.answer = question;
+            totalTarget -= 1;       
+          } else {
+            cardContainer.question = question;
+            cardContainer.answer = answer;
+            totalNative -= 1;
+          }
+        }
+
+        cardContainer.innerHTML = cardContainer.question;
+        
       });
       cardsReq.open("GET", "http://127.0.0.1:3000/api/cards");
       cardsReq.send();
@@ -48,11 +113,10 @@ function renderGrid() {
       cardContainer.addEventListener("click", function() {
 
         this.innerHTML = cardContainer.answer;
-        let timeDifficulty = document.getElementById('time').value;
 
         setTimeout(() => {
         	this.innerHTML = cardContainer.question; 
-        }, timeDifficulty * 1000);
+        }, timeConstraint * 1000);
 
       });
 
@@ -68,33 +132,3 @@ function renderGrid() {
 
 generate.addEventListener("click", renderGrid);
 
-/*FUNCTIONALITY FOR TIME CONSTRAINT BOX*/
-const currentTime = document.getElementById('current-time');
-let timeConstraint = 0.25;
-
-currentTime.innerHTML = timeConstraint + ' sec';
-
-const plus = document.getElementById('toggle-plus').addEventListener("click", function() {
-
-  if (timeConstraint < 3) {
-    timeConstraint += 0.25;
-    currentTime.innerHTML = timeConstraint + ' sec';
-  } 
-  
-});
-
-const minus = document.getElementById('toggle-minus').addEventListener("click", function() {
-  
-  if (timeConstraint > 0.25) {
-    timeConstraint -= 0.25;
-    currentTime.innerHTML = timeConstraint + ' sec';
-  }
-
-});;
-
-/*FUNCTIONALITY FOR RATIO BOX*/
-
-const ratio = document.getElementById('ratio').addEventListener("input", function() {
-  const ratioVal = document.getElementById('ratio-val');
-  ratioVal.innerHTML = this.value + "%";
-});
