@@ -1,58 +1,64 @@
+/*FOR LATER.. will try and put things into one object*/
+let options = {
+  timeConstraint : 0.25,
+  targetLangRatio : null,
+  gridHasCards : false,
+  gridRows : null,
+  gridCols : null,
+  totalCards : null
+};
+
 /*FUNCTIONALITY FOR TIME CONSTRAINT BOX*/
 const currentTime = document.getElementById('current-time');
-let timeConstraint = 0.25;
-
-currentTime.innerHTML = timeConstraint + ' sec';
+currentTime.innerHTML = options.timeConstraint;
 
 const plus = document.getElementById('toggle-plus').addEventListener("click", function() {
-  if (timeConstraint < 3) {
-    timeConstraint += 0.25;
-    currentTime.innerHTML = timeConstraint + ' sec';
+  if (options.timeConstraint < 3) {
+    options.timeConstraint += 0.25;
+    currentTime.innerHTML = options.timeConstraint + ' sec';
   } 
 });
 const minus = document.getElementById('toggle-minus').addEventListener("click", function() {
-  if (timeConstraint > 0.25) {
-    timeConstraint -= 0.25;
-    currentTime.innerHTML = timeConstraint + ' sec';
+  if (options.timeConstraint > 0.25) {
+    options.timeConstraint -= 0.25;
+    currentTime.innerHTML = options.timeConstraint + ' sec';
   }
 });;
-
-
 
 /*FUNCTIONALITY FOR TARGET LANG RATIO BOX*/
 const ratio = document.getElementById('ratio').addEventListener("input", function() {
   const ratioVal = document.getElementById('ratio-val');
   ratioVal.innerHTML = this.value + "%";
+  options.targetLangRatio = this.value / 100;
 });
-
 
 /*FUNCTIONALITY FOR RENDERING CARDS ON GRID*/
 const grid = document.getElementById('grid');
-grid.hasCards = false;
-
 const generate = document.getElementById('generate');
+let rows = document.getElementById('toggle-rows').addEventListener("click", function() {
+  options.gridRows = parseInt(this.value);
+});
+let cols = document.getElementById('toggle-cols').addEventListener("click", function() {
+  options.gridCols = parseInt(this.value);
+});
 
 function renderGrid() {
 
-  if (grid.hasCards) {
+  if (options.gridHasCards) {
     grid.innerHTML = '';
   } 
 
-  let rows = document.getElementById('toggle-rows').value;
-  let cols = document.getElementById('toggle-cols').value;
+  options.totalCards = options.gridRows * options.gridCols;
 
-  let totalCards = rows * cols;
-
-  let targetLangRatio = parseInt(document.getElementById('ratio').value) / 100;
-
-  let totalTarget = Math.round(totalCards * targetLangRatio);
-  let totalNative = Math.floor(totalCards - totalTarget);
+  /*important for rendering*/
+  let totalTarget = Math.round(options.gridCards * options.targetLangRatio);
+  let totalNative = Math.floor(options.gridCards - totalTarget);
       
   /*Loop for rows*/
-  for (let i = 0; i < rows; i++) {
+  for (let i = 0; i < options.gridRows; i++) {
 
     let rowContainer = document.createElement("div");
-    let h = 100 / rows; 
+    let h = 100 / options.gridRows; 
 
     rowContainer.style.position = "relative";
     rowContainer.style.display = "block";
@@ -61,14 +67,21 @@ function renderGrid() {
     grid.appendChild(rowContainer);
 
     /*Loop for columns*/
-    for (let j = 0; j < cols; j++) {
+    for (let j = 0; j < options.gridCols; j++) {
 
       let cardContainer = document.createElement("div");
+      cardContainer.classList.add("card-container");
+      cardContainer.style.width = 100 / options.gridCols + "%";
+      
+      let flashCard = document.createElement("div");
+      let cardFront = document.createElement("div");
+      let cardBack = document.createElement("div");
 
-      cardContainer.style.width = 100 / cols + "%";
-      cardContainer.style.height = "100%";
-      cardContainer.style.border = "1px solid cyan";
-      cardContainer.style.float = 'left';
+      flashCard.classList.add("flashcard");
+      cardFront.classList.add("card-face", "card-front");
+      cardBack.classList.add("card-face", "card-back");
+      
+      cardContainer.appendChild(flashCard);
      
       var cardsReq = new XMLHttpRequest();
       cardsReq.addEventListener("load", function() {
@@ -80,43 +93,42 @@ function renderGrid() {
         if (totalTarget == 0 || totalNative == 0) {
     
           if (totalTarget == 0) {
-            cardContainer.question = question;
-            cardContainer.answer = answer;
+            flashCard.question = question;
+            flashCard.answer = answer;
             totalNative -= 1;
           } else {
-            cardContainer.question = answer;
-            cardContainer.answer = question;
+            flashCard.question = answer;
+            flashCard.answer = question;
             totalTarget -= 1; 
           }
 
         } else {
           //otherwise, use a random dice roll to determine the render
           let diceRoll = Math.random();
-          if (diceRoll < targetLangRatio) {
-            cardContainer.question = answer;
-            cardContainer.answer = question;
+          if (diceRoll < options.targetLangRatio) {
+            flashCard.question = answer;
+            flashCard.answer = question;
             totalTarget -= 1;       
           } else {
-            cardContainer.question = question;
-            cardContainer.answer = answer;
+            flashCard.question = question;
+            flashCard.answer = answer;
             totalNative -= 1;
           }
         }
 
-        cardContainer.innerHTML = cardContainer.question;
+        flashCard.innerHTML = flashCard.question;
         
       });
       cardsReq.open("GET", "http://127.0.0.1:3000/api/cards");
       cardsReq.send();
 
-      /*Basic pseudo flip functionality for now through event listener*/
-      cardContainer.addEventListener("click", function() {
+      flashCard.addEventListener("click", function() {
 
-        this.innerHTML = cardContainer.answer;
+        this.classList.toggle("is-flipped");
 
         setTimeout(() => {
-        	this.innerHTML = cardContainer.question; 
-        }, timeConstraint * 1000);
+        	this.classList.toggle("is-flipped");
+        }, options.timeConstraint * 1000);
 
       });
 
@@ -126,7 +138,7 @@ function renderGrid() {
 
   }
 
-  grid.hasCards = true;
+  options.gridHasCards = true;
     
 };
 
