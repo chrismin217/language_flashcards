@@ -34,8 +34,24 @@
   	</fieldset>
 
   	<div id="gridsize-options">
-  		<input type="number" id="toggle-rows" placeholder="Rows" min="2" max="6" step="1.0">
-  		<input type="number" id="toggle-cols" placeholder="Cols" min="2" max="6" step="1.0">
+      <label id="gridsize-label">Set Grid Size</label>
+
+      <div id="rows-container">
+  		  <input type="number" id="toggle-rows" value="2" min="2" max="6" step="1.0" required>
+        <div id="rows-btn-container">
+          <input type="image" id="row-up" alt="" src="/assets/uparrow.ico" />
+          <input type="image" id="row-down" alt="" src="/assets/downarrow.png" />
+        </div>
+      </div>
+
+      <div id="cols-container">
+        <input type="number" id="toggle-cols" value="2" min="2" max="6" step="1.0" required>
+        <div id="cols-btn-container">
+          <input type="image" id="col-up" alt="" src="/assets/uparrow.ico" />
+          <input type="image" id="col-down" alt="" src="/assets/downarrow.png" />
+        </div>
+      </div>
+
   	</div>
 
   	<div id="grid">

@@ -3,14 +3,14 @@ let options = {
   timeConstraint : 0.25,
   targetLangRatio : null,
   gridHasCards : false,
-  gridRows : null,
-  gridCols : null,
+  gridRows : 2,
+  gridCols : 2,
   totalCards : null
 };
 
 /*FUNCTIONALITY FOR TIME CONSTRAINT BOX*/
 const currentTime = document.getElementById('current-time');
-currentTime.innerHTML = options.timeConstraint;
+currentTime.innerHTML = options.timeConstraint + ' sec';
 
 const plus = document.getElementById('toggle-plus').addEventListener("click", function() {
   if (options.timeConstraint < 3) {
@@ -35,11 +35,45 @@ const ratio = document.getElementById('ratio').addEventListener("input", functio
 /*FUNCTIONALITY FOR RENDERING CARDS ON GRID*/
 const grid = document.getElementById('grid');
 const generate = document.getElementById('generate');
-let rows = document.getElementById('toggle-rows').addEventListener("click", function() {
-  options.gridRows = parseInt(this.value);
+const rows = document.getElementById('toggle-rows');
+const cols = document.getElementById('toggle-cols');
+
+let rowUp = document.getElementById('row-up').addEventListener("click", function() {
+  if (rows.value < 6) {
+    options.gridRows = options.gridRows + 1;
+    rows.value = options.gridRows;
+  } else {
+    alert('Rows cannot exceed 6.');
+  };
 });
-let cols = document.getElementById('toggle-cols').addEventListener("click", function() {
-  options.gridCols = parseInt(this.value);
+let rowDown = document.getElementById('row-down').addEventListener("click", function() {
+  if (rows.value > 2) {
+    options.gridRows = options.gridRows - 1;
+    rows.value = options.gridRows;
+  } else {
+    alert('Must have at least 2 rows.');
+  };
+});
+
+let colsUp = document.getElementById('col-up').addEventListener("click", function() {
+
+  if (cols.value < 6) {
+    options.gridCols = options.gridCols + 1;
+    cols.value = options.gridCols;
+  } else {
+    alert('Columns cannot exceed 6.');
+  }
+
+});
+let colsDown = document.getElementById('col-down').addEventListener("click", function() {
+
+  if (cols.value > 2) {
+    options.gridCols = options.gridCols - 1;
+    cols.value = options.gridCols;
+  } else {
+    alert('Must have at least 2 columns.');
+  }
+
 });
 
 function renderGrid() {
