@@ -76,13 +76,16 @@ function renderGrid() {
       let flashCard = document.createElement("div");
       let cardFront = document.createElement("div");
       let cardBack = document.createElement("div");
+      let cardContent = document.createElement("span");
 
       flashCard.classList.add("flashcard");
       cardFront.classList.add("card-face", "card-front");
       cardBack.classList.add("card-face", "card-back");
       
+      flashCard.appendChild(cardFront);
+      flashCard.appendChild(cardBack);
       cardContainer.appendChild(flashCard);
-     
+
       var cardsReq = new XMLHttpRequest();
       cardsReq.addEventListener("load", function() {
 
@@ -93,12 +96,12 @@ function renderGrid() {
         if (totalTarget == 0 || totalNative == 0) {
     
           if (totalTarget == 0) {
-            flashCard.question = question;
-            flashCard.answer = answer;
+            cardFront.question = question;
+            cardBack.answer = answer;
             totalNative -= 1;
           } else {
-            flashCard.question = answer;
-            flashCard.answer = question;
+            cardFront.question = answer;
+            cardBack.answer = question;
             totalTarget -= 1; 
           }
 
@@ -106,17 +109,19 @@ function renderGrid() {
           //otherwise, use a random dice roll to determine the render
           let diceRoll = Math.random();
           if (diceRoll < options.targetLangRatio) {
-            flashCard.question = answer;
-            flashCard.answer = question;
+            cardFront.question = answer;
+            cardBack.answer = question;
             totalTarget -= 1;       
           } else {
-            flashCard.question = question;
-            flashCard.answer = answer;
+            cardFront.question = question;
+            cardBack.answer = answer;
             totalNative -= 1;
           }
         }
 
-        flashCard.innerHTML = flashCard.question;
+        /*since I want vertical centering, don't use innerHTML*/
+        cardFront.innerHTML = cardFront.question;
+        cardBack.innerHTML = cardBack.answer;
         
       });
       cardsReq.open("GET", "http://127.0.0.1:3000/api/cards");
@@ -128,7 +133,7 @@ function renderGrid() {
 
         setTimeout(() => {
         	this.classList.toggle("is-flipped");
-        }, options.timeConstraint * 1000);
+        }, options.timeConstraint * 1000 + 500); //+500 accounts for the 0.5 transition time
 
       });
 
