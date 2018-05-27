@@ -6,6 +6,15 @@
     <link rel="stylesheet" type="text/css" href="/styles.css">
   </head>
   <body>
+
+    <div id="login">
+      <ul>
+        <li><a>FAQ</a></li>
+        <li><a>Blog</a></li>
+        <li><a>Login</a></li>
+        <li><a href="/register.html">Register</a></li>
+      </ul>
+    </div>
   	
   	<div id="time-options">
   		<div><img alt="" src="/assets/clock.png" width="90px" height="80px" /><span id="current-time"></span></div>
@@ -54,12 +63,18 @@
 
   	</div>
 
+    <input type="reset" value="Default" id="reset">
+    <input type="button" value="Generate" id="generate">
+
   	<div id="grid">
   		<!-- MAIN GRID IS HERE!! -->
   	</div>
 
-  	<input type="reset" value="Set Defaults" id="reset">
-  	<input type="button" value="Generate" id="generate">
+    <div id="decks">
+      
+    </div>
+
+  	
 
   	<script type="text/javascript" src="/app.js"></script>
   </body>

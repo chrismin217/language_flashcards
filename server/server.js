@@ -18,7 +18,6 @@ app.use(function(req, res, next) {
   next();	
 });
 
-
 app.get('/api/cards', (req, res) => {
   let random = Math.floor(Math.random() * deck.length);
   console.log(deck[random]);

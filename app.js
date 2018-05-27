@@ -1,7 +1,6 @@
-/*FOR LATER.. will try and put things into one object*/
 let options = {
   timeConstraint : 0.25,
-  targetLangRatio : null,
+  targetLangRatio : 0,
   gridHasCards : false,
   gridRows : 2,
   gridCols : 2,
@@ -26,8 +25,10 @@ const minus = document.getElementById('toggle-minus').addEventListener("click", 
 });;
 
 /*FUNCTIONALITY FOR TARGET LANG RATIO BOX*/
+const ratioVal = document.getElementById('ratio-val');
+ratioVal.innerHTML = options.targetLangRatio + "%";
+
 const ratio = document.getElementById('ratio').addEventListener("input", function() {
-  const ratioVal = document.getElementById('ratio-val');
   ratioVal.innerHTML = this.value + "%";
   options.targetLangRatio = this.value / 100;
 });
@@ -84,7 +85,6 @@ function renderGrid() {
 
   options.totalCards = options.gridRows * options.gridCols;
 
-  /*important for rendering*/
   let totalTarget = Math.round(options.gridCards * options.targetLangRatio);
   let totalNative = Math.floor(options.gridCards - totalTarget);
       
@@ -153,9 +153,27 @@ function renderGrid() {
           }
         }
 
-        /*since I want vertical centering, don't use innerHTML*/
-        cardFront.innerHTML = cardFront.question;
-        cardBack.innerHTML = cardBack.answer;
+        let centerContent = {
+          position : 'absolute',
+          left : "50%",
+          top : "50%",
+          transform : "translate(-50%, -50%)"
+        };
+
+        let frontContent = document.createElement("span");
+        frontContent.innerHTML = cardFront.question;
+        cardFront.appendChild(frontContent);
+
+        let backContent = document.createElement("span");
+        backContent.innerHTML = cardBack.answer;
+        cardBack.appendChild(backContent);
+        
+        for (x in centerContent) {
+          frontContent.style[x] = centerContent[x];
+          backContent.style[x] = centerContent[x];
+        }
+
+
         
       });
       cardsReq.open("GET", "http://127.0.0.1:3000/api/cards");
@@ -182,4 +200,27 @@ function renderGrid() {
 };
 
 generate.addEventListener("click", renderGrid);
+
+
+/*FUNCTIONALITY FOR RESET DEFAULTS BUTTON*/
+const reset = document.getElementById("reset").addEventListener("click", function() {
+
+  let defaults = {
+    timeConstraint : 0.25,
+    targetLangRatio : 0,
+    gridRows : 2,
+    gridCols : 2
+  };
+
+  let resetOptions = Object.assign(options, defaults);
+
+  //slider goes back to left-most starting point
+  const ratio = document.getElementById("ratio");
+  ratio.value = 0;
+
+  currentTime.innerHTML = resetOptions.timeConstraint + ' sec';
+  ratioVal.innerHTML = resetOptions.targetLangRatio + "%";
+  rows.value = resetOptions.gridRows;
+  cols.value = resetOptions.gridCols;
+});
 
