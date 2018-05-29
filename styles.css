@@ -7,7 +7,7 @@ body {
 }
 
 /*UPPER RIGHT CORNER LOGIN MENU*/
-#login {
+#nav {
   position: absolute;
   right: 0;
   top: 5px;
@@ -15,12 +15,12 @@ body {
   width: 20%;
   height: 30px;
 }
-  #login ul {
+  #nav ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
   }
-  #login ul li {
+  #nav ul li {
     position: relative;
     top: 5px;
     float: left;
@@ -28,7 +28,7 @@ body {
     text-align: center;
     border: 1px solid black;
   }
-  #login ul li a {
+  #nav ul li a {
     text-decoration: none;
     cursor: none;
     color: black;
@@ -36,8 +36,41 @@ body {
     font-family: 'Arial';
     font-size: 12px;
   }
-  #login ul li a:hover {
+  #nav ul li a:hover {
     cursor: pointer;
+  }
+
+/*LOGIN BOX WHICH APPEARS ON MOUSEOVER*/
+#login {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 40px;
+  width: 20%;
+  height: 30px;
+}
+  #user {
+    
+  }
+  #pw { 
+    
+  }
+  #btn {
+    cursor: pointer;
+  }
+  #btn:hover {
+    font-weight: bold;
+    background-color: grey;
+    color: yellow;
+  }
+  #login input {
+    float: left;
+    width: 32%;
+    height: 98%;
+    padding: 4px;
+    border: none;
+    border-radius: 5px;
+    margin: 1px;
   }
 
 
@@ -313,3 +346,7 @@ body {
   height: 300px;
   border: 10px solid black;
 }
+  #decks button {
+    
+    
+  }

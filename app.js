@@ -1,3 +1,14 @@
+const login = document.getElementById("login");
+const loginBtn = document.getElementById("login-btn").addEventListener("click", function() {
+
+  if (login.style.display === "none") {
+    login.style.display = "block";
+  } else {
+    login.style.display = "none";
+  }
+
+});
+
 let options = {
   timeConstraint : 0.25,
   targetLangRatio : 0,
@@ -77,6 +88,7 @@ let colsDown = document.getElementById('col-down').addEventListener("click", fun
 
 });
 
+/*Main render function.. can re-factor big time with the styling.*/
 function renderGrid() {
 
   if (options.gridHasCards) {
