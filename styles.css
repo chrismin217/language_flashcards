@@ -1,0 +1,352 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: magenta;
+}
+
+/*UPPER RIGHT CORNER LOGIN MENU*/
+#nav {
+  position: absolute;
+  right: 0;
+  top: 5px;
+  border: 1px solid black;
+  width: 20%;
+  height: 30px;
+}
+  #nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  #nav ul li {
+    position: relative;
+    top: 5px;
+    float: left;
+    width: 25%;
+    text-align: center;
+    border: 1px solid black;
+  }
+  #nav ul li a {
+    text-decoration: none;
+    cursor: none;
+    color: black;
+    font-weight: bold;
+    font-family: 'Arial';
+    font-size: 12px;
+  }
+  #nav ul li a:hover {
+    cursor: pointer;
+  }
+
+/*LOGIN BOX WHICH APPEARS ON MOUSEOVER*/
+#login {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 40px;
+  width: 20%;
+  height: 30px;
+}
+  #user {
+    
+  }
+  #pw { 
+    
+  }
+  #btn {
+    cursor: pointer;
+  }
+  #btn:hover {
+    font-weight: bold;
+    background-color: grey;
+    color: yellow;
+  }
+  #login input {
+    float: left;
+    width: 32%;
+    height: 98%;
+    padding: 4px;
+    border: none;
+    border-radius: 5px;
+    margin: 1px;
+  }
+
+
+/*FIRST SET OF OPTIONS FOR TIME CONSTRAINT*/
+#time-options {
+  position: absolute;
+  width: 150px;
+  height: 90px;
+  border: 3px solid black;
+}
+  #current-time {
+    position: absolute;
+    z-index: 10;
+    left: 0;
+    bottom: 0;
+    font-weight: bold;
+    color: white;
+  }
+  #toggle-plus {
+    position: absolute;
+    right: 5px;
+    top: 3px;
+    width: 35px;
+    height: 32px;
+  }
+  #toggle-minus {
+    position: absolute;
+    right: 5px;
+    bottom: 3px;
+    width: 35px;
+    height: 32px;
+  }
+
+#ratio-options {
+  position: absolute;
+  left: 160px;
+  width: 190px;
+  height: 90px;
+  border: 3px solid black;
+  text-align: center;
+}
+  #ratio-label {
+    color: maroon;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  #ratio {
+    width: 80%;
+    position: relative;
+    margin-top: 5px
+  }
+  #ratio::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: 1px solid #000000;
+    border-radius: 3px;
+    background: #ffffff;
+    cursor: pointer;
+    margin-top: -7px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  }
+  #ratio::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4.4px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background: #3071a9;
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+  }
+  #ratio:focus::-webkit-slider-runnable-track {
+    background: #367ebd;
+  }
+  #steplist {
+    color: black;
+  }
+  #ratio-val {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    display: inline-block;
+  }
+
+#gridsize-options {
+  position: absolute;
+  left: 360px;
+  width: 150px;
+  height: 90px;
+  border: 3px solid black;
+}
+  #gridsize-label {
+    position: relative;
+    display: block;
+    text-align: center;
+    color: maroon;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  /*Toggling grid size .. ROWS*/
+  #rows-container {
+    position: relative;
+    border: 1px solid black;
+    height: 35px;
+    width: 50%;
+  }
+  #toggle-rows {
+    position: absolute;
+    left: 3%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 70%;
+    height: 90%;
+    font-weight: bold;
+    font-size: 21px;
+  }
+    #toggle-rows::-webkit-inner-spin-button, #toggle-rows::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    #rows-btn-container {
+      position: relative; 
+      left: 80%;
+      display: inline-block;
+      height: 100%;
+      width: 15px;
+    }
+      #row-up {
+        position: absolute;
+        top: 0;
+        width: 15px;
+        height: 15px;
+        padding: 2px;
+      }
+      #row-down {
+        position: absolute;
+        bottom: 0;
+        width: 15px;
+        height: 15px;
+        padding: 2px;
+      }
+
+  /*Toggling grid size .. COLS*/
+  #cols-container {
+    position: relative;
+    border: 1px solid black;
+    height: 35px;
+    width: 50%;
+  }
+  #toggle-cols {
+    position: absolute;
+    left: 3%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 70%;
+    height: 90%;
+    font-weight: bold;
+    font-size: 21px;
+  }
+    #toggle-cols::-webkit-inner-spin-button, #toggle-cols::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    #cols-btn-container {
+      position: relative; 
+      left: 80%;
+      display: inline-block;
+      height: 100%;
+      width: 15px;
+    }
+      #col-up {
+        position: absolute;
+        top: 0;
+        width: 15px;
+        height: 15px;
+        padding: 2px;
+      }
+      #col-down {
+        position: absolute;
+        bottom: 0;
+        width: 15px;
+        height: 15px;
+        padding: 2px;
+      }
+
+
+/*MAIN GRID*/
+#grid {
+  position: absolute;
+  top: 100px;
+  width: 610px;
+  height: 610px;
+  border: 10px solid black;
+}
+  .card-container {
+    height: 100%;
+    border: 1px solid black;
+    float: left;
+    perspective: 600px;
+  }
+  .flashcard {
+    position: relative;
+    left: 5%;
+    top: 25%;
+    width: 90%;
+    height: 50%;
+    border: 1px solid black;
+    border-radius: 3px;
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+  }
+    .flashcard.is-flipped {
+      transform: rotateY(180deg);
+    }
+  .card-face {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    backface-visibility: hidden;
+  }
+  .card-front {
+    background-image: url('/assets/notecard.png');
+    border-radius: 3px;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Arial';
+  }
+  .card-back {
+    background-image: url('/assets/notecard.png');
+    border-radius: 3px;
+    transform: rotateY(180deg);
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Arial';
+  }
+
+
+
+
+
+/*GRID OPTIONS*/
+#reset {
+  position: absolute;
+  left: 520px;
+  width: 90px;
+  height: 40px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: green;
+  font-weight: bold;
+}
+
+#generate {
+  position: absolute;
+  top: 55px;
+  left: 520px;
+  width: 90px;
+  height: 40px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: green;
+  font-weight: bold;
+}
+
+/*USER'S DECKS*/
+#decks {
+  position: absolute;
+  top: 100px;
+  left: 650px;
+  width: 300px;
+  height: 300px;
+  border: 10px solid black;
+}
+  #decks button {
+    
+    
+  }
