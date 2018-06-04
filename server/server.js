@@ -6,7 +6,6 @@ const path = require('path');
 
 const session = require('express-session');
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
 const expressValidator = require('express-validator');
 const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
@@ -74,12 +73,20 @@ app.use(function(req, res, next) {
   next();	
 });
 
-/*Login*/
-app.post('/login', passport.authenticate('local', {
-  failureFlash : 'Invalid username or password.'
-}), (req, res) => {
-  console.log(req.body);
-  res.send('hello');
+/*Login Routes*/
+app.post('/login', (req, res) => {
+  db.User.create({
+    username : req.body.username,
+    password : req.body.password
+  })
+  .then(newUser => {
+    console.log(newUser);
+    res.json(newUser);
+  })
+  .catch(err => {
+    console.log(err);
+    res.send('failed.');
+  });
 });
 
 app.post('/register', (req, res) => {
