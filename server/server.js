@@ -6,7 +6,6 @@ const path = require('path');
 
 const session = require('express-session');
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
 const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
 
@@ -15,13 +14,15 @@ const app = express();
 
 const deck = require('./deck');
 
-app.configure(function() {
+/*Nodemon is complaining, out for now.*/
+
+/*app.configure(function() {
   app.use(express.cookieParser('secret'));
   app.use(express.session({
     cookie : { maxAge : 60000 }
   }));
   app.use(flash());
-});
+});*/
 
 app.use(bodyParser.urlencoded({ extended:true }));
 app.use(bodyParser.json());

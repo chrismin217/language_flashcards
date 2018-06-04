@@ -4,12 +4,14 @@
   "description": "This is a personal project that I was very passionate about creating at the time of my bootcamp graduation. I wanted a different way to use language learning flashcards, and I thought this was the best way to do it.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "lite-server",
+    "sequelize" : "sequelize"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.18.2",
+    "body-parser": "^1.18.3",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.3",
@@ -17,6 +19,11 @@
     "passport": "^0.4.0",
     "pg": "^7.4.3",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^4.37.7"
+    "sequelize": "^4.37.10",
+    "sequelize-cli": "^4.0.0"
+  },
+  "devDependencies": {
+    "lite-server": "^2.3.0",
+    "nodemon": "^1.17.5"
   }
 }
