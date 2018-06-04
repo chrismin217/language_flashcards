@@ -16,11 +16,11 @@
       </ul>
     </div>
 
-    <div id="login">
-      <input type="text" placeholder="Username" id="user" />
-      <input type="password" placeholder="Password" id="pw" />
+    <form id="login" action="/login" method="POST">
+      <input type="text" placeholder="Username" id="user" name="username" />
+      <input type="password" placeholder="Password" id="pw" name="password" />
       <input type="submit" value="Login" id="btn" />
-    </div>
+    </form>
   	
   	<div id="time-options">
   		<div><img alt="" src="/assets/clock.png" width="90px" height="80px" /><span id="current-time"></span></div>
