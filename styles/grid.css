@@ -1,0 +1,50 @@
+/*MAIN GRID*/
+#grid {
+  position: absolute;
+  top: 100px;
+  width: 610px;
+  height: 610px;
+  border: 10px solid black;
+}
+  .card-container {
+    height: 100%;
+    border: 1px solid black;
+    float: left;
+    perspective: 600px;
+  }
+  .flashcard {
+    position: relative;
+    left: 5%;
+    top: 25%;
+    width: 90%;
+    height: 50%;
+    border: 1px solid black;
+    border-radius: 3px;
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+  }
+    .flashcard.is-flipped {
+      transform: rotateY(180deg);
+    }
+  .card-face {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    backface-visibility: hidden;
+  }
+  .card-front {
+    background-image: url('/assets/notecard.png');
+    border-radius: 3px;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Arial';
+  }
+  .card-back {
+    background-image: url('/assets/notecard.png');
+    border-radius: 3px;
+    transform: rotateY(180deg);
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Arial';
+  }

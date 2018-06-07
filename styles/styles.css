@@ -1,0 +1,16 @@
+@import url('./nav.css');
+@import url('./time.css');
+@import url('./ratio.css');
+@import url('./rowscols.css');
+@import url('./grid.css');
+@import url('./grid_buttons.css');
+@import url('./decks.css');
+
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: magenta;
+}

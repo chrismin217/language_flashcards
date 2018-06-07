@@ -9,6 +9,11 @@ const loginBtn = document.getElementById("login-btn").addEventListener("click", 
 
 });
 
+const register = document.getElementById("reg-btn").addEventListener("click", function() {
+  console.log(this);
+  
+});
+
 let options = {
   timeConstraint : 0.25,
   targetLangRatio : 0,
@@ -188,7 +193,7 @@ function renderGrid() {
 
         
       });
-      cardsReq.open("GET", "http://127.0.0.1:3000/api/cards");
+      cardsReq.open("GET", "http://127.0.0.1:8080/api/cards");
       cardsReq.send();
 
       flashCard.addEventListener("click", function() {

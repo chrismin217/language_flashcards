@@ -22,9 +22,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : false }));
 app.use(cookieParser());
 
-/*Static Folder*/
-app.use(express.static(path.join(__dirname + 'public')));
-
 /*Session*/
 app.use(session({
   secret : 'secret',
@@ -73,36 +70,31 @@ app.use(function(req, res, next) {
   next();	
 });
 
+/*Pages*/
+
+
 /*Login Routes*/
 app.post('/login', (req, res) => {
-  db.User.create({
-    username : req.body.username,
-    password : req.body.password
-  })
-  .then(newUser => {
-    console.log(newUser);
-    res.json(newUser);
+  db.User.findOne({ where : { username : req.body.username }})
+  .then(user => {
+    console.log(user);
+    res.redirect('/');
   })
   .catch(err => {
-    console.log(err);
     res.send('failed.');
   });
 });
 
 app.post('/register', (req, res) => {
-  bcrypt.genSalt(saltRounds, function(err, salt) {
-    bcrypt.hash(req.body.password, salt, function(err, hash) {
-      db.User.create({
-        username : req.body.username,
-        password : hash
-      })
-      .then(user => {
-        res.json(user);
-      })
-      .catch(err => {
-        return res.send('Failed to create new user.');
-      });
-    });
+  db.User.create({
+    username : req.body.username,
+    password : hash
+  })
+  .then(newUser => {
+    res.json(newUser);
+  })
+  .catch(err => {
+    return res.send('failed.');
   });
 });
 
@@ -110,6 +102,10 @@ app.get('/logout', (req, res) => {
   req.logout();
   res.sendStatus(200);
 })
+
+
+
+
 
 /*Decks*/
 
@@ -133,7 +129,6 @@ app.put('/api/cards/:id', (req, res) => {
 app.delete('/api/cards/:id', (req, res) => {
   console.log('deleting');
 });
-
 
 /*Server*/
 app.listen(PORT, () => {
