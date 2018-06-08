@@ -57,9 +57,7 @@ app.use(expressValidator({
 /*Flash*/
 app.use(flash());
 app.use(function(req, res, next) {
-  res.locals.success_msg = req.flash('success_msg');
-  res.locals.error_msg = req.flash('error_msg');
-  res.locals.error = req.flash('error');
+  res.locals.messages = req.flash();
   next();
 });
 
@@ -75,13 +73,16 @@ app.use(function(req, res, next) {
 
 /*Login Routes*/
 app.post('/login', (req, res) => {
-  db.User.findOne({ where : { username : req.body.username }})
+  db.User.findOne({ where : { 
+    username : req.body.username,
+    password : req.body.password
+  }})
   .then(user => {
-    console.log(user);
-    res.redirect('/');
-  })
-  .catch(err => {
-    res.send('failed.');
+    if (user) {
+      res.redirect('http://127.0.0.1:3000/index.html');
+    } else {
+      return res.status(500).json({error : 'Invalid username or password.'});
+    }
   });
 });
 
@@ -92,11 +93,9 @@ app.post('/register', (req, res) => {
     email : req.body.email
   })
   .then(newUser => {
-    console.log(newUser);
     res.redirect("http://127.0.0.1:3000/index.html");
   })
   .catch(err => {
-    console.log(err);
     return res.send('failed.');
   });
 });
