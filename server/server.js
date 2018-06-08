@@ -88,12 +88,15 @@ app.post('/login', (req, res) => {
 app.post('/register', (req, res) => {
   db.User.create({
     username : req.body.username,
-    password : hash
+    password : req.body.password,
+    email : req.body.email
   })
   .then(newUser => {
-    res.json(newUser);
+    console.log(newUser);
+    res.redirect("http://127.0.0.1:3000/index.html");
   })
   .catch(err => {
+    console.log(err);
     return res.send('failed.');
   });
 });

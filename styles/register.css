@@ -1,0 +1,123 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: blue;
+}
+
+#wrapper {
+	border: 5px solid magenta;
+}
+
+
+#header {
+	border: 1px solid black;
+}
+	#title {
+		color: white;
+		font-weight: bold;
+	}
+		#title p {
+			font-size: 50px;
+			
+		}
+	#heading {
+		color: white;
+	}
+
+
+
+#main {
+	border: 1px solid cyan;
+	position: relative;
+	height: 300px;
+}
+	#left {
+		background-color: red;
+		width: 50%;
+		height: 100%;
+		float: left;
+		padding: 15px;
+	}
+		#form-left {
+
+		}
+		.label {
+			display: block;
+			margin-bottom: 5px;
+		}
+		.input {
+			border: none;
+			border-radius: 5px;
+			padding: 3px;
+			margin-bottom: 5px;
+			height: 30px;
+			width: 80%;
+			display: block;
+		}
+			#user {
+
+			}
+			#password {
+
+			}
+			#email {
+
+			}
+			#submit {
+				position: relative;
+				margin-top: 25px;
+				font-weight: bold;
+				border: 1px solid black;
+				cursor: pointer;
+				width: 50%;
+			}
+
+	#right {
+		position: relative;
+		background-color: yellow;
+		width: 50%;
+		height: 100%;
+		display: inline-block;
+		padding: 15px;
+	}
+		.right-input {
+			display: block;
+			border: 1px solid black;
+			border-radius: 5px;
+			padding: 6px;
+			margin: 5px;
+			cursor: pointer;
+			color: white;
+			background-color: gray;
+		}
+		#right-descrip {
+			position: absolute;
+			bottom: 15px; /*padding..*/
+			margin: 0;
+		}
+
+
+#footer {
+	position: relative;
+	border: 1px solid white;
+}
+	.footer-icon {
+		width: 100px;
+		height: 50px;
+	}
+	#footer-descrip {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 50%;
+		color: white;
+		font-weight: bold;
+		font-size: 20px;
+		font-family: 'Arial';
+		letter-spacing: 1px;
+		margin: 0;
+		display: inline-block;
+	}

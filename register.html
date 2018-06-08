@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Create an Account</title>
+	<link rel="stylesheet" href="/styles/register.css">
+</head>
+<body>
+	<div id="wrapper">
+
+		<header id="header">
+			<div id="title"><p>Join Us and Get Fluent!</p></div>
+			<div id="heading">
+				<p>We think you'll find this method of using flashcards much more effective. Give yourself time constraints, do more than one card at a time, and mix things up between your native and target language!
+				</p>
+			</div>
+		</header>
+
+		<div id="main">
+
+			<div id="left">
+				<form id="left-form" action="http://127.0.0.1:8080/register" method="POST" >
+
+					<label class="label" for="user">Username</label>
+					<input class="input" id="user" type="text" name="username">
+					<label class="label" for="password">Password</label>
+					<input class="input" id="password" type="password" name="password">
+					<label class="label" for="email">E-mail Address</label>
+					<input class="input" id="email" type="email" name="email">
+
+					<input class="input" id="submit" type="submit" value="Sign Me Up!">
+				</form>
+			</div>
+
+			<div id="right">
+				<input class="right-input" type="submit" value="Sign Up with Facebook"></input>
+				<input class="right-input" type="submit" value="Sign Up with Twitter"></input>
+				<p id="right-descrip">
+					Sign up with just one click using your Facebook or Twitter account. Find your friends, and study together!
+				</p>
+			</div>
+
+		</div>
+
+		<footer id="footer">
+			<img class="footer-icon" src="/assets/android_icon.png" alt="">
+			<img class="footer-icon" src="/assets/app_store_icon.png" alt="">
+			<p id="footer-descrip">Now Available on the iPhone and Android!</p>
+		</footer>
+
+	</div>
+
+	<script type="text/javascript">
+		(function() {
+			
+		})();
+	</script>
+</body>
+</html>
