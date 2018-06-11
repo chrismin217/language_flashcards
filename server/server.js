@@ -6,16 +6,24 @@ const path = require('path');
 
 const session = require('express-session');
 const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 const expressValidator = require('express-validator');
 const cookieParser = require('cookie-parser');
+const exphbs = require('express-handlebars');
 const flash = require('connect-flash');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
 
+const db = require('../models');
+
 const deck = require('./deck');
 
-const db = require('../models');
+/*Static*/
+app.use(express.static(path.join(__dirname, '..', '/public')));
+
+/*Routes*/
+app.use('/', routes);
 
 /*Body Parser*/
 app.use(bodyParser.json());
@@ -28,6 +36,14 @@ app.use(session({
   saveUninitialized : true,
   resave : false
 }));
+
+/*Flash*/
+app.use(flash());
+app.use(function(req, res, next){
+    res.locals.success_messages = req.flash('success_messages', 'Thank You for signing in!');
+    res.locals.error_messages = req.flash('error_messages', 'Invalid username or password.');
+    next();
+});
 
 /*Passport initialize*/
 app.use(passport.initialize());
@@ -54,12 +70,6 @@ app.use(expressValidator({
 
 }));
 
-/*Flash*/
-app.use(flash());
-app.use(function(req, res, next) {
-  res.locals.messages = req.flash();
-  next();
-});
 
 /*Solving Error */
 app.use(function(req, res, next) {
@@ -68,21 +78,33 @@ app.use(function(req, res, next) {
   next();	
 });
 
-/*Pages*/
+/*View Engine*/
+/*app.set('view engine', '.hbs');
+app.set('views', path.join(__dirname, '..', '/views'));
+app.engine('.hbs', exphbs({
+  defaultLayout: 'main',
+  extname : '.hbs',
+  layoutsDir : 'views/layouts',
+  partialsDir : 'views/partials'
+}));
+*/
 
-
-/*Login Routes*/
+/*Users*/
 app.post('/login', (req, res) => {
   db.User.findOne({ where : { 
     username : req.body.username,
     password : req.body.password
   }})
   .then(user => {
-    if (user) {
-      res.redirect('http://127.0.0.1:3000/index.html');
+    
+    if (user === null) {
+      console.log('Error.');
+      res.redirect('/');
     } else {
-      return res.status(500).json({error : 'Invalid username or password.'});
+      console.log('Sign-in successful.');
+      return res.redirect('/');
     }
+
   });
 });
 
@@ -93,7 +115,7 @@ app.post('/register', (req, res) => {
     email : req.body.email
   })
   .then(newUser => {
-    res.redirect("http://127.0.0.1:3000/index.html");
+    res.redirect("/");
   })
   .catch(err => {
     return res.send('failed.');
@@ -103,33 +125,15 @@ app.post('/register', (req, res) => {
 app.get('/logout', (req, res) => {
   req.logout();
   res.sendStatus(200);
-})
-
-
-
-
+});
 
 /*Decks*/
-
 
 
 /*Cards*/
 app.get('/api/cards', (req, res) => {
   let random = Math.floor(Math.random() * deck.length);
   res.json(deck[random]);
-});
-
-app.post('/api/cards', (req, res) => {
-  console.log('posting');
-});
-
-
-app.put('/api/cards/:id', (req, res) => {
-  console.log('putting');
-});
-
-app.delete('/api/cards/:id', (req, res) => {
-  console.log('deleting');
 });
 
 /*Server*/
