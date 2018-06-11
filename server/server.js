@@ -22,9 +22,6 @@ const deck = require('./deck');
 /*Static*/
 app.use(express.static(path.join(__dirname, '..', '/public')));
 
-/*Routes*/
-app.use('/', routes);
-
 /*Body Parser*/
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : false }));
@@ -49,6 +46,50 @@ app.use(function(req, res, next){
 app.use(passport.initialize());
 app.use(passport.session());
 
+passport.serializeUser((user, done) => {
+  console.log('serializing');
+  return done(null, {
+    id : user.id,
+    username : user.username
+  });
+});
+
+passport.deserializeUser((user, done) => {
+  console.log('deserializing');
+  db.User.findOne({where : { id : user.id }})
+  .then(user => {
+    return done(null, {
+      id : user.id,
+      username : user.username
+    });
+  });
+});
+
+passport.use(new LocalStrategy(function(username, password, done) {
+
+  db.User.findOne({ where : {username : username} })
+    .then(user => {
+      if(user === null) {
+        return done(null, false, {message : 'bad username or password'});
+      } else {
+        bcrypt.compare(password, user.password)
+        .then(res => {
+          if(res) {
+            var foundUser = user.get();
+            delete foundUser.password;
+            return done(null, foundUser);
+          } else {
+            return done(null, false, {message : 'bad username or password'});
+          }
+        });
+      }
+    })
+    .catch(error => {
+      console.log(error);
+    });
+
+}));
+
 /*Validator*/
 app.use(expressValidator({
   errorFormatter : function(param, msg, value) {
@@ -69,7 +110,6 @@ app.use(expressValidator({
   }
 
 }));
-
 
 /*Solving Error */
 app.use(function(req, res, next) {
@@ -128,12 +168,40 @@ app.get('/logout', (req, res) => {
 });
 
 /*Decks*/
+app.get('/api/decks', (req, res) => {
+  console.log('getting decks');
+});
+
+app.post('/api/decks', (req, res) => {
+  console.log('posting decks');
+});
+
+app.put('/api/decks', (req, res) => {
+  console.log('putting decks');
+});
+
+app.delete('/api/decks', (req, res) => {
+  console.log('deleting decks');
+});
 
 
 /*Cards*/
 app.get('/api/cards', (req, res) => {
+  console.log('getting cards');
   let random = Math.floor(Math.random() * deck.length);
   res.json(deck[random]);
+});
+
+app.post('/api/cards', (req, res) => {
+  console.log('posting cards');
+});
+
+app.put('/api/cards', (req, res) => {
+  console.log('putting cards');
+});
+
+app.delete('/api/cards', (req, res) => {
+  console.log('deleting cards');
 });
 
 /*Server*/
