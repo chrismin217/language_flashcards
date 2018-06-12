@@ -1,22 +1,12 @@
 	<div id="nav">
 	  <ul>
-	    <li><a>FAQ</a></li>
-	    <li><a>Blog</a></li>
-	    <li><a id="login-btn">Login</a></li>
+	    <li><a id="faq-btn" href="/faq">FAQ</a></li>
+	    <li><a id="blog-btn" href="/blog">Blog</a></li>
+	    <li><a id="login-btn" href="/login">Login</a></li>
 	    <li><a id="reg-btn" href="/register">Register</a></li>
 	  </ul>
 	</div>
 
-	<form id="login" action="http://127.0.0.1:8080/login" method="POST">
-	  <input type="text" placeholder="Username" id="user" name="username" />
-	  <input type="password" placeholder="Password" id="pw" name="password" />
-	  <input type="submit" value="Login" id="btn" />
-	</form>
-
-	{{#if loginMessage}}
-		{{ loginMessage }}
-	{{/if}}
-  	
 	<div id="time-options">
 	  <div><img alt="" src="/assets/clock.png" width="90px" height="80px" /><span id="current-time"></span></div>
 	  <input id="toggle-plus" type="image" alt="" src="/assets/plus.png" />

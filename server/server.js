@@ -39,11 +39,6 @@ app.use(session({
 
 /*Flash*/
 app.use(flash());
-/*app.use(function(req, res, next){
-    res.locals.success_messages = req.flash('success_messages', 'Thank You for signing in!');
-    res.locals.error_messages = req.flash('error_messages', 'Invalid username or password.');
-    next();
-});*/
 
 /*Passport*/
 app.use(passport.initialize());
@@ -75,29 +70,15 @@ passport.use(new LocalStrategy({passReqToCallback : true}, function(req, usernam
         console.log('Invalid username or password.');
         return done(null, false, req.flash('loginMessage', 'Invalid username or password.'));
       } else {
-        console.log('Comparing pw...', password, user.password);
         bcrypt.compare(password, user.password, function(err, hash) {
           if (!err) {
-            console.log('worked');
             var foundUser = user.get();
             delete foundUser.password;
             return done(null, foundUser);
           } else {
-            console.log('failed');
             return done(null, false,  req.flash('loginMessage', 'Invalid username or password.'));
           }
         });
-        /*.then(res => {
-          console.log('Got a response...');
-          console.log(res);
-          if (res) {
-            var foundUser = user.get();
-            delete foundUser.password;
-            return done(null, foundUser);
-          } else {
-            return done(null, false, {message : 'Invalid username or password'});
-          }
-        });*/
       }
     })
     .catch(error => {
@@ -148,18 +129,43 @@ app.set('views', path.join(__dirname, '..', '/views'));
 /*Pages*/
 app.get('/', (req, res) => {
   res.render('index', { 
-    title : 'Language Flashcards',
+    title : 'Language Flashcards'
+  });
+});
+
+app.get('/faq', (req, res) => {
+  res.render('faq', { 
+    title : 'Frequently Asked Questions'
+  });
+});
+
+app.get('/blog', (req, res) => {
+  res.render('blog', { 
+    title : 'Latest news on our blog'
+  });
+});
+
+app.get('/login', (req, res) => {
+  res.render('login', {
+    title : 'Please log in..',
     loginMessage : req.flash('loginMessage')
   });
 });
 
 app.get('/register', (req, res) => {
-  res.render('register', { title : 'Create an Account' });
+  res.render('register', { 
+    title : 'Create an Account',
+    loginMessage : req.flash('loginMessage') 
+  });
+});
+
+app.get('/error', (req, res) => {
+  res.render('error', {});
 });
 
 /*Users*/
 app.post('/login', passport.authenticate('local', {
-  failureRedirect : '/',
+  failureRedirect : '/login',
   successRedirect : '/',
   failureFlash : true,
   successFlash : 'Thank you for signing in!'
@@ -175,10 +181,10 @@ app.post('/register', (req, res) => {
     email : req.body.email
   })
   .then(newUser => {
-    res.redirect("/");
+    res.redirect('/', {loginMessage : 'Thank You! New account created successfully.'});
   })
   .catch(err => {
-    return res.send('failed.');
+    return res.redirect('/register', {loginMessage : 'Could not create account.'});
   });
 });
 

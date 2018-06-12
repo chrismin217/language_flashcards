@@ -1,19 +1,3 @@
-const login = document.getElementById("login");
-const loginBtn = document.getElementById("login-btn").addEventListener("click", function() {
-
-  if (login.style.display === "none") {
-    login.style.display = "block";
-  } else {
-    login.style.display = "none";
-  }
-
-});
-
-const register = document.getElementById("reg-btn").addEventListener("click", function() {
-  console.log(this);
-  
-});
-
 let options = {
   timeConstraint : 0.25,
   targetLangRatio : 0,

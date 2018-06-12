@@ -1,0 +1,27 @@
+<div id="logo">
+	<img src="/assets/login_logo2.png" alt="" width="100px" height="100px">
+</div>
+
+<div id="headline">
+	<span>Sign In to Language Flashcards</span>
+</div>
+
+<form id="login" action="/login" method="POST">
+	<div id="login-container">
+		<label for="user">Username or email address</label>
+		<input type="text" class="field" name="username" />
+		<label for="pw">Password <a id="forgot" href="/">Forgot Password?</a></label>
+		<input type="password" class="field" name="password" />
+		<input type="submit" value="Sign In" id="submit-btn" />
+	</div>
+</form>
+
+<div id="create-account">
+	<div id="helper">
+		<span>Don't have an account? <a id="register" href="/register">Register here!</a></span>
+	</div>
+</div>
+
+{{#if loginMessage}}
+	<div id="login-msg"><span>{{ loginMessage }}</span></div>
+{{/if}}
