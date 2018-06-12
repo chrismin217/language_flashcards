@@ -12,6 +12,10 @@
 	  <input type="password" placeholder="Password" id="pw" name="password" />
 	  <input type="submit" value="Login" id="btn" />
 	</form>
+
+	{{#if loginMessage}}
+		{{ loginMessage }}
+	{{/if}}
   	
 	<div id="time-options">
 	  <div><img alt="" src="/assets/clock.png" width="90px" height="80px" /><span id="current-time"></span></div>

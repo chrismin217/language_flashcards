@@ -68,15 +68,13 @@ passport.deserializeUser((user, done) => {
   });
 });
 
-passport.use(new LocalStrategy(function(username, password, done) {
-  console.log('Local Strategy', username, password);
+passport.use(new LocalStrategy({passReqToCallback : true}, function(req, username, password, done) {
   db.User.findOne({ where : {username : username} })
     .then(user => {
       if (user === null) {
         console.log('Invalid username or password.');
-        return done(null, false, {message : 'Invalid username or password'});
+        return done(null, false, req.flash('loginMessage', 'Invalid username or password.'));
       } else {
-        console.log(user);
         console.log('Comparing pw...', password, user.password);
         bcrypt.compare(password, user.password, function(err, hash) {
           if (!err) {
@@ -86,7 +84,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
             return done(null, foundUser);
           } else {
             console.log('failed');
-            return done(null, false, {message : 'Invalid username or password'});
+            return done(null, false,  req.flash('loginMessage', 'Invalid username or password.'));
           }
         });
         /*.then(res => {
@@ -149,7 +147,10 @@ app.set('views', path.join(__dirname, '..', '/views'));
 
 /*Pages*/
 app.get('/', (req, res) => {
-  res.render('index', { title : 'Language Flashcards' });
+  res.render('index', { 
+    title : 'Language Flashcards',
+    loginMessage : req.flash('loginMessage')
+  });
 });
 
 app.get('/register', (req, res) => {
@@ -158,7 +159,9 @@ app.get('/register', (req, res) => {
 
 /*Users*/
 app.post('/login', passport.authenticate('local', {
-  failureFlash : 'Invalid username or password.',
+  failureRedirect : '/',
+  successRedirect : '/',
+  failureFlash : true,
   successFlash : 'Thank you for signing in!'
 }), (req, res) => {
   console.log(req.body);
