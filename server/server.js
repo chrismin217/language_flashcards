@@ -4,7 +4,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 
+const bcrypt = require('bcrypt');
 const session = require('express-session');
+const redis = require('connect-redis')(session);
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const expressValidator = require('express-validator');
@@ -12,6 +14,7 @@ const cookieParser = require('cookie-parser');
 const exphbs = require('express-handlebars');
 const flash = require('connect-flash');
 
+const saltRounds = 12;
 const PORT = process.env.PORT || 8080;
 const app = express();
 
@@ -20,7 +23,7 @@ const db = require('../models');
 const deck = require('./deck');
 
 /*Static*/
-app.use(express.static(path.join(__dirname, '..', '/public')));
+/*app.use(express.static(path.join(__dirname, '..', '/public')));*/
 
 /*Body Parser*/
 app.use(bodyParser.json());
@@ -36,13 +39,13 @@ app.use(session({
 
 /*Flash*/
 app.use(flash());
-app.use(function(req, res, next){
+/*app.use(function(req, res, next){
     res.locals.success_messages = req.flash('success_messages', 'Thank You for signing in!');
     res.locals.error_messages = req.flash('error_messages', 'Invalid username or password.');
     next();
-});
+});*/
 
-/*Passport initialize*/
+/*Passport*/
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -66,20 +69,21 @@ passport.deserializeUser((user, done) => {
 });
 
 passport.use(new LocalStrategy(function(username, password, done) {
-
-  db.User.findOne({ where : {username : username} })
+  console.log('Local Strategy', username, password);
+  db.User.findOne({ where : {username : username } })
     .then(user => {
-      if(user === null) {
-        return done(null, false, {message : 'bad username or password'});
+      if (user === null) {
+        console.log('Invalid username or password.');
+        return done(null, false, {message : 'Invalid username or password'});
       } else {
         bcrypt.compare(password, user.password)
         .then(res => {
-          if(res) {
+          if (res) {
             var foundUser = user.get();
             delete foundUser.password;
             return done(null, foundUser);
           } else {
-            return done(null, false, {message : 'bad username or password'});
+            return done(null, false, {message : 'Invalid username or password'});
           }
         });
       }
@@ -119,33 +123,35 @@ app.use(function(req, res, next) {
 });
 
 /*View Engine*/
-/*app.set('view engine', '.hbs');
-app.set('views', path.join(__dirname, '..', '/views'));
 app.engine('.hbs', exphbs({
-  defaultLayout: 'main',
   extname : '.hbs',
-  layoutsDir : 'views/layouts',
-  partialsDir : 'views/partials'
+  defaultLayout: 'main',
+  layoutsDir : path.join(__dirname, '..', '/views/layouts'),
+  partialsDir : path.join(__dirname, '..', '/views/partials')
 }));
+app.set('view engine', '.hbs');
+app.set('views', path.join(__dirname, '..', '/views'));
+
+/*
+  ALL ROUTES ARE HERE.
+  User login, logout, register. As well as decks and cards.
+  There is a strange error involving Sequelize when I use express.Router().
+  Will solve later and then re-implement routes.
 */
 
-/*Users*/
-app.post('/login', (req, res) => {
-  db.User.findOne({ where : { 
-    username : req.body.username,
-    password : req.body.password
-  }})
-  .then(user => {
-    
-    if (user === null) {
-      console.log('Error.');
-      res.redirect('/');
-    } else {
-      console.log('Sign-in successful.');
-      return res.redirect('/');
-    }
+/*Pages*/
+app.get('/', (req, res, next) => {
+  console.log('Homepage');
+  res.render('index', { title : 'Language Flashcards'});
+});
 
-  });
+/*Users*/
+app.post('/login', passport.authenticate('local', {
+  failureFlash : 'Invalid username or password.',
+  successFlash : 'Thank you for signing in!'
+}), (req, res) => {
+  console.log(req.body);
+  return res.json(req.user);
 });
 
 app.post('/register', (req, res) => {
@@ -203,6 +209,9 @@ app.put('/api/cards', (req, res) => {
 app.delete('/api/cards', (req, res) => {
   console.log('deleting cards');
 });
+
+
+
 
 /*Server*/
 app.listen(PORT, () => {
