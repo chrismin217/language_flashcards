@@ -1,2 +1,76 @@
-<h1>{{ title }}</h1>
-<p>Welcome to {{ title }}</p>
+	<div id="nav">
+	  <ul>
+	    <li><a>FAQ</a></li>
+	    <li><a>Blog</a></li>
+	    <li><a id="login-btn">Login</a></li>
+	    <li><a id="reg-btn" href="/register">Register</a></li>
+	  </ul>
+	</div>
+
+	<form id="login" action="http://127.0.0.1:8080/login" method="POST">
+	  <input type="text" placeholder="Username" id="user" name="username" />
+	  <input type="password" placeholder="Password" id="pw" name="password" />
+	  <input type="submit" value="Login" id="btn" />
+	</form>
+  	
+	<div id="time-options">
+	  <div><img alt="" src="/assets/clock.png" width="90px" height="80px" /><span id="current-time"></span></div>
+	  <input id="toggle-plus" type="image" alt="" src="/assets/plus.png" />
+	  <input id="toggle-minus" type="image" alt="" src="/assets/minus.png" />
+	</div>
+
+	<fieldset id="ratio-options">
+	  <label id="ratio-label" for="ratio">Set Target Language %</label>
+	  <input type="range" id="ratio" value="0" min="0" max="100" step="10" list="steplist" />
+	  <span id="ratio-val" style="font-style: normal;"></span>
+
+	  <datalist id="steplist">
+	    <option>0</option>
+	    <option>10</option>
+	    <option>20</option>
+	    <option>30</option>
+	    <option>40</option>
+	    <option>50</option>
+	    <option>60</option>
+	    <option>70</option>
+	    <option>80</option>
+	    <option>90</option>
+	    <option>100</option>
+	  </datalist>
+	</fieldset>
+
+	<div id="gridsize-options">
+	  <label id="gridsize-label">Set Grid Size</label>
+
+		<div id="rows-container">
+			<input type="number" id="toggle-rows" value="2" min="2" max="6" step="1.0" required>
+		    <div id="rows-btn-container">
+		      <input type="image" id="row-up" alt="" src="/assets/uparrow.ico" />
+		      <input type="image" id="row-down" alt="" src="/assets/downarrow.png" />
+		    </div>
+		</div>
+
+		<div id="cols-container">
+		  <input type="number" id="toggle-cols" value="2" min="2" max="6" step="1.0" required>
+		  <div id="cols-btn-container">
+		    <input type="image" id="col-up" alt="" src="/assets/uparrow.ico" />
+		    <input type="image" id="col-down" alt="" src="/assets/downarrow.png" />
+		  </div>
+		</div>
+	</div>
+
+	<input type="reset" value="Default" id="reset">
+	<input type="button" value="Generate" id="generate">
+
+	<div id="grid">
+		<!-- MAIN GRID IS HERE!! -->
+	</div>
+
+	<div id="decks">
+	  <button><a href="#">Create</a></button>
+	  <button><a href="#">Edit</a></button>
+	  <button><a href="#">Delete</a></button>
+	</div>
+	
+	<script type="text/javascript" src="/js/app.js"></script>
+	

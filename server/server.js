@@ -23,7 +23,7 @@ const db = require('../models');
 const deck = require('./deck');
 
 /*Static*/
-/*app.use(express.static(path.join(__dirname, '..', '/public')));*/
+app.use(express.static(path.join(__dirname, '..', '/public')));
 
 /*Body Parser*/
 app.use(bodyParser.json());
@@ -132,17 +132,14 @@ app.engine('.hbs', exphbs({
 app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, '..', '/views'));
 
-/*
-  ALL ROUTES ARE HERE.
-  User login, logout, register. As well as decks and cards.
-  There is a strange error involving Sequelize when I use express.Router().
-  Will solve later and then re-implement routes.
-*/
 
 /*Pages*/
-app.get('/', (req, res, next) => {
-  console.log('Homepage');
-  res.render('index', { title : 'Language Flashcards'});
+app.get('/', (req, res) => {
+  res.render('index', { title : 'Language Flashcards' });
+});
+
+app.get('/register', (req, res) => {
+  res.render('register', { title : 'Create an Account' });
 });
 
 /*Users*/
