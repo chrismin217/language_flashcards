@@ -70,14 +70,28 @@ passport.deserializeUser((user, done) => {
 
 passport.use(new LocalStrategy(function(username, password, done) {
   console.log('Local Strategy', username, password);
-  db.User.findOne({ where : {username : username } })
+  db.User.findOne({ where : {username : username} })
     .then(user => {
       if (user === null) {
         console.log('Invalid username or password.');
         return done(null, false, {message : 'Invalid username or password'});
       } else {
-        bcrypt.compare(password, user.password)
-        .then(res => {
+        console.log(user);
+        console.log('Comparing pw...', password, user.password);
+        bcrypt.compare(password, user.password, function(err, hash) {
+          if (!err) {
+            console.log('worked');
+            var foundUser = user.get();
+            delete foundUser.password;
+            return done(null, foundUser);
+          } else {
+            console.log('failed');
+            return done(null, false, {message : 'Invalid username or password'});
+          }
+        });
+        /*.then(res => {
+          console.log('Got a response...');
+          console.log(res);
           if (res) {
             var foundUser = user.get();
             delete foundUser.password;
@@ -85,7 +99,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
           } else {
             return done(null, false, {message : 'Invalid username or password'});
           }
-        });
+        });*/
       }
     })
     .catch(error => {
