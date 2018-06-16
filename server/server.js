@@ -68,15 +68,15 @@ passport.use(new LocalStrategy({passReqToCallback : true}, function(req, usernam
     .then(user => {
       if (user === null) {
         console.log('Invalid username or password.');
-        return done(null, false, req.flash('loginMessage', 'Invalid username or password.'));
+        return done(null, false, req.flash('loginMessage', 'Invalid username or password'));
       } else {
         bcrypt.compare(password, user.password, function(err, hash) {
           if (!err) {
             var foundUser = user.get();
             delete foundUser.password;
-            return done(null, foundUser);
+            return done(null, foundUser, req.flash('loginMessage', 'Thank you for signing in, ' + foundUser.username + '!'));
           } else {
-            return done(null, false,  req.flash('loginMessage', 'Invalid username or password.'));
+            return done(null, false,  req.flash('loginMessage', 'Invalid username or password'));
           }
         });
       }
@@ -129,7 +129,8 @@ app.set('views', path.join(__dirname, '..', '/views'));
 /*Pages*/
 app.get('/', (req, res) => {
   res.render('index', { 
-    title : 'Language Flashcards'
+    title : 'Language Flashcards',
+    loginMessage : req.flash('loginMessage')
   });
 });
 

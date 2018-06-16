@@ -1,0 +1,138 @@
+/*
+  LOGIN TEMPLATE STYLES
+*/
+
+#logo {
+ position: absolute;
+ left: 50%;
+ transform: translateX(-50%);
+}
+#headline {
+ position: absolute;
+ left: 50%;
+ top: 110px;
+ transform: translateX(-50%);
+}
+#headline span {
+  font-size: 30px;
+  font-family: 'Arial';
+}
+
+/*LOGIN BOX*/
+#login {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  height: 50%;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: white;
+}
+  #login-container {
+    width: 95%;
+    height: 95%;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 3%;
+    text-align: center;
+  }
+  #login label {
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    font-family: 'Arial';
+    font-size: 14px;
+    width: 95%;
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+    margin: 1px;
+    margin-top: 20px;
+  }
+    #forgot {
+      float: right;
+      color: blue;
+      font-size: 10px;
+      text-decoration: none; 
+      cursor: pointer;
+    }
+    #forgot:hover {
+      text-decoration: underline;
+      font-weight: bold;
+    }
+  .field {
+    position: relative;
+    display: inline-block;
+    padding: 4px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 1px;
+    width: 95%;
+    height: 35px;
+  }
+  .field:focus {
+    outline-width: 0;
+    border: 2px solid cyan;
+    border-radius: 5px;
+  }
+  #submit-btn {
+    position: absolute;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    display: inline-block;
+    font-weight: bold;
+    padding: 4px;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 80%;
+    height: 50px;
+  }
+  #submit-btn:hover {
+    cursor: pointer;
+    background-color: grey;
+    color: yellow;
+  }
+
+#create-account {
+  position: relative;
+  top: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  background-color: white;
+  position: absolute;
+  bottom: 0;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 10px;
+  width: 30%;
+  height: 10%;
+}
+  #helper {
+    padding: 5px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Arial';
+  }
+  #register {
+    color: green;
+    text-decoration: none;
+  }
+  #register:hover {
+    text-decoration: underline;
+  }
+
+/*ERROR SUCCESS LOGIN MESSAGE BOX*/
+#login-msg {
+  position: absolute;
+  top: 5px;
+  left: 20px;
+  font-weight: bold;
+  color: red;
+}
