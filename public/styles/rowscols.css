@@ -1,10 +1,10 @@
 /* THIRD SET OF OPTIONS FOR GRID ROWS AND COLUMNS */
 #gridsize-options {
   position: absolute;
-  left: 360px;
-  width: 150px;
-  height: 90px;
-  border: 3px solid black;
+  left: 355px;
+  width: 100px;
+  height: 70px;
+  border: 1px solid black;
 }
   #gridsize-label {
     position: relative;
@@ -12,33 +12,35 @@
     text-align: center;
     color: maroon;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 12px;
   }
   
   /*Toggling grid size .. ROWS*/
   #rows-container {
     position: relative;
-    border: 1px solid black;
-    height: 35px;
-    width: 50%;
+    height: 24px;
+    width: 100%;
   }
   #toggle-rows {
     position: absolute;
-    left: 3%;
+    left: 50%;
     top: 50%;
     transform: translateY(-50%);
-    width: 70%;
-    height: 90%;
+    width: 30%;
+    height: 80%;
     font-weight: bold;
-    font-size: 21px;
+    text-align: center;
+    font-size: 18px;
+    border: none;
+    border-radius: 3px;
   }
     #toggle-rows::-webkit-inner-spin-button, #toggle-rows::-webkit-outer-spin-button {
       -webkit-appearance: none;
       margin: 0;
     }
     #rows-btn-container {
-      position: relative; 
-      left: 80%;
+      position: absolute; 
+      right: 0;
       display: inline-block;
       height: 100%;
       width: 15px;
@@ -57,31 +59,43 @@
         height: 15px;
         padding: 2px;
       }
+    #rows-label {
+      display: inline-block;
+      position: absolute;
+      top: 5px;
+      left: 10px;
+      font-size: 10px;
+      font-weight: bold;
+      font-family: 'Arial';
+      color: white;
+    }
 
   /*Toggling grid size .. COLS*/
   #cols-container {
     position: relative;
-    border: 1px solid black;
-    height: 35px;
-    width: 50%;
+    height: 24px;
+    width: 100%;
   }
   #toggle-cols {
     position: absolute;
-    left: 3%;
+    left: 50%;
     top: 50%;
     transform: translateY(-50%);
-    width: 70%;
-    height: 90%;
+    width: 30%;
+    height: 80%;
     font-weight: bold;
-    font-size: 21px;
+    font-size: 18px;
+    text-align: center;
+    border: none;
+    border-radius: 3px;
   }
     #toggle-cols::-webkit-inner-spin-button, #toggle-cols::-webkit-outer-spin-button {
       -webkit-appearance: none;
       margin: 0;
     }
     #cols-btn-container {
-      position: relative; 
-      left: 80%;
+      position: absolute; 
+      right: 0;
       display: inline-block;
       height: 100%;
       width: 15px;
@@ -100,3 +114,13 @@
         height: 15px;
         padding: 2px;
       }
+    #cols-label {
+      display: inline-block;
+      position: absolute;
+      top: 5px;
+      left: 10px;
+      font-size: 10px;
+      font-weight: bold;
+      font-family: 'Arial';
+      color: white;
+    }

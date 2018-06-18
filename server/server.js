@@ -34,7 +34,8 @@ app.use(cookieParser());
 app.use(session({
   secret : 'secret',
   saveUninitialized : true,
-  resave : false
+  resave : false,
+  cookie : { maxAge : 60000 }
 }));
 
 /*Flash*/
@@ -128,6 +129,9 @@ app.set('views', path.join(__dirname, '..', '/views'));
 
 /*Pages*/
 app.get('/', (req, res) => {
+  console.log(req.session);
+  console.log(req.user);
+
   res.render('index', { 
     title : 'Language Flashcards',
     loginMessage : req.flash('loginMessage')

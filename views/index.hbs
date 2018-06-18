@@ -1,12 +1,12 @@
 	<div id="nav">
 	  <ul>
-	    <li><a id="faq-btn" href="/faq">FAQ</a></li>
-	    <li><a id="blog-btn" href="/blog">Blog</a></li>
-	    <li><a id="login-btn" href="/login">Login</a></li>
+	    
 	    <li><a id="reg-btn" href="/register">Register</a></li>
+	    <li><a id="login-btn" href="/login">Login</a></li>
+	    
 	  </ul>
 	</div>
-
+	
 	{{#if loginMessage}}
 		<div id="home-login">
 			<div id="up-arrow"></div>
@@ -15,7 +15,7 @@
 	{{/if}}
 
 	<div id="time-options">
-	  <div><img alt="" src="/assets/clock.png" width="90px" height="80px" /><span id="current-time"></span></div>
+	  <div><img alt="" src="/assets/clock.png" width="70px" height="60px" /><span id="current-time"></span></div>
 	  <input id="toggle-plus" type="image" alt="" src="/assets/plus.png" />
 	  <input id="toggle-minus" type="image" alt="" src="/assets/minus.png" />
 	</div>
@@ -45,14 +45,17 @@
 
 		<div id="rows-container">
 			<input type="number" id="toggle-rows" value="2" min="2" max="6" step="1.0" required>
+			<span id="rows-label">Rows</span>
 		    <div id="rows-btn-container">
 		      <input type="image" id="row-up" alt="" src="/assets/uparrow.ico" />
 		      <input type="image" id="row-down" alt="" src="/assets/downarrow.png" />
 		    </div>
 		</div>
+	    
 
 		<div id="cols-container">
 		  <input type="number" id="toggle-cols" value="2" min="2" max="6" step="1.0" required>
+		  <span id="cols-label">Cols</span>
 		  <div id="cols-btn-container">
 		    <input type="image" id="col-up" alt="" src="/assets/uparrow.ico" />
 		    <input type="image" id="col-down" alt="" src="/assets/downarrow.png" />
@@ -63,15 +66,11 @@
 	<input type="reset" value="Default" id="reset">
 	<input type="button" value="Generate" id="generate">
 
+
 	<div id="grid">
 		<!-- MAIN GRID IS HERE!! -->
 	</div>
 
-	<div id="decks">
-	  <button><a href="#">Create</a></button>
-	  <button><a href="#">Edit</a></button>
-	  <button><a href="#">Delete</a></button>
-	</div>
 	
 	<script type="text/javascript" src="/js/app.js"></script>
 	<script type="text/javascript">
