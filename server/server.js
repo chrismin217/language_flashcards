@@ -134,7 +134,8 @@ app.get('/', (req, res) => {
 
   res.render('index', { 
     title : 'Language Flashcards',
-    loginMessage : req.flash('loginMessage')
+    loginMessage : req.flash('loginMessage'),
+    user : req.user
   });
 });
 
@@ -168,6 +169,10 @@ app.get('/error', (req, res) => {
   res.render('error', {});
 });
 
+app.get('/decks', (req, res) => {
+  res.render('decks', {});
+});
+
 /*Users*/
 app.post('/login', passport.authenticate('local', {
   failureRedirect : '/login',
@@ -195,7 +200,7 @@ app.post('/register', (req, res) => {
 
 app.get('/logout', (req, res) => {
   req.logout();
-  res.sendStatus(200);
+  res.redirect('/');
 });
 
 /*Decks*/
