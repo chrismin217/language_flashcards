@@ -1,48 +1,59 @@
-* {
-  box-sizing: border-box;
-}
-
-body {
-  background-color: blue;
-}
-
 #wrapper {
-	border: 5px solid magenta;
+	position: relative;
+	top: 60px;
+	height: 100%;
+	width: 60%;
+	margin: 0 auto;
 }
 
 
 #header {
-	border: 1px solid black;
+	position: relative;
+	height: 100%;
+	width: 100%;
 }
 	#title {
-		color: white;
-		font-weight: bold;
+		text-align: center;
 	}
 		#title p {
 			font-size: 50px;
-			
+			font-weight: bold;
+			color: black;
+			margin: 20px;
 		}
 	#heading {
-		color: white;
+		
 	}
+		#heading p {
+			color: blue;
+			font-size: 16px;
+			padding: 10px;
+			margin: 10px;
+		}
 
 
 
 #main {
-	border: 1px solid cyan;
 	position: relative;
 	height: 300px;
 }
-	#left {
-		background-color: red;
+
+	#main-container {
+		position: absolute;
+		height: 100%;
+		width: 100%;
+	}
+	#form {
+		position: absolute;
+		left: 0;
+		top: 0;
 		width: 50%;
 		height: 100%;
-		float: left;
 		padding: 15px;
+		border: 1px solid black;
+		margin: 0 auto;
+		text-align: center;
 	}
-		#form-left {
-
-		}
 		.label {
 			display: block;
 			margin-bottom: 5px;
@@ -54,17 +65,13 @@ body {
 			margin-bottom: 5px;
 			height: 30px;
 			width: 80%;
-			display: block;
+			display: inline-block;
 		}
-			#user {
-
-			}
-			#password {
-
-			}
-			#email {
-
-			}
+		.input:focus {
+			outline-width: 0; 
+			border: 2px solid cyan;
+			border-radius: 5px;
+		}
 			#submit {
 				position: relative;
 				margin-top: 25px;
@@ -72,52 +79,5 @@ body {
 				border: 1px solid black;
 				cursor: pointer;
 				width: 50%;
+
 			}
-
-	#right {
-		position: relative;
-		background-color: yellow;
-		width: 50%;
-		height: 100%;
-		display: inline-block;
-		padding: 15px;
-	}
-		.right-input {
-			display: block;
-			border: 1px solid black;
-			border-radius: 5px;
-			padding: 6px;
-			margin: 5px;
-			cursor: pointer;
-			color: white;
-			background-color: gray;
-		}
-		#right-descrip {
-			position: absolute;
-			bottom: 15px; /*padding..*/
-			margin: 0;
-		}
-
-
-#footer {
-	position: relative;
-	border: 1px solid white;
-}
-	.footer-icon {
-		width: 100px;
-		height: 50px;
-	}
-	#footer-descrip {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		width: 50%;
-		color: white;
-		font-weight: bold;
-		font-size: 20px;
-		font-family: 'Arial';
-		letter-spacing: 1px;
-		margin: 0;
-		display: inline-block;
-	}

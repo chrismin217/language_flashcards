@@ -203,12 +203,21 @@ app.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
+
+
+
+
+
 /*Decks*/
 app.get('/api/decks', (req, res) => {
+
+  /*retrieve all decks for a single user*/
   console.log('getting decks');
 });
 
-app.post('/api/decks', (req, res) => {
+app.post('/api/decks/new', (req, res) => {
+
+  /*create a new deck and post it under a user*/
   console.log('posting decks');
 });
 
@@ -223,22 +232,25 @@ app.delete('/api/decks', (req, res) => {
 
 /*Cards*/
 app.get('/api/cards', (req, res) => {
-  console.log('getting cards');
+  console.log('getting cards from a single deck.');
   let random = Math.floor(Math.random() * deck.length);
   res.json(deck[random]);
 });
 
 app.post('/api/cards', (req, res) => {
-  console.log('posting cards');
+  console.log('posting a new card to a single deck.');
 });
 
 app.put('/api/cards', (req, res) => {
-  console.log('putting cards');
+  console.log('editting a card from a single deck.');
 });
 
 app.delete('/api/cards', (req, res) => {
-  console.log('deleting cards');
+  console.log('deleting a card from a single deck.');
 });
+
+
+
 
 
 
