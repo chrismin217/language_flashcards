@@ -1,5 +1,3 @@
-console.log(localStorage);
-
 let options = {
   timeConstraint : 0.25,
   targetLangRatio : 0,
@@ -176,12 +174,10 @@ function renderGrid() {
           backContent.style[x] = centerContent[x];
         }
 
-
-        
       });
       cardsReq.open("GET", "http://127.0.0.1:8080/api/cards");
       cardsReq.send();
-
+      
       flashCard.addEventListener("click", function() {
 
         this.classList.toggle("is-flipped");
