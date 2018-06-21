@@ -129,25 +129,14 @@ app.set('views', path.join(__dirname, '..', '/views'));
 
 /*Pages*/
 app.get('/', (req, res) => {
+
+  console.log('homepage.');
   console.log(req.session);
-  console.log(req.user);
 
   res.render('index', { 
     title : 'Language Flashcards',
     loginMessage : req.flash('loginMessage'),
-    user : req.user
-  });
-});
-
-app.get('/faq', (req, res) => {
-  res.render('faq', { 
-    title : 'Frequently Asked Questions'
-  });
-});
-
-app.get('/blog', (req, res) => {
-  res.render('blog', { 
-    title : 'Latest news on our blog'
+    user : req.session.user
   });
 });
 
@@ -165,23 +154,24 @@ app.get('/register', (req, res) => {
   });
 });
 
-app.get('/error', (req, res) => {
-  res.render('error', {});
-});
+app.get('/dashboard', (req, res) => {
+  console.log('dashboard');
+  console.log(req.session);
 
-app.get('/decks', (req, res) => {
-  res.render('decks', {});
+  if (!req.session.user) {
+    return res.status(401).send();
+  } else {
+    return res.status(200).send('Welcome to your Dashboard!');
+  }
 });
 
 /*Users*/
 app.post('/login', passport.authenticate('local', {
   failureRedirect : '/login',
-  successRedirect : '/',
   failureFlash : true,
-  successFlash : 'Thank you for signing in!'
 }), (req, res) => {
-  console.log(req.body);
-  return res.json(req.user);
+  console.log('logged in');
+  return res.redirect('/');
 });
 
 app.post('/register', (req, res) => {
@@ -203,49 +193,44 @@ app.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
-
-
-
-
-
 /*Decks*/
-app.get('/api/decks', (req, res) => {
-
+app.get('/api/decks/:uid', (req, res) => {
   /*retrieve all decks for a single user*/
   console.log('getting decks');
 });
 
-app.post('/api/decks/new', (req, res) => {
-
+app.post('/api/decks/new/:uid', (req, res) => {
   /*create a new deck and post it under a user*/
   console.log('posting decks');
 });
 
-app.put('/api/decks', (req, res) => {
+app.put('/api/decks/:uid', (req, res) => {
+  /*edit a user's deck*/
   console.log('putting decks');
 });
 
-app.delete('/api/decks', (req, res) => {
+app.delete('/api/decks/:uid', (req, res) => {
+  /*remove a user's deck*/
   console.log('deleting decks');
 });
 
 
 /*Cards*/
-app.get('/api/cards', (req, res) => {
+app.get('/api/cards/:id', (req, res) => {
   console.log('getting cards from a single deck.');
   let random = Math.floor(Math.random() * deck.length);
   res.json(deck[random]);
 });
 
-app.post('/api/cards', (req, res) => {
+app.post('/api/cards/:id', (req, res) => {
   console.log('posting a new card to a single deck.');
 });
 
-app.put('/api/cards', (req, res) => {
+app.put('/api/cards/:id', (req, res) => {
   console.log('editting a card from a single deck.');
 });
 
-app.delete('/api/cards', (req, res) => {
+app.delete('/api/cards/:id', (req, res) => {
   console.log('deleting a card from a single deck.');
 });
 

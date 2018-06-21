@@ -14,11 +14,11 @@
 			<form id="form" action="http://127.0.0.1:8080/register" method="POST" >
 
 				<label class="label" for="user">Username</label>
-				<input class="input" id="user" type="text" name="username">
+				<input class="input" id="user" type="text" name="username" minlength="4" maxlength="12" required>
 				<label class="label" for="password">Password</label>
-				<input class="input" id="password" type="password" name="password">
+				<input class="input" id="password" type="password" name="password" required>
 				<label class="label" for="email">E-mail Address</label>
-				<input class="input" id="email" type="email" name="email">
+				<input class="input" id="email" type="email" name="email" required>
 
 				<input class="input" id="submit" type="submit" value="Sign Me Up!">
 			</form>

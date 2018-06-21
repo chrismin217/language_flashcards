@@ -1,3 +1,5 @@
+console.log(localStorage);
+
 let options = {
   timeConstraint : 0.25,
   targetLangRatio : 0,
