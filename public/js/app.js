@@ -1,3 +1,10 @@
+const loginMessage = document.getElementById("home-login");
+if (loginMessage != null) {
+  setTimeout(() => {
+    loginMessage.style.display = "none";
+  }, 3000);
+}
+
 let options = {
   timeConstraint : 0.25,
   targetLangRatio : 0,
@@ -222,4 +229,3 @@ const reset = document.getElementById("reset").addEventListener("click", functio
   rows.value = resetOptions.gridRows;
   cols.value = resetOptions.gridCols;
 });
-

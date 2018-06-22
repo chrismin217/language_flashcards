@@ -2,12 +2,12 @@
 	<div id="nav">
 	  <ul>
 	    {{#if user}}
-	    <li><a id="" href="/logout">Logout</a></li>
-	    <li><a id="" href="/dashboard">{{user.username}}</a></li>
-		{{else}}
+	    <li><a id="logout-btn" href="/logout">Logout</a></li>
+	    <li><a id="dashboard-btn" href="/dashboard">My Dashboard</a></li>
+	  	{{else}}
 	    <li><a id="reg-btn" href="/register">Register</a></li>
-	    <li><a id="login-btn" href="/login">Login</a></li>
-		{{/if}}
+	    <li><a id="login-btn" href="/login">Login</a></li> 
+	  	{{/if}}
 	  </ul>
 	</div>
 	
@@ -74,14 +74,6 @@
 		<!-- MAIN GRID IS HERE!! -->
 	</div>
 
-	
 	<script type="text/javascript" src="/js/app.js"></script>
-	<script type="text/javascript">
-		(function() {
-			setTimeout(() => {
-				let message = document.getElementById("home-login");
-				message.style.display = "none";
-			}, 3000);
-		})();
-	</script>
+	
 	

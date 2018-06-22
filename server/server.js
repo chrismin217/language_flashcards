@@ -35,7 +35,7 @@ app.use(session({
   secret : 'secret',
   saveUninitialized : true,
   resave : false,
-  cookie : { maxAge : 60000 }
+  cookie : { maxAge : 600000 }
 }));
 
 /*Flash*/
@@ -109,12 +109,11 @@ app.use(expressValidator({
 
 }));
 
-/*Solving Error */
-app.use(function(req, res, next) {
+/*app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();	
-});
+});*/
 
 /*View Engine*/
 app.engine('.hbs', exphbs({
@@ -126,21 +125,33 @@ app.engine('.hbs', exphbs({
 app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, '..', '/views'));
 
+/*If req.user exists, make a user variable available in all templates*/
+app.use(function(req, res, next) {
+  res.locals.user = req.user;
+  next();
+});
 
 /*Pages*/
 app.get('/', (req, res) => {
 
   console.log('homepage.');
   console.log(req.session);
+  console.log(req.user);
+  console.log(req.cookies);
 
   res.render('index', { 
     title : 'Language Flashcards',
     loginMessage : req.flash('loginMessage'),
-    user : req.session.user
+    user : req.user
   });
 });
 
 app.get('/login', (req, res) => {
+
+  console.log('login page.');
+  console.log(req.session);
+  console.log(req.user);
+
   res.render('login', {
     title : 'Please log in..',
     loginMessage : req.flash('loginMessage')
@@ -148,21 +159,26 @@ app.get('/login', (req, res) => {
 });
 
 app.get('/register', (req, res) => {
+
+  console.log('register page.');
+  console.log(req.session);
+  console.log(req.user);
+
   res.render('register', { 
     title : 'Create an Account',
     loginMessage : req.flash('loginMessage') 
   });
 });
 
-app.get('/dashboard', (req, res) => {
-  console.log('dashboard');
-  console.log(req.session);
+app.get('/dashboard', isAuthenticated, (req, res) => {
 
-  if (!req.session.user) {
-    return res.status(401).send();
-  } else {
-    return res.status(200).send('Welcome to your Dashboard!');
-  }
+  console.log('dashboard page.');
+  console.log(req.session);
+  console.log(req.user);
+
+  res.render('dashboard', {
+    title : 'My Dashboard'
+  });
 });
 
 /*Users*/
@@ -171,7 +187,10 @@ app.post('/login', passport.authenticate('local', {
   failureFlash : true,
 }), (req, res) => {
   console.log('logged in');
-  return res.redirect('/');
+  console.log(req.session);
+  console.log(req.user);
+
+  return res.redirect("/");
 });
 
 app.post('/register', (req, res) => {
@@ -216,7 +235,7 @@ app.delete('/api/decks/:uid', (req, res) => {
 
 
 /*Cards*/
-app.get('/api/cards/:id', (req, res) => {
+app.get('/api/cards', (req, res) => {
   console.log('getting cards from a single deck.');
   let random = Math.floor(Math.random() * deck.length);
   res.json(deck[random]);
@@ -237,7 +256,20 @@ app.delete('/api/cards/:id', (req, res) => {
 
 
 
+/*Route Authentication for Dashboard*/
+function isAuthenticated(req, res, next) {
 
+  console.log('isAuth middleware.');
+
+  if (req.user) {
+    return next();
+  } else {
+    return res.status(401).json({
+      error : 'Must be logged in'
+    });
+  }
+
+};
 
 
 /*Server*/
