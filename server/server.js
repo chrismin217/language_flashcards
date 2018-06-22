@@ -20,7 +20,7 @@ const app = express();
 
 const db = require('../models');
 
-const deck = require('./deck');
+const deck = require('./deck'); //fake DB
 
 /*Static*/
 app.use(express.static(path.join(__dirname, '..', '/public')));
@@ -108,12 +108,6 @@ app.use(expressValidator({
   }
 
 }));
-
-/*app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();	
-});*/
 
 /*View Engine*/
 app.engine('.hbs', exphbs({
@@ -212,6 +206,7 @@ app.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
+/*REFACTOR THESE INTO ROUTES FOLDER LATER.*/
 /*Decks*/
 app.get('/api/decks/:uid', (req, res) => {
   /*retrieve all decks for a single user*/
