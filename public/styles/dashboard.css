@@ -6,44 +6,292 @@
 	width: 100%;
 	background-color: black;
 }
+	#top-label {
+		display: inline-block;
+		position: absolute;
+		top: 50%;
+		left: 15%;
+		transform: translateY(-50%);
+		color: white;
+		font-family: 'Charcoal';
+		font-size: 18px;
+		font-weight: bold;
+		padding: 5px;
+		margin: 0px 5px 0px;
+	}
+	.menu {
+		padding: 0;
+		margin: 0;
+		list-style-type: none;
+	}
+	#top-nav {
+		position: absolute;
+		right: 0;
+		width: 15%;
+		height: 100%;
+		border: 1px solid white;
+	}
+		.item {
+			border: 1px solid orange;
+			width: 50%;
+			height: 100%;
+			float: left;
+		}
 
+
+
+/* THIS IS THE LEFT HAND SIDE MENU FOR THE DASHBOARD PAGE. */
+/* USER CAN ADD, EDIT, DELETE DECKS */
+/* THEY CAN ALSO ADJUST SETTINGS, CHANGE PROFILE INFO, AVATAR, ETC... */
 #left-menu {
 	position: absolute;
 	top: 0;
 	left: 0;
 	height: 768px;
-	width: 20%;
-	background-color: orange;
+	width: 15%;
+	background-color: #1b1b1c;
 }
 
+
+/* CLASS ITEMS FOR LEFT MENU */
+.left-container {
+	padding: 7px;
+}
+.left-label {
+	display: block;
+	font-weight: bold;
+	line-height: 15px;
+	font-size: 15px;
+	color: white;
+	margin-bottom: 14px;
+}
+.left-list {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+.left-item {
+	color: #a8a8a8;
+	margin: 5px 0px 5px;
+}
+.left-item::before {
+	content: '';   
+    display: inline-block;   
+    height: 17px;   
+    width: 17px;    
+    background-size: 17px;   
+    background-image: url('/assets/dashboard/settings.png');   
+    background-repeat: no-repeat;   
+    margin-right: 4px;
+    background-position: center center;
+    vertical-align: middle;
+}
+	.left-item span {
+		display: inline-block;
+		width: 80%;
+		font-family: 'Verdana';
+		font-size: 14px;
+	}
+	.left-item span:hover {
+		background-color: #535556;
+		color: white;
+		cursor: pointer;
+		font-weight: bold;
+	}
+
+
+	/* FIRST MENU WITH USER INFO */
+	#user-info {
+		position: absolute;
+		width: 100%;
+		height: 10%;
+		background-color: cyan;
+	}
+
+		#user-avatar {
+			position: relative;
+			text-align: center;
+			height: 50px;
+		}
+			#avatar {
+				width: 50px;
+				height: 50px;
+			}
+
+		#user-notifications {
+			position: relative;
+			background-color: #2eb2ae;
+			height: 26.8px;
+			text-align: center;
+		}
+			#user-alert {
+				display: inline-block;
+				position: relative;
+				top: 50%;
+				transform: translateY(-50%);
+				font-size: 12px;
+				font-weight: bold;
+				color: white;
+				padding: 2px;
+			}
+			#refresh-btn {
+				height: 13px;
+				width: 13px;
+				position: absolute;
+				top: 50%;
+				right: 5px;
+				transform: translateY(-50%);
+				cursor: pointer;
+			}
+
+
+	/* MAIN MENU WITH TWO OPTIONS */
+	#left-first {
+		position: absolute;
+		top: 15%;
+		width: 100%;
+		height: 15%;
+	}
+		#first-list {
+			position: relative;
+			height: 60.6px;
+		}
+		#first-list li {
+			
+		}
+
+	/* SECOND MENU FOR STYLING OPTIONS */
+	#left-second {
+		position: absolute;
+		top: 35%;
+		width: 100%;
+		height: 20%;
+	}
+		#second-list {
+			position: relative;
+		}
+
+	/* THIRD MENU FOR ADMIN OPTIONS */
+	#left-third {
+		position: absolute;
+		top: 60%;
+		width: 100%;
+		height: 25%;
+	}
+		#third-list {
+			position: relative;
+		}
+
+	/* FOURTH AND LAST MENU WITH TWO OPTIONS */
+	#left-fourth {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		height: 10%;
+		padding: 2px;
+	}
+		#fourth-list {
+			height: 100%;
+		}
+		#fourth-list li {
+			width: 50%;
+			height: 100%;
+			float: left;
+			padding: 0;
+		}
+		#fourth-list li img {
+			width: 80%;
+			height: 80%;
+			margin: 10%;
+		}
+		#fourth-list li img:hover {
+			position: relative;
+			top: -3px;
+			left: -3px;
+			width: 85%;
+			height: 85%;
+			cursor: pointer;
+		}
+
+
+
+
+
+/* MAIN USER AREA */
 #dashboard-main {
 	position: absolute;
 	top: 50px;
-	left: 20%;
-	background-color: cyan;
-	width: 80%;
+	left: 15%;
+	background-color: white;
+	width: 85%;
 	height: 718px;
 }
 
+	/* User's Decks Area */
 	#decks {
 	  position: absolute;
 	  top: 5px;
-	  left: 5px;
-	  width: 300px;
-	  height: 300px;
+	  left: 5%;
+	  width: 90%;
+	  height: 60%;
 	  border: 5px solid black;
-	}
+	  border-radius: 5px;
+	}	
+	  #decks-label {
+	  	position: absolute;
+	  	top: 5px;
+	  	left: 5px;
+	  	display: inline-block;
+	  	font-size: 24px;
+	  	font-weight: bold;
+	  	font-family: 'Arial';
+	  	border: 1px solid black;
+	  }
 	  .button {
 	  	position: relative;
+	  	top: 88%;
+	  	width: 80px;
+	  	height: 40px;
 	  	float: right;
 	    text-decoration: none;
 	    padding: 3px;
 	    border: 1px solid black;
 	    border-radius: 5px;
 		margin: 5px;
+		font-weight: bold;
+		font-size: 18px;
 	  }
 	  .button:hover {
-	  	text-decoration: underline;
 	  	background-color: gray;
 	  	cursor: pointer;
 	  }
+
+	/* Statistics for user */
+	#statistics {
+		position: absolute;
+		top: 60%;
+		left: 5%;
+		width: 90%;
+		height: 30%;
+		border: 5px solid black;
+		border-radius: 5px;
+		margin-top: 10px;
+	}
+		#statistics-label {
+			position: absolute;
+			top: 5px;
+			left: 5px; 
+			display: inline-block;
+			font-size: 20px;
+			font-weight: bold;
+			color: red;
+		}
+		.section {
+			position: relative;
+			top: 5%;
+			float: right;
+			width: 28%;
+			height: 90%;
+			border: 1px solid black;
+			margin: 0px 10px 10px 0px;
+		}
