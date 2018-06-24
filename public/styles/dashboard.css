@@ -29,13 +29,23 @@
 		right: 0;
 		width: 15%;
 		height: 100%;
-		border: 1px solid white;
 	}
-		.item {
-			border: 1px solid orange;
+		#top-nav li {
 			width: 50%;
 			height: 100%;
 			float: left;
+			cursor: pointer;
+		}
+		#top-nav li img {
+			position: relative;
+			left: 20%;
+			top: 20%;
+			height: 60%;
+			width: 60%;
+		}
+		#top-nav li img:hover {
+			height: 63%;
+			width: 63%;
 		}
 
 
@@ -218,6 +228,8 @@
 
 
 /* MAIN USER AREA */
+/* USER CAN ADD, EDIT, DELETE DECKS HERE. */
+/* ALSO HAS USAGE STATISTICS. */
 #dashboard-main {
 	position: absolute;
 	top: 50px;
@@ -227,7 +239,7 @@
 	height: 718px;
 }
 
-	/* User's Decks Area */
+	/* DECKS AREA */
 	#decks {
 	  position: absolute;
 	  top: 5px;
@@ -245,7 +257,6 @@
 	  	font-size: 24px;
 	  	font-weight: bold;
 	  	font-family: 'Arial';
-	  	border: 1px solid black;
 	  }
 	  .button {
 	  	position: relative;
@@ -266,13 +277,13 @@
 	  	cursor: pointer;
 	  }
 
-	/* Statistics for user */
+	/* USAGE STATISTICS AREA. */
 	#statistics {
 		position: absolute;
 		top: 60%;
 		left: 5%;
 		width: 90%;
-		height: 30%;
+		height: 38%;
 		border: 5px solid black;
 		border-radius: 5px;
 		margin-top: 10px;
@@ -294,4 +305,101 @@
 			height: 90%;
 			border: 1px solid black;
 			margin: 0px 10px 10px 0px;
+			text-align: center;
 		}
+			.section span {
+				display: inline-block;
+				position: relative;
+				top: 10px;
+				font-size: 16px;
+				font-weight: bold;
+			}
+		/* CLOCK SHOWING TOTAL TIME SPENT ON APP */
+		#total-time {
+
+		}
+			.clock {
+				border: 1px solid transparent;
+			}
+			#clock-rim {
+				display: block;
+				position: relative;
+				top: 13px;
+				left: 40px;
+				width: 200px;
+				height: 200px;
+				background: linear-gradient(gray, black);
+				border-radius: 150px;
+			}
+			#clock-face {
+				display: block;
+  				position: relative;  
+  				width: 170px;
+  				height: 170px;
+  				margin: 12px auto;
+  				border-radius: 150px;
+  				background: white;
+			}
+			#notch-container {
+				width: 170px; 
+				height: 170px
+			}
+				/* JS SCRIPT WILL CREATE THESE */
+				.notch {
+					position: absolute;
+					width: 10px;
+					height: 2px;
+					background-color: black;
+					border-radius: 5px 5px 5px 5px;
+				}
+				.thin {
+					position: absolute;
+					width: 10px;
+					height: 1px;
+					border-top: 1px solid gray;
+				}
+			#hour {
+				position: absolute; 
+				top: 80px; 
+				left: 88px; 
+				width: 45px; 
+				height: 4px; 
+				border: 1px solid transparent; 
+				border-radius: 5px; 
+				transform: unset; 
+				background: blue; 
+				transform-origin: 2px 2px;
+			}
+			#minute {
+				position: absolute; 
+				top: 80px; 
+				left: 88px; 
+				width: 65px; 
+				height: 4px; 
+				border: 1px solid transparent; 
+				border-radius: 5px; 
+				transform: unset; 
+				background: red; transform-origin: 2px 2px;
+			}
+			#second {
+				position: absolute; 
+				top: 80px; 
+				left: 88px; 
+				width: 65px; 
+				height: 2px; 
+				border: 1px solid transparent; 
+				border-radius: 5px; 
+				transform: unset; 
+				background: green; 
+				transform-origin: 1px 1px;
+			}
+			#center {
+				position: absolute; 
+				top: 72px; 
+				left: 72px; 
+				width: 16px; 
+				height: 16px; 
+				background: white; 
+				border: 1px solid gray; 
+				border-radius: 16px;
+			}

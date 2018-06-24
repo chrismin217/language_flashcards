@@ -1,8 +1,8 @@
 <div id="top-menu">
 	<span id="top-label">Dashboard</span>
 	<ul class="menu" id="top-nav">
-		<li class="item"></li>
-		<li class="item"></li>
+		<li><img src="/assets/dashboard/googleinbox.png" alt=""></img></li>
+		<li><img src="/assets/dashboard/help.png" alt=""></img></li>
 	</ul>
 </div>
 
@@ -68,8 +68,23 @@
 	<div id="statistics">
 		<span id="statistics-label">Statistics</span>
 
-		<div class="section"></div>
-		<div class="section"></div>
-		<div class="section"></div>
+		<div id="total-time" class="section">
+			<span>Hours</span>
+			<div id="clock-rim" class="clock">
+			  <div id="clock-face" class="clock">
+			    <div id="notch-container" class="clock"></div>
+			    <div id="hour" class="clock"></div>
+			    <div id="minute" class="clock"></div>
+			    <div id="second" class="clock"></div>
+			    <div id="center" class="clock"></div>
+			  </div>
+			</div>
+		</div>
+
+		<div class="section"><span>Words</span></div>
+
+		<div class="section"><span>Languages</span></div>
 	</div>
 </div>
+
+<script type="text/javascript" src="/js/clock.js"></script>
