@@ -164,7 +164,7 @@ app.get('/register', (req, res) => {
   });
 });
 
-app.get('/dashboard', isAuthenticated, (req, res) => {
+app.get('/dashboard', (req, res) => {
 
   console.log('dashboard page.');
   console.log(req.session);

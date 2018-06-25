@@ -58,7 +58,7 @@
 
 <div id="dashboard-main">
 	<div id="decks">
-	  <span id="decks-label">My Decks</span>
+	  <span id="decks-label">Decks</span>
 
 	  <button class="button"><a>Delete</a></button>
 	  <button class="button"><a>Edit</a></button>
@@ -66,10 +66,10 @@
 	</div>
 
 	<div id="statistics">
+
 		<span id="statistics-label">Statistics</span>
 
 		<div id="total-time" class="section">
-			<span>Hours</span>
 			<div id="clock-rim" class="clock">
 			  <div id="clock-face" class="clock">
 			    <div id="notch-container" class="clock"></div>
@@ -81,10 +81,42 @@
 			</div>
 		</div>
 
-		<div class="section"><span>Words</span></div>
+		<div id="acquired-words" class="section">
 
-		<div class="section"><span>Languages</span></div>
+			<div class="circle circle-rim">
+
+				<div class="arc words-arc-start"></div>
+				<div class="arc words-arc-end"></div>
+
+				<div class="circle circle-face" id="words-face">
+					<div class="circle circle-container">
+						<div class="count-helper"><span class="count">187</span></div>
+						<div class="label-helper"><span class="count-label">Acquired Words</span></div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div id="total-languages" class="section">
+
+			<div class="circle circle-rim">
+
+				<div class="arc lang-arc-start"></div>
+				<div class="arc lang-arc-end"></div>
+
+				<div class="circle circle-face" id="lang-face">
+					<div class="circle circle-container">
+						<div class="count-helper"><span class="count">3</span></div>
+						<div class="label-helper"><span class="count-label">Languages</span></div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
 	</div>
+	
 </div>
 
 <script type="text/javascript" src="/js/clock.js"></script>
