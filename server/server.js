@@ -65,19 +65,20 @@ passport.deserializeUser((user, done) => {
 });
 
 passport.use(new LocalStrategy({passReqToCallback : true}, function(req, username, password, done) {
+  console.log('Local Strategy.');
   db.User.findOne({ where : {username : username} })
     .then(user => {
       if (user === null) {
         console.log('Invalid username or password.');
-        return done(null, false, req.flash('loginMessage', 'Invalid username or password'));
+        return done(null, false, req.flash('loginErrorMessage', 'Invalid username or password'));
       } else {
         bcrypt.compare(password, user.password, function(err, hash) {
           if (!err) {
             var foundUser = user.get();
             delete foundUser.password;
-            return done(null, foundUser, req.flash('loginMessage', 'Thank you for signing in, ' + foundUser.username + '!'));
+            return done(null, foundUser, req.flash('loginSuccessMessage', 'Thank you for signing in, ' + foundUser.username + '!'));
           } else {
-            return done(null, false,  req.flash('loginMessage', 'Invalid username or password'));
+            return done(null, false,  req.flash('loginErrorMessage', 'Invalid username or password'));
           }
         });
       }
@@ -119,24 +120,14 @@ app.engine('.hbs', exphbs({
 app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, '..', '/views'));
 
-/*If req.user exists, make a user variable available in all templates*/
-app.use(function(req, res, next) {
-  res.locals.user = req.user;
-  next();
-});
-
 /*Pages*/
 app.get('/', (req, res) => {
 
   console.log('homepage.');
-  console.log(req.session);
-  console.log(req.user);
-  console.log(req.cookies);
 
   res.render('index', { 
     title : 'Language Flashcards',
-    loginMessage : req.flash('loginMessage'),
-    user : req.user
+    loginMessage : req.flash('loginSuccessMessage')
   });
 });
 
@@ -148,7 +139,7 @@ app.get('/login', (req, res) => {
 
   res.render('login', {
     title : 'Please log in..',
-    loginMessage : req.flash('loginMessage')
+    loginErrorMessage : req.flash('loginErrorMessage')
   });
 });
 
@@ -160,7 +151,7 @@ app.get('/register', (req, res) => {
 
   res.render('register', { 
     title : 'Create an Account',
-    loginMessage : req.flash('loginMessage') 
+    loginMessage : req.flash('loginMessage') //change this
   });
 });
 
@@ -180,11 +171,10 @@ app.post('/login', passport.authenticate('local', {
   failureRedirect : '/login',
   failureFlash : true,
 }), (req, res) => {
-  console.log('logged in');
-  console.log(req.session);
-  console.log(req.user);
+  console.log(req.body);
+  console.log('logged in.');
 
-  return res.redirect("/");
+  return res.json(req.user);
 });
 
 app.post('/register', (req, res) => {
@@ -208,24 +198,24 @@ app.get('/logout', (req, res) => {
 
 /*REFACTOR THESE INTO ROUTES FOLDER LATER.*/
 /*Decks*/
-app.get('/api/decks/:uid', (req, res) => {
+app.get('/api/decks/:id', (req, res) => {
   /*retrieve all decks for a single user*/
   console.log('getting decks');
 });
 
-app.post('/api/decks/new/:uid', (req, res) => {
+app.post('/api/decks/:id', (req, res) => {
   /*create a new deck and post it under a user*/
-  console.log('posting decks');
+  console.log('posting deck');
 });
 
-app.put('/api/decks/:uid', (req, res) => {
+app.put('/api/decks/:id', (req, res) => {
   /*edit a user's deck*/
-  console.log('putting decks');
+  console.log('editting deck');
 });
 
-app.delete('/api/decks/:uid', (req, res) => {
+app.delete('/api/decks/:id', (req, res) => {
   /*remove a user's deck*/
-  console.log('deleting decks');
+  console.log('deleting deck');
 });
 
 

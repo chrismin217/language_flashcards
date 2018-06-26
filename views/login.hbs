@@ -6,12 +6,12 @@
 	<span>Sign In to Language Flashcards</span>
 </div>
 
-<form id="login" action="/login" method="POST">
+<form id="login" onSubmit="return formSubmit(this);">
 
 	<div id="login-container">
 
-		{{#if loginMessage}}
-			<div id="login-msg"><span>{{ loginMessage }}</span></div>
+		{{#if loginErrorMessage}}
+			<div id="login-msg"><span>{{ loginErrorMessage }}</span></div>
 		{{/if}}
 
 		<label for="user">Username or email address</label>
@@ -28,3 +28,5 @@
 		<span>Don't have an account? <a id="register" href="/register">Register here!</a></span>
 	</div>
 </div>
+
+<script type="text/javascript" src="/js/login.js"></script>

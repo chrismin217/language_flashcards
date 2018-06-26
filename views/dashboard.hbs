@@ -60,9 +60,18 @@
 	<div id="decks">
 	  <span id="decks-label">Decks</span>
 
-	  <button class="button"><a>Delete</a></button>
-	  <button class="button"><a>Edit</a></button>
-	  <button class="button"><a>Create</a></button>
+	  <button class="decks-button"><a>Delete</a></button>
+	  <button class="decks-button"><a>Edit</a></button>
+	  <button class="decks-button" id="create-button"><a>Create</a></button>
+	</div>
+
+	<div id="create-deck-container">
+		<label for="create-deck-form">New Deck</label>
+		<form id="create-deck-form" action="" method="POST">
+			<input type="text">Title</input>
+			<input type="text">Native</input>
+			<input type="text">Target</input>
+		</form>
 	</div>
 
 	<div id="statistics">
@@ -119,4 +128,5 @@
 	
 </div>
 
+<script type="text/javascript" src="/js/dashboard.js"></script>
 <script type="text/javascript" src="/js/clock.js"></script>

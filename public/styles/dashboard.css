@@ -258,7 +258,7 @@
 	  	font-weight: bold;
 	  	font-family: 'Arial';
 	  }
-	  .button {
+	  .decks-button {
 	  	position: relative;
 	  	top: 88%;
 	  	width: 80px;
@@ -272,10 +272,19 @@
 		font-weight: bold;
 		font-size: 18px;
 	  }
-	  .button:hover {
+	  .decks-button:hover {
 	  	background-color: gray;
 	  	cursor: pointer;
 	  }
+	  	/* NEW DECK FORM -- HIDDEN BY DEFAULT */
+	  	#create-deck-container {
+	  		display: none;
+	  		position: fixed;
+	  		z-index: 1;
+	  		border: 1px solid black;
+	  		height: 500px;
+	  		width: 500px;
+	  	}
 
 	/* USAGE STATISTICS AREA. */
 	#statistics {

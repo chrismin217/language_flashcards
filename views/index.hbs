@@ -1,20 +1,24 @@
 
 	<div id="nav">
 	  <ul>
-	    {{#if user}}
-	    <li><a id="logout-btn" href="/logout">Logout</a></li>
-	    <li><a id="dashboard-btn" href="/dashboard">My Dashboard</a></li>
-	  	{{else}}
-	    <li><a id="reg-btn" href="/register">Register</a></li>
-	    <li><a id="login-btn" href="/login">Login</a></li> 
-	  	{{/if}}
+
+	    <div id="loggedIn">
+    	    <li><a id="logout-btn" href="/logout">Logout</a></li>
+    	    <li><a id="dashboard-btn" href="/dashboard">My Dashboard</a></li>
+	  	</div>
+		
+		<div id="loggedOut">
+	    	<li><a id="reg-btn" href="/register">Register</a></li>
+	    	<li><a id="login-btn" href="/login">Login</a></li> 
+	  	</div>
+
 	  </ul>
 	</div>
 	
-	{{#if loginMessage}}
+	{{#if loginSuccessMessage}}
 		<div id="home-login">
 			<div id="up-arrow"></div>
-			<div id="msg"><span>{{ loginMessage }}</span></div>  
+			<div id="msg"><span>{{ loginSuccessMessage }}</span></div>  
 		</div>
 	{{/if}}
 
