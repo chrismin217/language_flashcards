@@ -202,10 +202,21 @@ app.delete('/api/decks/:id', (req, res) => {
 
 
 /*Cards*/
-app.get('/api/cards', (req, res) => {
-  console.log('getting cards from a single deck.');
-  let random = Math.floor(Math.random() * deck.length);
-  res.json(deck[random]);
+app.get('/api/cards/:num', (req, res) => {
+
+  let num = req.params.num;
+  let cards = [];
+
+  /*make it so random is unique.. later*/
+  for (let i = 0; i < num; i++) {
+    let random = Math.floor(Math.random() * deck.length);
+    cards.push(deck[random]);
+  }
+
+  console.log(cards);
+
+  res.json(cards);
+
 });
 
 app.post('/api/cards/:id', (req, res) => {

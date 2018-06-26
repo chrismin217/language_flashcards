@@ -4,8 +4,7 @@ let options = {
   targetLangRatio : 0,
   gridHasCards : false,
   gridRows : 2,
-  gridCols : 2,
-  totalCards : null
+  gridCols : 2
 };
 
 /*FUNCTIONALITY FOR TIME CONSTRAINT BOX*/
@@ -27,10 +26,10 @@ const minus = document.getElementById('toggle-minus').addEventListener("click", 
 
 /*FUNCTIONALITY FOR TARGET LANG RATIO BOX*/
 const ratioVal = document.getElementById('ratio-val');
-ratioVal.innerHTML = options.targetLangRatio + "%";
+ratioVal.innerHTML = options.targetLangRatio + "% target";
 
 const ratio = document.getElementById('ratio').addEventListener("input", function() {
-  ratioVal.innerHTML = this.value + "%";
+  ratioVal.innerHTML = this.value + "% target";
   options.targetLangRatio = this.value / 100;
 });
 
@@ -44,52 +43,54 @@ let rowUp = document.getElementById('row-up').addEventListener("click", function
   if (rows.value < 6) {
     options.gridRows = options.gridRows + 1;
     rows.value = options.gridRows;
-  } else {
-    alert('Rows cannot exceed 6.');
-  };
+  }
 });
 let rowDown = document.getElementById('row-down').addEventListener("click", function() {
   if (rows.value > 2) {
     options.gridRows = options.gridRows - 1;
     rows.value = options.gridRows;
-  } else {
-    alert('Must have at least 2 rows.');
-  };
+  }
 });
 
 let colsUp = document.getElementById('col-up').addEventListener("click", function() {
-
   if (cols.value < 6) {
     options.gridCols = options.gridCols + 1;
     cols.value = options.gridCols;
-  } else {
-    alert('Columns cannot exceed 6.');
-  }
-
+  } 
 });
 let colsDown = document.getElementById('col-down').addEventListener("click", function() {
-
   if (cols.value > 2) {
     options.gridCols = options.gridCols - 1;
     cols.value = options.gridCols;
-  } else {
-    alert('Must have at least 2 columns.');
-  }
-
+  } 
 });
 
 /*Main render function.. can re-factor big time with the styling.*/
 function renderGrid() {
 
+  console.log('render grid.');
+  console.log(options);
+
   if (options.gridHasCards) {
     grid.innerHTML = '';
   } 
 
-  options.totalCards = options.gridRows * options.gridCols;
+  let totalCards = options.gridRows * options.gridCols;
+  let totalTarget = Math.round(totalCards * options.targetLangRatio);
+  let totalNative = Math.floor(totalCards - totalTarget);
 
-  let totalTarget = Math.round(options.gridCards * options.targetLangRatio);
-  let totalNative = Math.floor(options.gridCards - totalTarget);
-      
+  console.log(totalCards, totalTarget, totalNative);
+
+  let cardsReq = new XMLHttpRequest();
+  cardsReq.addEventListener("load", function() {
+
+    let randomCards = JSON.parse(this.responseText);
+    console.log(randomCards);
+
+  });
+  cardsReq.open("GET", "http://127.0.0.1:8080/api/cards/" + totalCards);
+  cardsReq.send();
+
   /*Loop for rows*/
   for (let i = 0; i < options.gridRows; i++) {
 
@@ -121,63 +122,6 @@ function renderGrid() {
       flashCard.appendChild(cardFront);
       flashCard.appendChild(cardBack);
       cardContainer.appendChild(flashCard);
-
-      var cardsReq = new XMLHttpRequest();
-      cardsReq.addEventListener("load", function() {
-
-        let randomCard = JSON.parse(this.responseText);
-        let { answer, question } = randomCard;
-
-        //if either target or native has run out of cards, unconditionally render whichever has cards
-        if (totalTarget == 0 || totalNative == 0) {
-    
-          if (totalTarget == 0) {
-            cardFront.question = question;
-            cardBack.answer = answer;
-            totalNative -= 1;
-          } else {
-            cardFront.question = answer;
-            cardBack.answer = question;
-            totalTarget -= 1; 
-          }
-
-        } else {
-          //otherwise, use a random dice roll to determine the render
-          let diceRoll = Math.random();
-          if (diceRoll < options.targetLangRatio) {
-            cardFront.question = answer;
-            cardBack.answer = question;
-            totalTarget -= 1;       
-          } else {
-            cardFront.question = question;
-            cardBack.answer = answer;
-            totalNative -= 1;
-          }
-        }
-
-        let centerContent = {
-          position : 'absolute',
-          left : "50%",
-          top : "50%",
-          transform : "translate(-50%, -50%)"
-        };
-
-        let frontContent = document.createElement("span");
-        frontContent.innerHTML = cardFront.question;
-        cardFront.appendChild(frontContent);
-
-        let backContent = document.createElement("span");
-        backContent.innerHTML = cardBack.answer;
-        cardBack.appendChild(backContent);
-        
-        for (x in centerContent) {
-          frontContent.style[x] = centerContent[x];
-          backContent.style[x] = centerContent[x];
-        }
-
-      });
-      cardsReq.open("GET", "http://127.0.0.1:8080/api/cards");
-      cardsReq.send();
       
       flashCard.addEventListener("click", function() {
 
@@ -191,16 +135,16 @@ function renderGrid() {
 
       rowContainer.appendChild(cardContainer);
 
-    }
+    }//end for columns
 
-  }
+  }//end for rows
+
 
   options.gridHasCards = true;
     
-};
 
-generate.addEventListener("click", renderGrid);
 
+};//end renderGrid
 
 /*FUNCTIONALITY FOR RESET DEFAULTS BUTTON*/
 const reset = document.getElementById("reset").addEventListener("click", function() {

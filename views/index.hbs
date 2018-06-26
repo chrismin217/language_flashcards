@@ -29,27 +29,21 @@
 	</div>
 
 	<fieldset id="ratio-options">
-	  <label id="ratio-label" for="ratio">Set Target Language %</label>
-	  <input type="range" id="ratio" value="0" min="0" max="100" step="10" list="steplist" />
+	  <label id="ratio-label" for="ratio">Target -- Native Ratio</label>
+	  <input type="range" id="ratio" value="0" min="0" max="100" step="25" list="steplist" />
 	  <span id="ratio-val" style="font-style: normal;"></span>
 
 	  <datalist id="steplist">
 	    <option>0</option>
-	    <option>10</option>
-	    <option>20</option>
-	    <option>30</option>
-	    <option>40</option>
+	    <option>25</option>
 	    <option>50</option>
-	    <option>60</option>
-	    <option>70</option>
-	    <option>80</option>
-	    <option>90</option>
+	    <option>75</option>
 	    <option>100</option>
 	  </datalist>
 	</fieldset>
 
 	<div id="gridsize-options">
-	  <label id="gridsize-label">Set Grid Size</label>
+	  <label id="gridsize-label">Grid Size</label>
 
 		<div id="rows-container">
 			<input type="number" id="toggle-rows" value="2" min="2" max="6" step="1.0" required>
@@ -72,7 +66,7 @@
 	</div>
 
 	<input type="reset" value="Default" id="reset">
-	<input type="button" value="Generate" id="generate">
+	<input type="button" value="Generate" id="generate" onClick="renderGrid();">
 
 	<div id="grid">
 		<!-- MAIN GRID IS HERE!! -->
