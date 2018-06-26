@@ -9,12 +9,23 @@ function formSubmit(formElement) {
 
 	xhr.addEventListener("load", function(e) {
 
-		let loggedUser = JSON.parse(this.responseText);
+		if (this.responseText.length > 200) {
+			//means that the XHR has returned a res.render template, and the user/pw is invalid. temporary workaround for now.
+			const loginMsg = document.getElementById("login-msg");
+			loginMsg.style.display = "block";
+			setTimeout(() => {
+				loginMsg.style.display = "none";
+			}, 3000);
+			return false;
 
-		localStorage.setItem("id", loggedUser.id);
-		localStorage.setItem("username", loggedUser.username);
+		} else {
+			//otherwise, user/pw matches and is successful.
+			let loggedUser = JSON.parse(this.responseText);
 
-		window.location = "/";
+			localStorage.setItem("id", loggedUser.id);
+			localStorage.setItem("username", loggedUser.username);
+			window.location = "/";
+		}
 
 	});
 

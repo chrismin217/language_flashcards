@@ -1,23 +1,3 @@
-/*Login and Register Navbar*/
-const loginMessage = document.getElementById("home-login");
-if (loginMessage != null) {
-  setTimeout(() => {
-    loginMessage.style.display = "none";
-  }, 3000);
-}
-
-/*Toggle the Navbar based on LocalStorage*/
-console.log(localStorage);
-const loggedIn = document.getElementById("loggedIn");
-const loggedOut = document.getElementById("loggedOut");
-
-if (localStorage.username) {
-  loggedOut.style.display = "none";
-} else {
-  loggedIn.style.display = "none";
-}
-
-
 /*User Options*/
 let options = {
   timeConstraint : 0.25,

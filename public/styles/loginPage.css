@@ -128,8 +128,10 @@
     text-decoration: underline;
   }
 
-/*ERROR SUCCESS LOGIN MESSAGE BOX*/
+/*ERROR MESSAGE*/
+/* Shows "Invalid username or password" at top of login form. */
 #login-msg {
+  display: none;
   position: absolute;
   top: 5px;
   left: 20px;

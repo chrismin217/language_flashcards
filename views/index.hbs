@@ -3,7 +3,7 @@
 	  <ul>
 
 	    <div id="loggedIn">
-    	    <li><a id="logout-btn" href="/logout">Logout</a></li>
+    	    <li><a id="logout-btn" onClick="return logout();">Logout</a></li>
     	    <li><a id="dashboard-btn" href="/dashboard">My Dashboard</a></li>
 	  	</div>
 		
@@ -15,12 +15,12 @@
 	  </ul>
 	</div>
 	
-	{{#if loginSuccessMessage}}
-		<div id="home-login">
-			<div id="up-arrow"></div>
-			<div id="msg"><span>{{ loginSuccessMessage }}</span></div>  
-		</div>
-	{{/if}}
+	<!-- Login Successful message -->
+	<div id="home-login">
+		<div id="up-arrow"></div>
+		<div id="msg"><span id="msg-text"></span></div>  
+	</div>
+	<!-- Shows for 4 seconds.. -->
 
 	<div id="time-options">
 	  <div><img alt="" src="/assets/clock.png" width="70px" height="60px" /><span id="current-time"></span></div>
@@ -79,5 +79,6 @@
 	</div>
 
 	<script type="text/javascript" src="/js/app.js"></script>
+	<script type="text/javascript" src="/js/nav.js"></script>
 	
 	

@@ -65,7 +65,10 @@ passport.deserializeUser((user, done) => {
 });
 
 passport.use(new LocalStrategy({passReqToCallback : true}, function(req, username, password, done) {
+
   console.log('Local Strategy.');
+  /*the req.flash() may change back to a message object. don't understand flash() well enough yet..*/
+
   db.User.findOne({ where : {username : username} })
     .then(user => {
       if (user === null) {
@@ -122,33 +125,21 @@ app.set('views', path.join(__dirname, '..', '/views'));
 
 /*Pages*/
 app.get('/', (req, res) => {
-
   console.log('homepage.');
-
   res.render('index', { 
-    title : 'Language Flashcards',
-    loginMessage : req.flash('loginSuccessMessage')
+    title : 'Language Flashcards'
   });
 });
 
 app.get('/login', (req, res) => {
-
   console.log('login page.');
-  console.log(req.session);
-  console.log(req.user);
-
   res.render('login', {
-    title : 'Please log in..',
-    loginErrorMessage : req.flash('loginErrorMessage')
+    title : 'Please log in..'
   });
 });
 
 app.get('/register', (req, res) => {
-
   console.log('register page.');
-  console.log(req.session);
-  console.log(req.user);
-
   res.render('register', { 
     title : 'Create an Account',
     loginMessage : req.flash('loginMessage') //change this
@@ -156,11 +147,7 @@ app.get('/register', (req, res) => {
 });
 
 app.get('/dashboard', (req, res) => {
-
   console.log('dashboard page.');
-  console.log(req.session);
-  console.log(req.user);
-
   res.render('dashboard', {
     title : 'My Dashboard'
   });
@@ -189,11 +176,6 @@ app.post('/register', (req, res) => {
   .catch(err => {
     return res.redirect('/register', {loginMessage : 'Could not create account.'});
   });
-});
-
-app.get('/logout', (req, res) => {
-  req.logout();
-  res.redirect('/');
 });
 
 /*REFACTOR THESE INTO ROUTES FOLDER LATER.*/
