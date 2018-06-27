@@ -65,86 +65,159 @@ let colsDown = document.getElementById('col-down').addEventListener("click", fun
   } 
 });
 
-/*Main render function.. can re-factor big time with the styling.*/
+
+
+
 function renderGrid() {
 
-  console.log('render grid.');
-  console.log(options);
-
   if (options.gridHasCards) {
-    grid.innerHTML = '';
+    clearGrid();
   } 
 
   let totalCards = options.gridRows * options.gridCols;
   let totalTarget = Math.round(totalCards * options.targetLangRatio);
   let totalNative = Math.floor(totalCards - totalTarget);
 
-  console.log(totalCards, totalTarget, totalNative);
+  let randomizeCardContent = function(front, back, question, answer) {
 
+    console.log('randomizing card content.');
+
+    console.log(totalCards, totalTarget, totalNative, options.targetLangRatio);
+    console.log(question, answer);
+
+    let frontContent = document.createElement("span");
+    let backContent = document.createElement("span");
+
+    let centerContent = {
+      position : 'absolute',
+      left : "50%",
+      top : "50%",
+      transform : "translate(-50%, -50%)"
+    };
+
+    for (x in centerContent) {
+      frontContent.style[x] = centerContent[x];
+      backContent.style[x] = centerContent[x];
+    }
+
+    //not 100% consistent with targetLangRatio....
+    //by default .. question == native language and answer == target language
+    if (totalTarget == 0 || totalNative == 0) {
+
+      //if one type of card has reached 0, unconditionally create the opposite type.
+      if (totalTarget == 0) {
+        frontContent.innerHTML = question;
+        backContent.innerHTML = answer;
+        totalNative -= 1;
+      } else if (totalNative == 0) {
+        frontContent.innerHTML = answer;
+        backContent.innerHTML = question;
+        totalTarget -= 1;
+      }
+
+    } else {
+
+      //otherwise, use a random dice roll to determine the decision.
+      let diceRoll = Math.random();
+      console.log(diceRoll);
+      if (diceRoll < options.targetLangRatio) {
+        frontContent.innerHTML = answer;
+        backContent.innerHTML = question;
+        totalTarget -= 1;      
+      } else {
+        frontContent.innerHTML = question;
+        backContent.innerHTML = answer;
+        totalNative -= 1;
+      }
+
+    }
+
+    front.appendChild(frontContent);
+    back.appendChild(backContent);
+
+
+
+  };
+
+  /*JSON array*/
   let cardsReq = new XMLHttpRequest();
   cardsReq.addEventListener("load", function() {
 
     let randomCards = JSON.parse(this.responseText);
     console.log(randomCards);
 
-  });
+    let counter = totalCards - 1;
+
+    for (let i = 0; i < options.gridRows; i++) {
+
+      let gridRowDiv = document.createElement("div");
+      let height = 100 / options.gridRows + "%"; 
+
+      gridRowDiv.style.position = "relative";
+      gridRowDiv.style.display = "block";
+      gridRowDiv.style.height = height;
+      
+      for (let j = 0; j < options.gridCols; j++) {
+
+        let { question, answer } = randomCards[counter];
+
+        let width = 100 / options.gridCols + "%";
+
+        let cardContainer = document.createElement("div");
+        cardContainer.classList.add("card-container");
+        cardContainer.style.width = width;
+
+        let flashCard = document.createElement("div");
+        let cardFront = document.createElement("div");
+        let cardBack = document.createElement("div");
+
+        randomizeCardContent(cardFront, cardBack, question, answer);
+
+        flashCard.classList.add("flashcard");
+        cardFront.classList.add("card-face", "card-front");
+        cardBack.classList.add("card-face", "card-back");
+        
+        flashCard.appendChild(cardFront);
+        flashCard.appendChild(cardBack);
+        cardContainer.appendChild(flashCard);
+
+        //animation
+        flashCard.addEventListener("click", function() {
+          this.classList.toggle("is-flipped");
+          setTimeout(() => {
+            this.classList.toggle("is-flipped");
+          }, options.timeConstraint * 1000 + 500); //+500 accounts for the 0.5 transition time
+        });
+
+      counter = counter - 1;
+      gridRowDiv.appendChild(cardContainer);
+
+      }//end for loop cols
+
+    grid.appendChild(gridRowDiv);
+
+    }//end for loop rows
+
+  }); //END eventListener
+
   cardsReq.open("GET", "http://127.0.0.1:8080/api/cards/" + totalCards);
   cardsReq.send();
 
-  /*Loop for rows*/
-  for (let i = 0; i < options.gridRows; i++) {
-
-    let rowContainer = document.createElement("div");
-    let h = 100 / options.gridRows; 
-
-    rowContainer.style.position = "relative";
-    rowContainer.style.display = "block";
-    rowContainer.style.height = h + "%";
-    
-    grid.appendChild(rowContainer);
-
-    /*Loop for columns*/
-    for (let j = 0; j < options.gridCols; j++) {
-
-      let cardContainer = document.createElement("div");
-      cardContainer.classList.add("card-container");
-      cardContainer.style.width = 100 / options.gridCols + "%";
-      
-      let flashCard = document.createElement("div");
-      let cardFront = document.createElement("div");
-      let cardBack = document.createElement("div");
-      let cardContent = document.createElement("span");
-
-      flashCard.classList.add("flashcard");
-      cardFront.classList.add("card-face", "card-front");
-      cardBack.classList.add("card-face", "card-back");
-      
-      flashCard.appendChild(cardFront);
-      flashCard.appendChild(cardBack);
-      cardContainer.appendChild(flashCard);
-      
-      flashCard.addEventListener("click", function() {
-
-        this.classList.toggle("is-flipped");
-
-        setTimeout(() => {
-        	this.classList.toggle("is-flipped");
-        }, options.timeConstraint * 1000 + 500); //+500 accounts for the 0.5 transition time
-
-      });
-
-      rowContainer.appendChild(cardContainer);
-
-    }//end for columns
-
-  }//end for rows
 
 
   options.gridHasCards = true;
     
-
-
 };//end renderGrid
+
+function clearGrid() {
+  grid.innerHTML = '';
+};
+
+
+
+
+
+
 
 /*FUNCTIONALITY FOR RESET DEFAULTS BUTTON*/
 const reset = document.getElementById("reset").addEventListener("click", function() {
