@@ -183,11 +183,32 @@ app.post('/register', (req, res) => {
 app.get('/api/decks/:id', (req, res) => {
   /*retrieve all decks for a single user*/
   console.log('getting decks');
+  db.Deck.findAll({ where : {user_id : req.params.id} })
+  .then(decks => {
+    console.log(decks);
+    return res.json(decks);
+  })
+  .catch(err => {
+    console.log(err);
+  });
+
 });
 
 app.post('/api/decks/:id', (req, res) => {
-  /*create a new deck and post it under a user*/
-  console.log('posting deck');
+
+  db.Deck.create({
+    title : req.body.title,
+    native : req.body.native,
+    target : req.body.target,
+    user_id : req.params.id
+  })
+  .then(newDeck => {
+    return res.redirect("/dashboard");
+  })
+  .catch(err => {
+    console.log(err);
+  });
+
 });
 
 app.put('/api/decks/:id', (req, res) => {

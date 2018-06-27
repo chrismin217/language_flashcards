@@ -58,21 +58,38 @@
 
 <div id="dashboard-main">
 	<div id="decks">
+	
 	  <span id="decks-label">Decks</span>
+		
+	  <!-- New Deck Form --> 
+	  <div id="create-deck-container">
+	  	  <input id="deck-close" type="image" alt="" src="/assets/dashboard/red_x_button.png" onClick="closeForm()" />
+		  <label id="cdf-label" for="create-deck-form">Add New Deck</label>
+		  <form id="create-deck-form" onSubmit="return deckSubmit(this);">
+			  <label for="deck-title">Title</label>
+			  <input id="deck-title" type="text" name="title" />
+			  <label for="deck-native">Native</label>
+			  <input id="deck-native" type="text" name="native" /> 
+			  <label for="deck-target">Target</label>
+			  <input id="deck-target" type="text" name="target" />
+	
+			  <input id="deck-submit" type="submit" value="Submit" />
+		  </form>
+	  </div>
+	  <!-- New Deck Form -->
+	  
+	  <!-- XHR GET Request will retrieve user's decks and show them here. -->
+	  <div id="decks-container">
+	  	<ul id="decks-list"></ul>
+	  </div>
 
+	
 	  <button class="decks-button"><a>Delete</a></button>
 	  <button class="decks-button"><a>Edit</a></button>
-	  <button class="decks-button" id="create-button"><a>Create</a></button>
+	  <button class="decks-button" onClick="openForm()"><a>Create</a></button>
+	
 	</div>
 
-	<div id="create-deck-container">
-		<label for="create-deck-form">New Deck</label>
-		<form id="create-deck-form" action="" method="POST">
-			<input type="text">Title</input>
-			<input type="text">Native</input>
-			<input type="text">Target</input>
-		</form>
-	</div>
 
 	<div id="statistics">
 

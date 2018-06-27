@@ -80,11 +80,6 @@ function renderGrid() {
 
   let randomizeCardContent = function(front, back, question, answer) {
 
-    console.log('randomizing card content.');
-
-    console.log(totalCards, totalTarget, totalNative, options.targetLangRatio);
-    console.log(question, answer);
-
     let frontContent = document.createElement("span");
     let backContent = document.createElement("span");
 
@@ -100,8 +95,6 @@ function renderGrid() {
       backContent.style[x] = centerContent[x];
     }
 
-    //not 100% consistent with targetLangRatio....
-    //by default .. question == native language and answer == target language
     if (totalTarget == 0 || totalNative == 0) {
 
       //if one type of card has reached 0, unconditionally create the opposite type.
@@ -134,8 +127,6 @@ function renderGrid() {
 
     front.appendChild(frontContent);
     back.appendChild(backContent);
-
-
 
   };
 
@@ -202,8 +193,6 @@ function renderGrid() {
 
   cardsReq.open("GET", "http://127.0.0.1:8080/api/cards/" + totalCards);
   cardsReq.send();
-
-
 
   options.gridHasCards = true;
     

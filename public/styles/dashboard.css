@@ -276,15 +276,102 @@
 	  	background-color: gray;
 	  	cursor: pointer;
 	  }
+	    /* USER DECK AREA */
+		/* XHR GET REQUEST WILL RETRIEVE FROM SERVER/DB */
+		#decks-container {
+			border: 1px solid red;
+			border-radius: 5px;
+			position: absolute;
+			top: 8%;
+			left: 5%;
+			height: 80%;
+			width: 90%;
+		}
+			#decks-list {
+				padding: 0;
+				margin: 0;
+				list-style-type: none;
+			}
+			.user-deck {
+				float: left;
+				position: relative;
+				width: 100px;
+				height: 50px;
+				padding: 1px;
+				border: 1px solid black;
+				border-radius: 5px;
+				margin: 5px;
+				text-align: center;
+			}
+			.user-deck-button {
+				text-decoration: none;
+				color: green;
+				height: 100%;
+				width: 100%;
+			}
+
 	  	/* NEW DECK FORM -- HIDDEN BY DEFAULT */
 	  	#create-deck-container {
+	  		background-color: cyan;
 	  		display: none;
-	  		position: fixed;
+	  		height: 300px;
+	  		width: 350px;
+	  		position: absolute;
+	  		right: 100px;
+	  		top: 50px;
 	  		z-index: 1;
+	  		padding: 15px;
 	  		border: 1px solid black;
-	  		height: 500px;
-	  		width: 500px;
-	  	}
+	  		border-radius: 8px;
+	  	}	
+	  		#deck-close {
+	  			position: absolute;
+	  			top: 10px;
+	  			right: 10px;
+	  			width: 20px;
+	  			height: 20px;
+	  			border: none;
+	  			border-radius: 50%;
+	  			cursor: pointer;
+	  		}
+	  		#cdf-label {
+	  			font-size: 14px;
+	  			font-weight: bold;
+	  			font-family: 'Verdana' sans-serif;
+	  			color: black;
+	  			margin: 5px;
+	  		}
+	  		#create-deck-form {
+	  			height: 80%;
+	  			padding: 3px;
+	  			margin-top: 10px;
+	  		}
+	  		#create-deck-form label {
+	  			position: relative;
+	  			left: 5%;
+	  			display: block;
+	  			color: red;
+	  			margin: 5px 2px 2px 2px;
+	  		}
+	  		#create-deck-form input {
+	  			display: block;
+	  			position: relative;
+	  			left: 5%;
+	  			width: 80%;
+	  			padding: 3px;
+	  			border: 1px solid;
+	  			border-radius: 2px;
+	  			margin: 6px 2px 2px 2px;
+	  		}
+	  		#deck-submit {
+	  			position: relative;
+	  			left: 30% !important;
+	  			width: 40% !important;
+	  			font-weight: bold;
+	  			cursor: pointer;
+	  			border-radius: 8px !important;
+	  			margin-top: 25px !important;
+	  		}
 
 	/* USAGE STATISTICS AREA. */
 	#statistics {
