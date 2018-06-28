@@ -191,7 +191,7 @@ function renderGrid() {
 
   }); //END eventListener
 
-  cardsReq.open("GET", "http://127.0.0.1:8080/api/cards/" + totalCards);
+  cardsReq.open("GET", "http://127.0.0.1:8080/api/demo/" + totalCards);
   cardsReq.send();
 
   options.gridHasCards = true;

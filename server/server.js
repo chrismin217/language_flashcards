@@ -219,11 +219,14 @@ app.put('/api/decks/:id', (req, res) => {
 app.delete('/api/decks/:id', (req, res) => {
   /*remove a user's deck*/
   console.log('deleting deck');
+
 });
 
 
 /*Cards*/
-app.get('/api/cards/:num', (req, res) => {
+
+/*this route is for the demo deck*/
+app.get('/api/demo/:num', (req, res) => {
 
   let num = req.params.num;
   let cards = [];
@@ -240,16 +243,25 @@ app.get('/api/cards/:num', (req, res) => {
 
 });
 
+app.get('/api/cards/:id', (req, res) => {
+  console.log('getting all cards in a single deck.');
+  console.log('deck ID : ', req.params.id);
+
+});
+
 app.post('/api/cards/:id', (req, res) => {
   console.log('posting a new card to a single deck.');
+  console.log('deck ID : ', req.params.id);
 });
 
 app.put('/api/cards/:id', (req, res) => {
   console.log('editting a card from a single deck.');
+  console.log('deck ID : ', req.params.id);
 });
 
 app.delete('/api/cards/:id', (req, res) => {
   console.log('deleting a card from a single deck.');
+  console.log('deck ID : ', req.params.id);
 });
 
 

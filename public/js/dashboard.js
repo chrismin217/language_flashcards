@@ -1,24 +1,35 @@
-console.log('dashboard script.');
 console.log(localStorage);
+console.log('dashboard script.');
 
-/* make XHR call to fetch all decks for a single user */
+/*this is for PUT/DEL later..*/
+let deckSelected = false;
+
+/* GET request for all decks belonging to a user */
 let decksReq = new XMLHttpRequest();
 decksReq.addEventListener("load", function() {
 	
-	const usersDecks = JSON.parse(this.responseText); //array
-	console.log("GET Request:", usersDecks);
+	const usersDecks = JSON.parse(this.responseText);
 
 	const decksList = document.getElementById("decks-list");
 
 	for (let i = 0; i < usersDecks.length; i++) {
+
+	  let deckData = usersDecks[i];
 
 	  let userDeck = document.createElement("li");
 	  let userDeckButton = document.createElement("a");
 	  let userDeckIcon = document.createElement("img");
 	  let userDeckLabel = document.createElement("span");
 
+	  userDeckIcon.title = deckData.title;
+	  userDeckIcon.id = deckData.id;
+	  userDeckIcon.user_id = deckData.user_id;
+
+	  /*userDeckIcon.draggable = "true";*/
 	  userDeckIcon.src = '/assets/dashboard/black_deck.png';
 	  userDeckIcon.alt = '';
+
+	  userDeckLabel.innerHTML = deckData.title;
 
 	  userDeck.classList.add("user-deck");
 	  userDeckButton.classList.add("user-deck-button");
@@ -30,20 +41,34 @@ decksReq.addEventListener("load", function() {
 	  userDeck.appendChild(userDeckButton);
 	  decksList.appendChild(userDeck);	
 
-	  userDeckLabel.innerHTML = usersDecks[i].title;
+	  //XHR request going to /api/cards
+	  userDeckIcon.onclick = function(e) {
 
-	  userDeckButton.onclick = function(e) {
-	  	//XHR
 	  	console.log('deck clicked.');
+	  	console.log(this.title, this.id, this.user_id);
+
+	  	let that = this;
+
+	  	let singleDeckReq = new XMLHttpRequest();
+	  	singleDeckReq.addEventListener("load", function(e) {
+	  		console.log("GET single deck request.");
+	  	});
+	  	singleDeckReq.open("GET", "http://127.0.0.1:8080/api/cards/" + that.id, true);
+	  	singleDeckReq.send();
+
 	  };
 
 
 
-	}
+	}//end for
+
+
 
 });
 decksReq.open("GET", "http://127.0.0.1:8080/api/decks/" + localStorage.id, true);
 decksReq.send();
+
+
 
 
 
@@ -81,7 +106,7 @@ function deckSubmit(formElement) {
 
 /*For Delete Decks*/
 function deleteDecks() {
-	console.log('deleting decks.');
+	alert('Delete Decks feature coming soon!');
 };
 
 /*For Edit Decks*/
