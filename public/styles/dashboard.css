@@ -238,7 +238,6 @@
 	width: 85%;
 	height: 718px;
 }
-
 	/* DECKS AREA */
 	#decks {
 	  position: absolute;
@@ -258,34 +257,56 @@
 	  	font-weight: bold;
 	  	font-family: 'Arial';
 	  }
-	  .decks-button {
-	  	position: relative;
-	  	top: 88%;
-	  	width: 80px;
-	  	height: 40px;
-	  	float: right;
-	    text-decoration: none;
-	    padding: 3px;
-	    border: 1px solid black;
-	    border-radius: 5px;
-		margin: 5px;
-		font-weight: bold;
-		font-size: 18px;
+	  /* BUTTONS FOR NEW, EDIT, DELETE DECKS */
+	  #new-button {
+		position: absolute;
+		top: 2.5px;
+		right: 80px;
+		width: 35px;
+		height: 35px;
 	  }
-	  .decks-button:hover {
-	  	background-color: gray;
-	  	cursor: pointer;
+	  	#new-button:hover {
+		  width: 37px;
+		  height: 37px;
+		  top: 2.8px;
+		  right: 80.8px;
+	  	}
+	  #edit-button {
+		background-color: none;
+		position: absolute;
+		top: 2.5px;
+		right: 40px;
+		width: 34px;
+		height: 34px;
 	  }
+	  	#edit-button:hover {
+	  	  width: 36px;
+		  height: 36px;
+	  	  top: 2.8px;
+	  	  right: 40.3px;
+	  	}
+	  #del-button {
+	  	background-color: none;
+	  	position: absolute;
+	  	top: 2.5px;
+	  	right: 2.5px;
+	  	width: 35px;
+	  	height: 35px;
+	  }
+	  	#del-button:hover {
+	  		height: 37px;
+	  		width: 37px;
+	  		top: 2.8px;
+	  		right: 2.8px;
+	  	}
 	    /* USER DECK AREA */
 		/* XHR GET REQUEST WILL RETRIEVE FROM SERVER/DB */
 		#decks-container {
 			border: 1px solid red;
-			border-radius: 5px;
 			position: absolute;
-			top: 8%;
-			left: 5%;
-			height: 80%;
-			width: 90%;
+ 			bottom: 0;
+			height: 91%;
+			width: 100%;
 		}
 			#decks-list {
 				padding: 0;
@@ -302,12 +323,14 @@
 				border-radius: 5px;
 				margin: 5px;
 				text-align: center;
+				cursor: pointer;
 			}
 			.user-deck-button {
 				text-decoration: none;
 				color: green;
 				height: 100%;
 				width: 100%;
+				cursor: pointer;
 			}
 
 	  	/* NEW DECK FORM -- HIDDEN BY DEFAULT */

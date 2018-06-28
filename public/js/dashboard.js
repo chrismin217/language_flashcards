@@ -2,7 +2,6 @@ console.log('dashboard script.');
 console.log(localStorage);
 
 /* make XHR call to fetch all decks for a single user */
-/* decks div will show all decks..user can then POST/PUT/DEL */
 let decksReq = new XMLHttpRequest();
 decksReq.addEventListener("load", function() {
 	
@@ -17,7 +16,10 @@ decksReq.addEventListener("load", function() {
 
 	  userDeck.classList.add("user-deck");
 	  userDeckButton.classList.add("user-deck-button");
-	  userDeckButton.href = "#";
+	  userDeckButton.onclick = function(e) {
+	  	console.log('deck clicked.'); //this should be an XHR
+	  };
+
 	  userDeckButton.innerHTML = usersDecks[i].title;
 
 	  userDeck.appendChild(userDeckButton);
@@ -30,7 +32,8 @@ decksReq.send();
 
 
 
-/* popup form for new decks */
+
+/*For Add New Deck form*/
 const newDeckForm = document.getElementById("create-deck-container");
 
 function openForm() {
@@ -40,7 +43,6 @@ function closeForm() {
 	newDeckForm.style.display = "none";
 };
 
-/*For Add New Deck form*/
 function deckSubmit(formElement) {
 
 	let title = formElement.title.value;
@@ -61,3 +63,13 @@ function deckSubmit(formElement) {
 	return false;
 
 };
+
+/*For Delete Decks*/
+function deleteDecks() {
+	console.log('deleting decks.');
+}
+
+/*For Edit Decks*/
+function editDecks() {
+	console.log('editting decks.');
+}
