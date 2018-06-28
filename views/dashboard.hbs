@@ -67,11 +67,11 @@
 		  <label id="cdf-label" for="create-deck-form">Add New Deck</label>
 		  <form id="create-deck-form" onSubmit="return deckSubmit(this);">
 			  <label for="deck-title">Title</label>
-			  <input id="deck-title" type="text" name="title" />
+			  <input id="deck-title" type="text" name="title" maxlength="20" required/>
 			  <label for="deck-native">Native</label>
-			  <input id="deck-native" type="text" name="native" /> 
+			  <input id="deck-native" type="text" name="native" required/> 
 			  <label for="deck-target">Target</label>
-			  <input id="deck-target" type="text" name="target" />
+			  <input id="deck-target" type="text" name="target" required/>
 	
 			  <input id="deck-submit" type="submit" value="Submit" />
 		  </form>
@@ -82,7 +82,7 @@
 	  <div id="decks-container">
 	  	<ul id="decks-list"></ul>
 	  </div>
-
+	  
 	  <input id="del-button" type="image" alt="" src="/assets/dashboard/trashcan_icon.ico" onClick="deleteDecks()">
 	  <input id="edit-button" type="image" alt="" src="/assets/dashboard/edit_icon.png" onClick="editDecks()">
 	  <input id="new-button" type="image" alt="" src="/assets/dashboard/new_icon.png" onClick="openForm()">

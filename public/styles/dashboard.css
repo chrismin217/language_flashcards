@@ -302,13 +302,15 @@
 	    /* USER DECK AREA */
 		/* XHR GET REQUEST WILL RETRIEVE FROM SERVER/DB */
 		#decks-container {
-			border: 1px solid red;
 			position: absolute;
  			bottom: 0;
 			height: 91%;
 			width: 100%;
 		}
 			#decks-list {
+				position: relative;
+				height: 100%;
+				width: 100%;
 				padding: 0;
 				margin: 0;
 				list-style-type: none;
@@ -316,21 +318,40 @@
 			.user-deck {
 				float: left;
 				position: relative;
-				width: 100px;
-				height: 50px;
-				padding: 1px;
-				border: 1px solid black;
-				border-radius: 5px;
-				margin: 5px;
-				text-align: center;
+				width: 75px;
+				height: 100px;
+				margin: 3px;
 				cursor: pointer;
 			}
-			.user-deck-button {
-				text-decoration: none;
-				color: green;
-				height: 100%;
-				width: 100%;
+			.user-deck-button { 
+				height: 75px;
+				width: 75px;
 				cursor: pointer;
+			}
+			.user-deck-icon {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 75px;
+				height: 75px;
+			}
+				.user-deck-icon:hover {
+					width: 77px;
+					height: 77px;
+					left: -2px;
+					top: -2px;
+				}
+			.user-deck-label {
+				display: inline-block;
+				color: green;
+				font-size: 11px;
+				line-height: 12px;
+				position: absolute;
+				bottom: 0px;
+				width: 75px;
+				height: 25px;
+				text-align: center;
+				cursor: default;
 			}
 
 	  	/* NEW DECK FORM -- HIDDEN BY DEFAULT */
