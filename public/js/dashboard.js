@@ -45,32 +45,22 @@ decksReq.addEventListener("load", function() {
 	  	Object.assign(selectedDeck, this.deckData); 
 	  	console.log(selectedDeck);
 
-	  	//can re-factor or change this..
-	  	let icons = document.getElementsByClassName("user-deck-icon");
-	  	let borderedIcon = Array.prototype.forEach.call(icons, function(icon) {
-
-	  		if (icon.style.border) {
-	  			icon.style.border = "none";
-	  		}
-	  		if (icon.deckData.id === selectedDeck.id) {
-	  			icon.style.border = "1px solid red";
-	  		} 
-
-	  	});
-
+	  	let cardsLabel = document.getElementById("cards-label").innerHTML = selectedDeck.title;
+	  	let cardsList = document.getElementById("cards-list");
+	  	cardsList.innerHTML = '';
+	  	
 	  	let singleDeckCardsReq = new XMLHttpRequest();
 	  	singleDeckCardsReq.addEventListener("load", function(e) {
 	  		
 	  		console.log("GET single deck cards request.");
 
-	  		let cardsList = document.getElementById("cards-list"); 
 	  		let usersCards = JSON.parse(this.responseText);
 
-	  		//for loop will populate cardsList
+	  		//for loop populate cardsList
 	  		for (let i = 0; i < usersCards.length; i++) {
 
 	  			let cardData = usersCards[i];
-	  			console.log(cardData);
+	  			console.log(cardData.question, cardData.answer);
 
 	  			let userCard = document.createElement("li");
 		  		let userCardButton = document.createElement("a");
@@ -87,9 +77,9 @@ decksReq.addEventListener("load", function() {
 			    userCardIcon.classList.add("user-card-icon");
 			    userCardLabel.classList.add("user-card-label");
 
-			    userCardButton.appendChild(userDeckLabel);
-			    userCardButton.appendChild(userDeckIcon);
-			    userCard.appendChild(userDeckButton);
+			    userCardButton.appendChild(userCardLabel);
+			    userCardButton.appendChild(userCardIcon);
+			    userCard.appendChild(userCardButton);
 			    cardsList.appendChild(userCard);
 
 		  		userCardIcon.onClick = function(e) {
@@ -165,16 +155,23 @@ function closeCardForm() {
 
 function cardSubmit(formElement) {
 
+	console.log('card submit.');
+
 	let question = formElement.question.value;
 	let answer = formElement.answer.value;
+	console.log(question, answer);
 
 	let newCardReq = new XMLHttpRequest();
 	newCardReq.addEventListener("load", function() {
-
+		let response = JSON.parse(this.responseText);
+		console.log(response);
+		alert(response);
+		window.location.reload();
+		return false;
 	});
-	newCardReq.open("POST", "http://127.0.0.1:8080/api/demo/4", true); //deck ID is passed from #decks into #cards..change
+	newCardReq.open("POST", "http://127.0.0.1:8080/api/cards/" + selectedDeck.id, true);
 	newCardReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	newCardReq.send();
+	newCardReq.send("question=" + question + "&answer=" + answer);
 
 	return false;
 

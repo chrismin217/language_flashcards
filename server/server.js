@@ -270,15 +270,16 @@ app.post('/api/cards/:id', (req, res) => {
 
   console.log('posting a new card to a single deck.');
   console.log('deck ID : ', req.params.id);
+  console.log(req.body);
 
   db.Card.create({
     question: req.body.question,
     answer : req.body.answer,
-    deck_id : req.body.deck_id
+    deck_id : req.params.id
   })
-  .then(newDeck => {
-    console.log(newDeck);
-    return res.redirect("/dashboard"); //not sure
+  .then(newCard => {
+    console.log(newCard);
+    return res.json(newCard);
   })
   .catch(err => {
     console.log(err);
