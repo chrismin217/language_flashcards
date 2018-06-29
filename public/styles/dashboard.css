@@ -580,7 +580,7 @@
 /* CARD DISPLAY AREA */
 #cards-container {
 	position: absolute;
-		bottom: 0;
+	bottom: 0;
 	height: 85%;
 	width: 100%;
 }
@@ -595,7 +595,7 @@
 
 /*Change..*/
 
-/*.user-deck {
+.user-card {
 	float: left;
 	position: relative;
 	width: 75px;
@@ -603,25 +603,25 @@
 	margin: 3px;
 	cursor: pointer;	
 }
-.user-deck-button { 
+.user-card-button { 
 	height: 75px;
 	width: 75px;
 	cursor: pointer;
 }
-.user-deck-icon {
+.user-card-icon {
 	position: absolute;
 	left: 0;
 	top: 0;
 	width: 75px;
 	height: 75px;
 }
-	.user-deck-icon:hover {
+	.user-card-icon:hover {
 		width: 77px;
 		height: 77px;
 		left: -2px;
 		top: -2px;
 	}
-.user-deck-label {
+.user-card-label {
 	display: inline-block;
 	color: green;
 	font-size: 11px;
@@ -632,7 +632,7 @@
 	height: 25px;
 	text-align: center;
 	cursor: default;
-}*/
+}
 
 
 

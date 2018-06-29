@@ -1,8 +1,7 @@
 console.log(localStorage);
 console.log('dashboard script.');
 
-/*this is for PUT/DEL later..*/
-let deckSelected = false;
+let selectedDeck = {};
 
 /* GET request for all decks belonging to a user */
 let decksReq = new XMLHttpRequest();
@@ -21,9 +20,7 @@ decksReq.addEventListener("load", function() {
 	  let userDeckIcon = document.createElement("img");
 	  let userDeckLabel = document.createElement("span");
 
-	  userDeckIcon.title = deckData.title;
-	  userDeckIcon.id = deckData.id;
-	  userDeckIcon.user_id = deckData.user_id;
+	  userDeckIcon.deckData = deckData;
 
 	  /*userDeckIcon.draggable = "true";*/
 	  userDeckIcon.src = '/assets/dashboard/black_deck.png';
@@ -45,21 +42,67 @@ decksReq.addEventListener("load", function() {
 	  userDeckIcon.onclick = function(e) {
 
 	  	console.log('deck clicked.');
-	  	console.log(this.title, this.id, this.user_id);
+	  	Object.assign(selectedDeck, this.deckData); 
+	  	console.log(selectedDeck);
 
-	  	let that = this;
+	  	//can re-factor or change this..
+	  	let icons = document.getElementsByClassName("user-deck-icon");
+	  	let borderedIcon = Array.prototype.forEach.call(icons, function(icon) {
 
-	  	let singleDeckReq = new XMLHttpRequest();
-	  	singleDeckReq.addEventListener("load", function(e) {
-	  		
-	  		console.log("GET single deck request.");
-	  		let usersCards = JSON.parse(this.responseText);
-
-	  		//call cardSubmit here
+	  		if (icon.style.border) {
+	  			icon.style.border = "none";
+	  		}
+	  		if (icon.deckData.id === selectedDeck.id) {
+	  			icon.style.border = "1px solid red";
+	  		} 
 
 	  	});
-	  	singleDeckReq.open("GET", "http://127.0.0.1:8080/api/cards/" + that.id, true);
-	  	singleDeckReq.send();
+
+	  	let singleDeckCardsReq = new XMLHttpRequest();
+	  	singleDeckCardsReq.addEventListener("load", function(e) {
+	  		
+	  		console.log("GET single deck cards request.");
+
+	  		let cardsList = document.getElementById("cards-list"); 
+	  		let usersCards = JSON.parse(this.responseText);
+
+	  		//for loop will populate cardsList
+	  		for (let i = 0; i < usersCards.length; i++) {
+
+	  			let cardData = usersCards[i];
+	  			console.log(cardData);
+
+	  			let userCard = document.createElement("li");
+		  		let userCardButton = document.createElement("a");
+		  		let userCardIcon = document.createElement("img");
+		  		let userCardLabel = document.createElement("span");
+
+		  		userCardIcon.alt = '';
+		  		userCardIcon.src = '/assets/dashboard/index_card_icon.png';
+
+		  		userCardLabel.innerHTML = cardData.question;
+
+		  		userCard.classList.add("user-card");
+			    userCardButton.classList.add("user-card-button");
+			    userCardIcon.classList.add("user-card-icon");
+			    userCardLabel.classList.add("user-card-label");
+
+			    userCardButton.appendChild(userDeckLabel);
+			    userCardButton.appendChild(userDeckIcon);
+			    userCard.appendChild(userDeckButton);
+			    cardsList.appendChild(userCard);
+
+		  		userCardIcon.onClick = function(e) {
+		  			console.log('card clicked.');
+		  			console.log(this);
+		  		};
+
+	  		}//end for
+
+
+	  	});
+	  	singleDeckCardsReq.open("GET", "http://127.0.0.1:8080/api/cards/" + selectedDeck.id, true); //cards belonging to a deck ID
+	  	singleDeckCardsReq.send();
 
 	  };
 
@@ -67,7 +110,7 @@ decksReq.addEventListener("load", function() {
 
 
 });
-decksReq.open("GET", "http://127.0.0.1:8080/api/decks/" + localStorage.id, true);
+decksReq.open("GET", "http://127.0.0.1:8080/api/decks/" + localStorage.id, true); //decks belonging to a user ID
 decksReq.send();
 
 /*POST*/
@@ -122,7 +165,20 @@ function closeCardForm() {
 
 function cardSubmit(formElement) {
 
-}
+	let question = formElement.question.value;
+	let answer = formElement.answer.value;
+
+	let newCardReq = new XMLHttpRequest();
+	newCardReq.addEventListener("load", function() {
+
+	});
+	newCardReq.open("POST", "http://127.0.0.1:8080/api/demo/4", true); //deck ID is passed from #decks into #cards..change
+	newCardReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	newCardReq.send();
+
+	return false;
+
+};
 
 /*PUT*/
 function editDecks() {
