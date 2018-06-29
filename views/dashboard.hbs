@@ -94,7 +94,27 @@
 
 		<span id="cards-label">Cards</span>
 
-		<!-- XHR GET Request will retrieve a single deck's cards -->
+		<!-- New Card Form --> 
+	    <div id="create-card-container">
+
+	  		<input id="card-close" type="image" alt="" src="/assets/dashboard/red_x_button.png" onClick="closeCardForm()" />
+			<label id="ccf-label" for="create-card-form">Add New Card</label>
+
+			<form id="create-card-form" onSubmit="return cardSubmit(this);">
+
+				<label for="card-front">Front</label>
+				<input id="card-front" type="text" name="question" required/>
+				<label for="card-back">Back</label>
+				<input id="card-back" type="text" name="answer" required/>
+	
+				<input id="card-submit" type="submit" value="Submit" />
+
+			</form>
+
+	    </div>
+	    <!-- New Card Form -->
+
+		<!-- XHR GET Request from user-deck onClick will display cards here -->
 	  	<div id="cards-container">
 	  		<ul id="cards-list"></ul>
 	  	</div>
@@ -102,7 +122,7 @@
 
 	  	<input id="card-del-button" type="image" alt="" src="/assets/dashboard/delete_card_icon.jpg" onClick="deleteCards()">
 	  	<input id="card-edit-button" type="image" alt="" src="/assets/dashboard/edit_card_icon.png" onClick="editCards()">
-	  	<input id="card-new-button" type="image" alt="" src="/assets/dashboard/new_card_icon.png" onClick="">
+	  	<input id="card-new-button" type="image" alt="" src="/assets/dashboard/new_card_icon.png" onClick="openCardForm()">
 
 	</div>
 

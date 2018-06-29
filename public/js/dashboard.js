@@ -55,6 +55,8 @@ decksReq.addEventListener("load", function() {
 	  		console.log("GET single deck request.");
 	  		let usersCards = JSON.parse(this.responseText);
 
+	  		//call cardSubmit here
+
 	  	});
 	  	singleDeckReq.open("GET", "http://127.0.0.1:8080/api/cards/" + that.id, true);
 	  	singleDeckReq.send();
@@ -68,10 +70,8 @@ decksReq.addEventListener("load", function() {
 decksReq.open("GET", "http://127.0.0.1:8080/api/decks/" + localStorage.id, true);
 decksReq.send();
 
-
-
-
 /*POST*/
+/*Decks*/
 const newDeckForm = document.getElementById("create-deck-container");
 
 function openDeckForm() {
@@ -110,7 +110,19 @@ function deckSubmit(formElement) {
 
 };
 
+/*Cards*/
+const newCardForm = document.getElementById("create-card-container");
 
+function openCardForm() {
+	newCardForm.style.display = "block";
+};
+function closeCardForm() {
+	newCardForm.style.display = "none";
+};
+
+function cardSubmit(formElement) {
+
+}
 
 /*PUT*/
 function editDecks() {
@@ -120,7 +132,6 @@ function editDecks() {
 function editCards() {
 	alert('Edit Cards feature coming soon!');
 };
-
 
 /*DELETE*/
 function deleteDecks() {
