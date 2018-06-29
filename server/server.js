@@ -185,7 +185,6 @@ app.get('/api/decks/:id', (req, res) => {
   console.log('getting decks');
   db.Deck.findAll({ where : {user_id : req.params.id} })
   .then(decks => {
-    console.log(decks);
     return res.json(decks);
   })
   .catch(err => {
@@ -196,17 +195,25 @@ app.get('/api/decks/:id', (req, res) => {
 
 app.post('/api/decks/:id', (req, res) => {
 
-  db.Deck.create({
-    title : req.body.title,
-    native : req.body.native,
-    target : req.body.target,
-    user_id : req.params.id
-  })
-  .then(newDeck => {
-    return res.redirect("/dashboard");
-  })
-  .catch(err => {
-    console.log(err);
+  db.Deck.count()
+  .then(count => {
+    if (count >= 24) {
+      res.redirect(409, "/dashboard");
+    } else {
+      db.Deck.create({
+        title : req.body.title,
+        native : req.body.native,
+        target : req.body.target,
+        user_id : req.params.id
+      })
+      .then(newDeck => {
+        return res.redirect("/dashboard");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    }
+
   });
 
 });
@@ -244,14 +251,39 @@ app.get('/api/demo/:num', (req, res) => {
 });
 
 app.get('/api/cards/:id', (req, res) => {
+
   console.log('getting all cards in a single deck.');
   console.log('deck ID : ', req.params.id);
+
+  db.Card.findAll({ where : {deck_id : req.params.id} })
+  .then(cards => {
+    console.log(cards);
+    res.json(cards);
+  })
+  .catch(err => {
+    console.log(err);
+  });
 
 });
 
 app.post('/api/cards/:id', (req, res) => {
+
   console.log('posting a new card to a single deck.');
   console.log('deck ID : ', req.params.id);
+
+  db.Card.create({
+    question: req.body.question,
+    answer : req.body.answer,
+    deck_id : req.body.deck_id
+  })
+  .then(newDeck => {
+    console.log(newDeck);
+    return res.redirect("/dashboard"); //not sure
+  })
+  .catch(err => {
+    console.log(err);
+  });
+
 });
 
 app.put('/api/cards/:id', (req, res) => {

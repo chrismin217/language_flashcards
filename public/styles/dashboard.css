@@ -6,47 +6,55 @@
 	width: 100%;
 	background-color: black;
 }
-	#top-label {
-		display: inline-block;
-		position: absolute;
-		top: 50%;
-		left: 15%;
-		transform: translateY(-50%);
-		color: white;
-		font-family: 'Charcoal';
-		font-size: 18px;
-		font-weight: bold;
-		padding: 5px;
-		margin: 0px 5px 0px;
-	}
-	.menu {
-		padding: 0;
-		margin: 0;
-		list-style-type: none;
-	}
-	#top-nav {
-		position: absolute;
-		right: 0;
-		width: 15%;
+#top-label {
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	left: 15%;
+	transform: translateY(-50%);
+	color: white;
+	font-family: 'Charcoal';
+	font-size: 18px;
+	font-weight: bold;
+	padding: 5px;
+	margin: 0px 5px 0px;
+}
+.menu {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+#top-nav {
+	position: absolute;
+	right: 0;
+	width: 15%;
+	height: 100%;
+}
+	#top-nav li {
+		width: 50%;
 		height: 100%;
+		float: left;
+		cursor: pointer;
 	}
-		#top-nav li {
-			width: 50%;
-			height: 100%;
-			float: left;
-			cursor: pointer;
-		}
-		#top-nav li img {
-			position: relative;
-			left: 20%;
-			top: 20%;
-			height: 60%;
-			width: 60%;
-		}
-		#top-nav li img:hover {
-			height: 63%;
-			width: 63%;
-		}
+	#top-nav li img {
+		position: relative;
+		left: 20%;
+		top: 20%;
+		height: 60%;
+		width: 60%;
+	}
+	#top-nav li img:hover {
+		height: 63%;
+		width: 63%;
+	}
+
+
+
+
+
+/*10 LINE BREAK*/
+
+
 
 
 
@@ -61,7 +69,6 @@
 	width: 15%;
 	background-color: #1b1b1c;
 }
-
 
 /* CLASS ITEMS FOR LEFT MENU */
 .left-container {
@@ -109,127 +116,140 @@
 		font-weight: bold;
 	}
 
-
-	/* FIRST MENU WITH USER INFO */
-	#user-info {
-		position: absolute;
-		width: 100%;
-		height: 10%;
-		background-color: cyan;
-	}
-
-		#user-avatar {
-			position: relative;
-			text-align: center;
-			height: 50px;
-		}
-			#avatar {
-				width: 50px;
-				height: 50px;
-			}
-
-		#user-notifications {
-			position: relative;
-			background-color: #2eb2ae;
-			height: 26.8px;
-			text-align: center;
-		}
-			#user-alert {
-				display: inline-block;
-				position: relative;
-				top: 50%;
-				transform: translateY(-50%);
-				font-size: 12px;
-				font-weight: bold;
-				color: white;
-				padding: 2px;
-			}
-			#refresh-btn {
-				height: 13px;
-				width: 13px;
-				position: absolute;
-				top: 50%;
-				right: 5px;
-				transform: translateY(-50%);
-				cursor: pointer;
-			}
-
-
-	/* MAIN MENU WITH TWO OPTIONS */
-	#left-first {
-		position: absolute;
-		top: 15%;
-		width: 100%;
-		height: 15%;
-	}
-		#first-list {
-			position: relative;
-			height: 60.6px;
-		}
-		#first-list li {
-			
-		}
-
-	/* SECOND MENU FOR STYLING OPTIONS */
-	#left-second {
-		position: absolute;
-		top: 35%;
-		width: 100%;
-		height: 20%;
-	}
-		#second-list {
-			position: relative;
-		}
-
-	/* THIRD MENU FOR ADMIN OPTIONS */
-	#left-third {
-		position: absolute;
-		top: 60%;
-		width: 100%;
-		height: 25%;
-	}
-		#third-list {
-			position: relative;
-		}
-
-	/* FOURTH AND LAST MENU WITH TWO OPTIONS */
-	#left-fourth {
-		position: absolute;
-		bottom: 0;
-		width: 100%;
-		height: 10%;
+/* FIRST MENU WITH USER INFO */
+#user-info {
+	position: absolute;
+	width: 100%;
+	height: 10%;
+	background-color: cyan;
+}
+#user-avatar {
+	position: relative;
+	text-align: center;
+	height: 50px;
+}
+#avatar {
+	width: 50px;
+	height: 50px;
+}
+#user-notifications {
+	position: relative;
+	background-color: #2eb2ae;
+	height: 26.8px;
+	text-align: center;
+}
+	#user-alert {
+		display: inline-block;
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+		font-size: 12px;
+		font-weight: bold;
+		color: white;
 		padding: 2px;
 	}
-		#fourth-list {
-			height: 100%;
-		}
-		#fourth-list li {
-			width: 50%;
-			height: 100%;
-			float: left;
-			padding: 0;
-		}
-		#fourth-list li img {
-			width: 80%;
-			height: 80%;
-			margin: 10%;
-		}
-		#fourth-list li img:hover {
-			position: relative;
-			top: -3px;
-			left: -3px;
-			width: 85%;
-			height: 85%;
-			cursor: pointer;
-		}
+	#refresh-btn {
+		height: 13px;
+		width: 13px;
+		position: absolute;
+		top: 50%;
+		right: 5px;
+		transform: translateY(-50%);
+		cursor: pointer;
+	}
+
+/* MAIN MENU WITH TWO OPTIONS */
+#left-first {
+	position: absolute;
+	top: 15%;
+	width: 100%;
+	height: 15%;
+}
+	#first-list {
+		position: relative;
+		height: 60.6px;
+	}
+	#first-list li {
+		
+	}
+
+/* SECOND MENU FOR STYLING OPTIONS */
+#left-second {
+	position: absolute;
+	top: 35%;
+	width: 100%;
+	height: 20%;
+}
+	#second-list {
+		position: relative;
+	}
+
+/* THIRD MENU FOR ADMIN OPTIONS */
+#left-third {
+	position: absolute;
+	top: 60%;
+	width: 100%;
+	height: 25%;
+}
+	#third-list {
+		position: relative;
+	}
+
+/* FOURTH AND LAST MENU WITH TWO OPTIONS */
+#left-fourth {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 10%;
+	padding: 2px;
+}
+#fourth-list {
+	height: 100%;
+}
+	#fourth-list li {
+		width: 50%;
+		height: 100%;
+		float: left;
+		padding: 0;
+	}
+	#fourth-list li img {
+		width: 80%;
+		height: 80%;
+		margin: 10%;
+	}
+	#fourth-list li img:hover {
+		position: relative;
+		top: -3px;
+		left: -3px;
+		width: 85%;
+		height: 85%;
+		cursor: pointer;
+	}
+
+
+
+
+
+
+
+
+
+
+/* 20 LINE BREAK */
+/* 20 LINE BREAK */
+
+
+
+
+
 
 
 
 
 
 /* MAIN USER AREA */
-/* USER CAN ADD, EDIT, DELETE DECKS HERE. */
-/* ALSO HAS USAGE STATISTICS. */
+/* USER CAN ADD, EDIT, DELETE DECKS HERE */
+/* USER CAN ADD, EDIT, DELETE CARDS HERE */
 #dashboard-main {
 	position: absolute;
 	top: 50px;
@@ -238,397 +258,518 @@
 	width: 85%;
 	height: 718px;
 }
-	/* DECKS AREA */
-	#decks {
-	  position: absolute;
-	  top: 5px;
-	  left: 5%;
-	  width: 90%;
-	  height: 60%;
-	  border: 5px solid black;
-	  border-radius: 5px;
-	}	
-	  #decks-label {
-	  	position: absolute;
-	  	top: 5px;
-	  	left: 5px;
-	  	display: inline-block;
-	  	font-size: 24px;
-	  	font-weight: bold;
-	  	font-family: 'Arial';
-	  }
-	  /* BUTTONS FOR NEW, EDIT, DELETE DECKS */
-	  #new-button {
-		position: absolute;
-		top: 2.5px;
-		right: 40px;
-		width: 35px;
-		height: 35px;
-	  }
-	  	#new-button:hover {
-		  width: 37px;
-		  height: 37px;
-		  top: 2.8px;
-		  right: 40.8px;
-	  	}
-	  #edit-button {
-		background-color: none;
-		position: absolute;
-		top: 2.5px;
-		right: 2.5px;
-		width: 34px;
-		height: 34px;
-	  }
-	  	#edit-button:hover {
-	  	  width: 36px;
-		  height: 36px;
-	  	  top: 2.8px;
-	  	  right: 2.8px;
-	  	}
-	  #del-button {
-	  	background-color: none;
-	  	position: absolute;
-	  	bottom: 2.5px;
-	  	right: 2.5px;
-	  	width: 60px;
-	  	height: 60px;
-	  }
-	  	#del-button:hover {
-	  		height: 61px;
-	  		width: 61px;
-	  	}
-	  	#del-button:focus {
-	  		border: 4px solid red;
-	  		border-radius: 5px;
-	  		outline-width: 0;
-	  		height: 64px;
-	  		width: 64px;
-	  		bottom: 2.5px;
-	  		right: 2.5px;
-	  	}
-	    /* USER DECK AREA */
-		/* XHR GET REQUEST WILL RETRIEVE FROM SERVER/DB */
-		#decks-container {
-			position: absolute;
- 			bottom: 0;
-			height: 91%;
-			width: 100%;
-		}
-			#decks-list {
-				position: relative;
-				height: 100%;
-				width: 100%;
-				padding: 0;
-				margin: 0;
-				list-style-type: none;
-			}
-			.user-deck {
-				float: left;
-				position: relative;
-				width: 75px;
-				height: 100px;
-				margin: 3px;
-				cursor: pointer;
-			}
-			.user-deck-button { 
-				height: 75px;
-				width: 75px;
-				cursor: pointer;
-			}
-			.user-deck-icon {
-				position: absolute;
-				left: 0;
-				top: 0;
-				width: 75px;
-				height: 75px;
-			}
-				.user-deck-icon:hover {
-					width: 77px;
-					height: 77px;
-					left: -2px;
-					top: -2px;
-				}
-			.user-deck-label {
-				display: inline-block;
-				color: green;
-				font-size: 11px;
-				line-height: 12px;
-				position: absolute;
-				bottom: 0px;
-				width: 75px;
-				height: 25px;
-				text-align: center;
-				cursor: default;
-			}
 
-	  	/* NEW DECK FORM -- HIDDEN BY DEFAULT */
-	  	#create-deck-container {
-	  		background-color: cyan;
-	  		display: none;
-	  		height: 300px;
-	  		width: 350px;
-	  		position: absolute;
-	  		right: 100px;
-	  		top: 50px;
-	  		z-index: 1;
-	  		padding: 15px;
-	  		border: 1px solid black;
-	  		border-radius: 8px;
-	  	}	
-	  		#deck-close {
-	  			position: absolute;
-	  			top: 10px;
-	  			right: 10px;
-	  			width: 20px;
-	  			height: 20px;
-	  			border: none;
-	  			border-radius: 50%;
-	  			cursor: pointer;
-	  		}
-	  		#cdf-label {
-	  			font-size: 14px;
-	  			font-weight: bold;
-	  			font-family: 'Verdana' sans-serif;
-	  			color: black;
-	  			margin: 5px;
-	  		}
-	  		#create-deck-form {
-	  			height: 80%;
-	  			padding: 3px;
-	  			margin-top: 10px;
-	  		}
-	  		#create-deck-form label {
-	  			position: relative;
-	  			left: 5%;
-	  			display: block;
-	  			color: red;
-	  			margin: 5px 2px 2px 2px;
-	  		}
-	  		#create-deck-form input {
-	  			display: block;
-	  			position: relative;
-	  			left: 5%;
-	  			width: 80%;
-	  			padding: 3px;
-	  			border: 1px solid;
-	  			border-radius: 2px;
-	  			margin: 6px 2px 2px 2px;
-	  		}
-	  		#deck-submit {
-	  			position: relative;
-	  			left: 30% !important;
-	  			width: 40% !important;
-	  			font-weight: bold;
-	  			cursor: pointer;
-	  			border-radius: 8px !important;
-	  			margin-top: 25px !important;
-	  		}
+/* DECKS AREA */
+#decks {
+	position: absolute;
+	top: 5px;
+	left: 5%;
+	width: 90%;
+	height: 40%;
+	border: 5px solid black;
+	border-radius: 5px;
+}	
+#decks-label {
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	display: inline-block;
+	font-size: 20px;
+	font-weight: bold;
+	font-family: 'Arial';
+}
 
-	/* USAGE STATISTICS AREA. */
-	#statistics {
-		position: absolute;
-		top: 60%;
-		left: 5%;
-		width: 90%;
-		height: 38%;
-		border: 5px solid black;
-		border-radius: 5px;
-		margin-top: 10px;
+/* NEW DECK FORM -- HIDDEN BY DEFAULT */
+#create-deck-container {
+	background-color: cyan;
+	display: none;
+	height: 300px;
+	width: 350px;
+	position: absolute;
+	right: 100px;
+	top: 50px;
+	z-index: 1;
+	padding: 15px;
+	border: 1px solid black;
+	border-radius: 8px;
+}	
+#deck-close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 20px;
+	height: 20px;
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+}
+#cdf-label {
+	font-size: 14px;
+	font-weight: bold;
+	font-family: 'Verdana' sans-serif;
+	color: black;
+	margin: 5px;
+}
+#create-deck-form {
+	height: 80%;
+	padding: 3px;
+	margin-top: 10px;
+}
+#create-deck-form label {
+	position: relative;
+	left: 5%;
+	display: block;
+	color: red;
+	margin: 5px 2px 2px 2px;
+}
+#create-deck-form input {
+	display: block;
+	position: relative;
+	left: 5%;
+	width: 80%;
+	padding: 3px;
+	border: 1px solid;
+	border-radius: 2px;
+	margin: 6px 2px 2px 2px;
+}
+#deck-submit {
+	position: relative;
+	left: 30% !important;
+	width: 40% !important;
+	font-weight: bold;
+	cursor: pointer;
+	border-radius: 8px !important;
+	margin-top: 25px !important;
+}
+
+/* BUTTONS FOR NEW, EDIT, DELETE DECKS */
+#new-button {
+	position: absolute;
+	top: 2.5px;
+	right: 40px;
+	width: 35px;
+	height: 35px;
+}
+	#new-button:hover {
+    	width: 37px;
+    	height: 37px;
+    	top: 2.8px;
+    	right: 40.8px;
 	}
-		#statistics-label {
-			position: absolute;
-			top: 5px;
-			left: 5px; 
-			display: inline-block;
-			font-size: 20px;
-			font-weight: bold;
-			color: red;
-		}
-		.section {
-			position: relative;
-			top: 5%;
-			float: right;
-			width: 28%;
-			height: 90%;
-			margin: 0px 10px 10px 0px;
-			text-align: center;
-		}
-			
-		/* CLOCK SHOWING TOTAL TIME SPENT ON APP */
-		#total-time {
+#edit-button {
+	background-color: none;
+	position: absolute;
+	top: 2.5px;
+	right: 2.5px;
+	width: 34px;
+	height: 34px;
+}
+	#edit-button:hover {
+		width: 36px;
+  		height: 36px;
+		top: 2.8px;
+		right: 2.8px;
+	}
+#del-button {
+	background-color: none;
+	position: absolute;
+	bottom: 2.5px;
+	right: 2.5px;
+	width: 60px;
+	height: 60px;
+}
+	#del-button:hover {
+		height: 61px;
+		width: 61px;
+	}
+	#del-button:focus {
+		border: 4px solid red;
+		border-radius: 5px;
+		outline-width: 0;
+		height: 64px;
+		width: 64px;
+		bottom: 2.5px;
+		right: 2.5px;
+	}
 
-		}
-			.clock {
-				border: 1px solid transparent;
-			}
-			#clock-rim {
-				display: block;
-				position: relative;
-				top: 13px;
-				left: 40px;
-				width: 200px;
-				height: 200px;
-				background: linear-gradient(gray, black);
-				border-radius: 150px;
-			}
-			#clock-face {
-				display: block;
-  				position: relative;  
-  				width: 170px;
-  				height: 170px;
-  				margin: 12px auto;
-  				border-radius: 150px;
-  				background: white;
-			}
-			#notch-container {
-				width: 170px; 
-				height: 170px
-			}
-				/* JS SCRIPT WILL CREATE THESE */
-				.notch {
-					position: absolute;
-					width: 10px;
-					height: 2px;
-					background-color: black;
-					border-radius: 5px 5px 5px 5px;
-				}
-				.thin {
-					position: absolute;
-					width: 10px;
-					height: 1px;
-					border-top: 1px solid gray;
-				}
-			#hour {
-				position: absolute; 
-				top: 80px; 
-				left: 88px; 
-				width: 45px; 
-				height: 4px; 
-				border: 1px solid transparent; 
-				border-radius: 5px; 
-				transform: unset; 
-				background: blue; 
-				transform-origin: 2px 2px;
-			}
-			#minute {
-				position: absolute; 
-				top: 80px; 
-				left: 88px; 
-				width: 63px; 
-				height: 4px; 
-				border: 1px solid transparent; 
-				border-radius: 5px; 
-				transform: unset; 
-				background: red; transform-origin: 2px 2px;
-			}
-			#second {
-				position: absolute; 
-				top: 80px; 
-				left: 88px; 
-				width: 65px; 
-				height: 2px; 
-				border: 1px solid transparent; 
-				border-radius: 5px; 
-				transform: unset; 
-				background: green; 
-				transform-origin: 1px 1px;
-			}
-			#center {
-				position: absolute; 
-				top: 76px; 
-				left: 82px; 
-				width: 20px; 
-				height: 20px; 
-				background: white; 
-				border: 1px solid gray; 
-				border-radius: 16px;
-			}
-		/* ACQUIRED WORDS AND LANGUAGE SECTION */
-		#acquired-words {
+/* USER DECK DISPLAY AREA */
+/* XHR GET REQUEST WILL RETRIEVE FROM SERVER/DB AND SHOW THEM HERE*/
+#decks-container {
+	position: absolute;
+	bottom: 0;
+	height: 85%;
+	width: 100%;
+}
+#decks-list {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+.user-deck {
+	float: left;
+	position: relative;
+	width: 75px;
+	height: 100px;
+	margin: 3px;
+	cursor: pointer;	
+}
+.user-deck-button { 
+	height: 75px;
+	width: 75px;
+	cursor: pointer;
+}
+.user-deck-icon {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 75px;
+	height: 75px;
+}
+	.user-deck-icon:hover {
+		width: 77px;
+		height: 77px;
+		left: -2px;
+		top: -2px;
+	}
+.user-deck-label {
+	display: inline-block;
+	color: green;
+	font-size: 11px;
+	line-height: 12px;
+	position: absolute;
+	bottom: 0px;
+	width: 75px;
+	height: 25px;
+	text-align: center;
+	cursor: default;
+}
+
+
+
+
+/* 10 LINE BREAK */
+
+
+
+
+
+/* CARDS AREA */
+/* XHR GET REQUEST WILL RETRIEVE FROM SERVER/DB */
+#cards {
+	position: absolute;
+	top: 42.5%;
+	left: 5%;
+	height: 40%;
+	width: 90%;
+	padding: 5px;
+	border: 5px solid magenta;
+	border-radius: 5px;
+}
+#cards-label {
+	position: absolute;
+  	top: 5px;
+  	left: 5px;
+  	display: inline-block;
+  	font-size: 20px;
+  	font-weight: bold;
+  	font-family: 'Arial';
+}
+
+/* NEW CARD FORM */
+/* HIDDEN BY DEFAULT */
+
+/*CARD BUTTONS -- NEW, EDIT, DELETE*/
+#card-new-button {
+	position: absolute;
+	top: 2.5px;
+	right: 44.5px;
+	height: 46px;
+	width: 46px;
+}
+	#card-new-button:hover {
+		height: 48px;
+		width: 48px;
+	}
+#card-edit-button {
+	position: absolute;
+	top: 2.5px;
+	right: 2.5px;
+	height: 40px;
+	width: 40px;
+}
+	#card-edit-button:hover {
+		height: 42px;
+		width: 42px;
+	}
+#card-del-button {
+	position: absolute;
+	bottom: 2.5px;
+	right: 2.5px;
+	height: 50px;
+	width: 50px;
+}
+	#card-del-button:hover {
+		height: 53px;
+		width: 53px;
+	}
+
+/* CARD DISPLAY AREA */
+#cards-container {
+	position: absolute;
+		bottom: 0;
+	height: 85%;
+	width: 100%;
+}
+#cards-list {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+
+
+
+
+
+
+
+
+
+
+/* 20 LINE BREAK */
+/* 20 LINE BREAK */
+
+
+
+
+
+
+
+
+
+
+/*  USER STATISTICS AREA  */
+/*  HAS THREE SECTIONS  */
+/*  LANGUAGES, ACQUIRED WORDS, TIME SPENT  */
+/*  DASHBOARD WILL ENABLE MORE OPTIONS LATER  */
+/*  MOSTLY VISUAL DEMO FOR THE TIME BEING  */
+
+#statistics {
+	position: absolute;
+	top: 83.5%;
+	left: 5%;
+	width: 90%;
+	height: 38%;
+	border: 5px solid black;
+	border-radius: 5px;
+	margin-top: 10px;
+}
+#statistics-label {
+	position: absolute;
+	top: 5px;
+	left: 5px; 
+	display: inline-block;
+	font-size: 20px;
+	font-weight: bold;
+	color: red;
+}
+.section {
+	position: relative;
+	top: 5%;
+	float: right;
+	width: 28%;
+	height: 90%;
+	margin: 0px 10px 10px 0px;
+	text-align: center;
+}
+
+	
+/* CLOCK SHOWING TOTAL TIME SPENT ON APP */
+#total-time {
+
+}
+.clock {
+	border: 1px solid transparent;
+}
+#clock-rim {
+	display: block;
+	position: relative;
+	top: 13px;
+	left: 40px;
+	width: 200px;
+	height: 200px;
+	background: linear-gradient(gray, black);
+	border-radius: 150px;
+}
+#clock-face {
+	display: block;
+	position: relative;  
+	width: 170px;
+	height: 170px;
+	margin: 12px auto;
+	border-radius: 150px;
+	background: white;
+}
+#notch-container {
+	width: 170px; 
+	height: 170px
+}
+
+/* JS SCRIPT WILL CREATE THESE */
+.notch {
+	position: absolute;
+	width: 10px;
+	height: 2px;
+	background-color: black;
+	border-radius: 5px 5px 5px 5px;
+}
+.thin {
+	position: absolute;
+	width: 10px;
+	height: 1px;
+	border-top: 1px solid gray;
+}
+
+/*CLOCK HANDS*/
+#hour {
+	position: absolute; 
+	top: 80px; 
+	left: 88px; 
+	width: 45px; 
+	height: 4px; 
+	border: 1px solid transparent; 
+	border-radius: 5px; 
+	transform: unset; 
+	background: blue; 
+	transform-origin: 2px 2px;
+}
+#minute {
+	position: absolute; 
+	top: 80px; 
+	left: 88px; 
+	width: 63px; 
+	height: 4px; 
+	border: 1px solid transparent; 
+	border-radius: 5px; 
+	transform: unset; 
+	background: red; transform-origin: 2px 2px;
+}
+#second {
+	position: absolute; 
+	top: 80px; 
+	left: 88px; 
+	width: 65px; 
+	height: 2px; 
+	border: 1px solid transparent; 
+	border-radius: 5px; 
+	transform: unset; 
+	background: green; 
+	transform-origin: 1px 1px;
+}
+#center {
+	position: absolute; 
+	top: 76px; 
+	left: 82px; 
+	width: 20px; 
+	height: 20px; 
+	background: white; 
+	border: 1px solid gray; 
+	border-radius: 16px;
+}
+
+/* ACQUIRED WORDS AND LANGUAGE SECTION */
+#acquired-words {
+	
+}	
+.circle {
+	border: 1px solid transparent;
+}
+.circle-rim {
+	display: block;
+	position: relative;
+	top: 13px;
+	left: 40px;
+	width: 200px;
+	height: 200px;
+	background: #eaeaea;
+	border-radius: 50%;
+}
+
+/* These indicate progress, JS script will change these according to user data. */
+/* re-factor and change later, this is mostly visual demonstration of a feature on the dashboard */
+.arc {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	border: 15px solid;
+}
+	.words-arc-start {
+		border-color: transparent transparent transparent blue; /*border-color ... TOP RIGHT BOTTOM LEFT*/
+		transform: rotate(55deg);
+	}
+	.words-arc-end {
+		border-color: transparent blue blue transparent;
+		transform: rotate(190deg);
+	}
+	.lang-arc-start {
+		border-color: transparent green green green;
+		transform: rotate(20deg);
+	}
+	.lang-arc-end {
+		border-color: green green green transparent;
+		transform: rotate(120deg);
+	}
+	
+.circle-face {
+	display: block;
+	position: relative;  
+	width: 170px;
+	height: 170px;
+	margin: 15px auto;
+	border-radius: 50%;
+}
+.circle-container {
+	width: 170px;
+	height: 170px;
+}
+.count-helper {
+	text-align: center;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	height: 40px;
+	line-height: 40px;
+}
+.count {
+	display: inline-block;
+	font-size: 40px;
+	font-weight: bold;
+	font-family: 'Verela Round', sans-serif;
+	color: black;
+}
+.label-helper {
+	position: relative;
+	top: 80px;
+	line-height: 18px;
+}
+.count-label { 
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	top: 0;
+	font-size: 14px;
+	font-family: 'Verela Round', sans-serif;
+	font-weight: bold;
+	vertical-align: middle;
+	color: #777777;
+}
 			
-		}	
-			.circle {
-				border: 1px solid transparent;
-			}
-			.circle-rim {
-				display: block;
-				position: relative;
-				top: 13px;
-				left: 40px;
-				width: 200px;
-				height: 200px;
-				background: #eaeaea;
-				border-radius: 50%;
-			}
-			/* These indicate progress, JS script will change these according to user data. */
-			/* re-factor and change later, this is mostly visual demonstration of a feature on the dashboard */
-			.arc {
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 200px;
-				height: 200px;
-				border-radius: 50%;
-				border: 15px solid;
-			}
-				.words-arc-start {
-					border-color: transparent transparent transparent blue; /*border-color ... TOP RIGHT BOTTOM LEFT*/
-					transform: rotate(55deg);
-				}
-				.words-arc-end {
-					border-color: transparent blue blue transparent;
-					transform: rotate(190deg);
-				}
-				.lang-arc-start {
-					border-color: transparent green green green;
-					transform: rotate(20deg);
-				}
-				.lang-arc-end {
-					border-color: green green green transparent;
-					transform: rotate(120deg);
-				}
-			.circle-face {
-				display: block;
-  				position: relative;  
-  				width: 170px;
-  				height: 170px;
-  				margin: 15px auto;
-  				border-radius: 50%;
-			}
-			.circle-container {
-				width: 170px;
-				height: 170px;
-			}
-			.count-helper {
-				text-align: center;
-				position: relative;
-				top: 50%;
-				transform: translateY(-50%);
-				height: 40px;
-				line-height: 40px;
-			}
-			.count {
-				display: inline-block;
-				font-size: 40px;
-				font-weight: bold;
-				font-family: 'Verela Round', sans-serif;
-				color: black;
-			}
-			.label-helper {
-				position: relative;
-				top: 80px;
-				line-height: 18px;
-			}
-			.count-label { 
-				display: inline-block;
-				width: 100%;
-				height: 100%;
-				position: relative;
-				top: 0;
-				font-size: 14px;
-				font-family: 'Verela Round', sans-serif;
-				font-weight: bold;
-				vertical-align: middle;
-				color: #777777;
-			}
-				

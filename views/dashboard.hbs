@@ -63,7 +63,7 @@
 		
 	  <!-- New Deck Form --> 
 	  <div id="create-deck-container">
-	  	  <input id="deck-close" type="image" alt="" src="/assets/dashboard/red_x_button.png" onClick="closeForm()" />
+	  	  <input id="deck-close" type="image" alt="" src="/assets/dashboard/red_x_button.png" onClick="closeDeckForm()" />
 		  <label id="cdf-label" for="create-deck-form">Add New Deck</label>
 		  <form id="create-deck-form" onSubmit="return deckSubmit(this);">
 			  <label for="deck-title">Title</label>
@@ -80,14 +80,30 @@
 	  
 	  <!-- XHR GET Request will retrieve user's decks and show them here -->
 	  <div id="decks-container">
-	  	<ul id="decks-list"></ul>
+	    <ul id="decks-list"></ul>
 	  </div>
 	  <!-- Dashboard.js will style the deck elements -->
 	  
 	  <input id="del-button" type="image" alt="" src="/assets/dashboard/trashcan_icon.ico" onClick="deleteDecks()">
 	  <input id="edit-button" type="image" alt="" src="/assets/dashboard/edit_icon.png" onClick="editDecks()">
-	  <input id="new-button" type="image" alt="" src="/assets/dashboard/new_icon.png" onClick="openForm()">
+	  <input id="new-button" type="image" alt="" src="/assets/dashboard/new_icon.png" onClick="openDeckForm()">
 	
+	</div>
+
+	<div id="cards">
+
+		<span id="cards-label">Cards</span>
+
+		<!-- XHR GET Request will retrieve a single deck's cards -->
+	  	<div id="cards-container">
+	  		<ul id="cards-list"></ul>
+	  	</div>
+	  	<!-- -->
+
+	  	<input id="card-del-button" type="image" alt="" src="/assets/dashboard/delete_card_icon.jpg" onClick="deleteCards()">
+	  	<input id="card-edit-button" type="image" alt="" src="/assets/dashboard/edit_card_icon.png" onClick="editCards()">
+	  	<input id="card-new-button" type="image" alt="" src="/assets/dashboard/new_card_icon.png" onClick="">
+
 	</div>
 
 

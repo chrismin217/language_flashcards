@@ -51,17 +51,17 @@ decksReq.addEventListener("load", function() {
 
 	  	let singleDeckReq = new XMLHttpRequest();
 	  	singleDeckReq.addEventListener("load", function(e) {
+	  		
 	  		console.log("GET single deck request.");
+	  		let usersCards = JSON.parse(this.responseText);
+
 	  	});
 	  	singleDeckReq.open("GET", "http://127.0.0.1:8080/api/cards/" + that.id, true);
 	  	singleDeckReq.send();
 
 	  };
 
-
-
 	}//end for
-
 
 
 });
@@ -71,15 +71,13 @@ decksReq.send();
 
 
 
-
-
-/*For Add New Deck form*/
+/*POST*/
 const newDeckForm = document.getElementById("create-deck-container");
 
-function openForm() {
+function openDeckForm() {
 	newDeckForm.style.display = "block";
 };
-function closeForm() {
+function closeDeckForm() {
 	newDeckForm.style.display = "none";
 };
 
@@ -92,8 +90,16 @@ function deckSubmit(formElement) {
 	let newDeckReq = new XMLHttpRequest();
 
 	newDeckReq.addEventListener("load", function(e) {
+
+		let response = this.responseText;
+
+		if (response.includes("Conflict.")) {
+		  alert("Cannot exceed 24 decks.");
+		} 
 		window.location.reload();
+
 		return false;
+
 	});
 
 	newDeckReq.open("POST", "http://127.0.0.1:8080/api/decks/" + localStorage.id, true);
@@ -104,12 +110,25 @@ function deckSubmit(formElement) {
 
 };
 
-/*For Delete Decks*/
+
+
+/*PUT*/
+function editDecks() {
+	alert('Edit Decks feature coming soon!');
+};
+
+function editCards() {
+	alert('Edit Cards feature coming soon!');
+};
+
+
+/*DELETE*/
 function deleteDecks() {
 	alert('Delete Decks feature coming soon!');
 };
 
-/*For Edit Decks*/
-function editDecks() {
-	alert('Edit Decks feature coming soon!');
+function deleteCards() {
+	alert('Delete Cards feature coming soon!');
 };
+
+
