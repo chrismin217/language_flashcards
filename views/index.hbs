@@ -61,7 +61,6 @@
 		    </div>
 		</div>
 	    
-
 		<div id="cols-container">
 		  <input type="number" id="toggle-cols" value="2" min="2" max="6" step="1.0" required>
 		  <span id="cols-label">Cols</span>
@@ -82,6 +81,18 @@
 	<input type="reset" value="Default" class="grid-btn" id="reset">
 	<input type="button" value="Generate" class="grid-btn" id="generate" onClick="renderGrid();"> 
 	<!-- Render demo or selected deck. -->
+
+	<!-- Sample Decks box -->
+	<div id="sample-decks">
+		<span id="sample-decks-label">Sample Decks</span>
+		<ul id="sample-decks-list">
+			<li><img src="/assets/dashboard/box_deck.png" alt=""><span>KOR sample</span></li>
+			<li><img src="/assets/dashboard/box_deck.png" alt=""><span>SP sample</span></li>
+			<li><img src="/assets/dashboard/box_deck.png" alt=""><span>JPN sample</span></li>
+		</ul>
+	</div>
+
+
 
 
 	<div id="grid">

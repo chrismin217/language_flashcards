@@ -14,5 +14,64 @@
   font-size: 12px;
 }
 #current-deck-name {
+  display: inline-block;
+  position: relative;
+  left: 5%;
+  height: 50px;
+  width: 90%;
+  border: 1px solid black;
 
 }
+
+/* Sample Decks */
+#sample-decks {
+	position: absolute;
+	top: 80px;
+	left: 610px;
+	height: 100px;
+	width: 230px;
+	border: 4px solid black;
+	border-radius: 3px;
+	text-align: center;
+}
+	#sample-decks-label {
+		color: red;
+		font-size: 14px;
+		font-weight: bold;
+		font-family: 'Varela Round', sans-serif;
+		display: inline-block;
+		position: relative;
+		top: 0;
+		right: 0;
+	}
+	#sample-decks-list {
+		padding: 0;
+		margin: 0;
+		list-style-type: none;
+	}
+	#sample-decks-list li {
+		position: relative;
+		float: left;
+		width: 65px;
+		height: 65px;
+		margin: 4px;
+		cursor: pointer;
+	}
+	#sample-decks-list img {
+		width: 50px;
+		height: 50px;
+	}
+		#sample-decks-list img:hover {
+			width: 52px;
+			height: 52px;
+		}
+	#sample-decks-list span {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		font-size: 11px;
+		font-weight: bold;
+		color: red;
+		text-align: center;
+		padding: 1px;
+	}

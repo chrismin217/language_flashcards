@@ -1,6 +1,6 @@
 console.log('app script.');
 
-/*User Options*/
+/* USER OPTIONS */
 let options = {
   timeConstraint : 0.25,
   targetLangRatio : 0,
@@ -9,7 +9,7 @@ let options = {
   gridCols : 2
 };
 
-/*FUNCTIONALITY FOR TIME CONSTRAINT BOX*/
+/* TIME CONSTRAINT BOX */
 const currentTime = document.getElementById('current-time');
 currentTime.innerHTML = options.timeConstraint + ' sec';
 
@@ -26,7 +26,7 @@ const minus = document.getElementById('toggle-minus').addEventListener("click", 
   }
 });;
 
-/*FUNCTIONALITY FOR TARGET LANG RATIO BOX*/
+/* RATIO BOX */
 const ratioVal = document.getElementById('ratio-val');
 ratioVal.innerHTML = options.targetLangRatio + "% target";
 
@@ -35,7 +35,7 @@ const ratio = document.getElementById('ratio').addEventListener("input", functio
   options.targetLangRatio = this.value / 100;
 });
 
-/*FUNCTIONALITY FOR RENDERING CARDS ON GRID*/
+/* GRID SIZE BOX */
 const grid = document.getElementById('grid');
 const generate = document.getElementById('generate');
 const rows = document.getElementById('toggle-rows');
@@ -66,6 +66,9 @@ let colsDown = document.getElementById('col-down').addEventListener("click", fun
     cols.value = options.gridCols;
   } 
 });
+
+/* CURRENT DECK BOX */
+let currentDeckName = document.getElementById("current-deck-name"); //change based on some data
 
 
 
@@ -210,7 +213,7 @@ function clearGrid() {
 
 
 
-/*FUNCTIONALITY FOR RESET DEFAULTS BUTTON*/
+/* DEFAULT BUTTON */
 const reset = document.getElementById("reset").addEventListener("click", function() {
 
   let defaults = {
