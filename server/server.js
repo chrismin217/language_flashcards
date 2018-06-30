@@ -20,7 +20,7 @@ const app = express();
 
 const db = require('../models');
 
-const deck = require('./deck'); //fake DB
+const sampleDeck = require('./sampleDeck'); //fake DB
 
 /*Static*/
 app.use(express.static(path.join(__dirname, '..', '/public')));
@@ -229,19 +229,18 @@ app.delete('/api/decks/:id', (req, res) => {
 
 });
 
+/*Samples*/
+app.get('/api/demo/:id/:num', (req, res) => {
 
-/*Cards*/
-
-/*this route is for the demo deck*/
-app.get('/api/demo/:num', (req, res) => {
+  console.log(req.params);
 
   let num = req.params.num;
   let cards = [];
 
   /*make it so random is unique.. later*/
   for (let i = 0; i < num; i++) {
-    let random = Math.floor(Math.random() * deck.length);
-    cards.push(deck[random]);
+    let random = Math.floor(Math.random() * sampleDeck.length);
+    cards.push(sampleDeck[random]);
   }
 
   console.log(cards);
@@ -250,6 +249,7 @@ app.get('/api/demo/:num', (req, res) => {
 
 });
 
+/*Cards*/
 app.get('/api/cards/:id', (req, res) => {
 
   console.log('getting all cards in a single deck.');

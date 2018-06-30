@@ -2,6 +2,7 @@ console.log('app script.');
 
 /* USER OPTIONS */
 let options = {
+  currentDeck : {},
   timeConstraint : 0.25,
   targetLangRatio : 0,
   gridHasCards : false,
@@ -196,7 +197,14 @@ function renderGrid() {
 
   }); //END eventListener
 
-  cardsReq.open("GET", "http://127.0.0.1:8080/api/demo/" + totalCards);
+  /*let requestUrl = '';
+  if (options.currentDeck.type == 'sample') {
+    requestUrl = 'http://127.0.0.1:8080/api/demo/' + totalCards;
+  } else {
+    requestUrl = 'http://127.0.0.1:8080/api/cards/' + options.currentDeck.id; 
+  }*/
+
+  cardsReq.open("GET", 'http://127.0.0.1:8080/api/demo/1/' + totalCards, true);
   cardsReq.send();
 
   options.gridHasCards = true;
@@ -208,6 +216,60 @@ function clearGrid() {
 };
 
 
+/* Deck Selection */
+function selectDeck(deck) {
+  Object.assign(options.currentDeck, deck);
+}; 
+
+/* Logged-in user Deck Box */
+let decksReq = new XMLHttpRequest();
+decksReq.addEventListener("load", function() {
+
+  console.log('deck box request.');
+
+  let deckBoxItems = JSON.parse(this.responseText);
+  let deckBoxLabel = document.getElementById("deck-box-label");
+  deckBoxLabel.innerHTML = "My Decks";
+
+  let deckBoxList = document.getElementById("deck-box-list");
+
+  //populate deck-box-list
+  for (let i = 0; i < deckBoxItems.length; i++) {
+    
+    let deckData = deckBoxItems[i];
+    console.log(deckData);
+
+    let boxDeck = document.createElement("li");
+    let boxDeckButton = document.createElement("a");
+    let boxDeckIcon = document.createElement("img");
+    let boxDeckLabel = document.createElement("span");
+
+    boxDeckIcon.src = '/assets/dashboard/box_deck.png';
+    boxDeckIcon.alt = '';
+
+    boxDeckLabel.innerHTML = deckData.title;
+
+    boxDeck.classList.add('box-deck');
+    boxDeckButton.classList.add('box-deck-button');
+    boxDeckIcon.classList.add('box-deck-icon');
+    boxDeckLabel.classList.add('box-deck-label');
+
+    boxDeckButton.appendChild(boxDeckLabel);
+    boxDeckButton.appendChild(boxDeckIcon);
+    boxDeck.appendChild(boxDeckButton);
+
+    deckBoxList.appendChild(boxDeck);
+
+    boxDeckIcon.onclick = function(e) {
+      console.log('deck box deck clicked.');
+    };
+
+  }//end for
+
+
+});
+decksReq.open("GET", "http://127.0.0.1:8080/api/decks/" + localStorage.id, true);
+decksReq.send();
 
 
 
