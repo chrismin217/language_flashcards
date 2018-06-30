@@ -11,6 +11,7 @@ decksReq.addEventListener("load", function() {
 
 	const decksList = document.getElementById("decks-list");
 
+	//for loop populate deck-list
 	for (let i = 0; i < usersDecks.length; i++) {
 
 	  let deckData = usersDecks[i];
@@ -55,6 +56,7 @@ decksReq.addEventListener("load", function() {
 	  		console.log("GET single deck cards request.");
 
 	  		let usersCards = JSON.parse(this.responseText);
+	  		console.log('Cards in this deck : ');
 
 	  		//for loop populate cardsList
 	  		for (let i = 0; i < usersCards.length; i++) {

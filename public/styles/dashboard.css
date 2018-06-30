@@ -409,7 +409,6 @@
 	list-style-type: none;
 }
 .user-deck {
-	border: 1px solid black;
 	float: left;
 	position: relative;
 	width: 75px;
@@ -417,6 +416,10 @@
 	margin: 3px;
 	cursor: pointer;	
 }
+	.user-deck:hover {
+		border: 1px solid orange;
+		border-radius: 5px;
+	}
 .user-deck-button { 
 	height: 75px;
 	width: 75px;
@@ -594,7 +597,6 @@
 	list-style-type: none;
 }
 
-/*Change..*/
 .user-card {
 	float: left;
 	position: relative;

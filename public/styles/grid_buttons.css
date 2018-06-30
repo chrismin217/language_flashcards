@@ -1,26 +1,26 @@
 /*GRID OPTIONS*/
 #reset {
-  position: absolute;
-  top: 10px;
-  left: 460px;
-  width: 80px;
-  height: 30px;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-  background-color: green;
-  font-weight: bold;
+  top: 5px;
+  left: 512.5px;
 }
 
 #generate {
+  top: 40px;
+  left: 512.5px;
+}
+
+.grid-btn {
   position: absolute;
-  top: 45px;
-  left: 460px;
-  width: 80px;
-  height: 30px;
   cursor: pointer;
   border: none;
   border-radius: 5px;
   background-color: green;
+  font-size: 11px;
   font-weight: bold;
+  width: 60px;
+  height: 30px;
 }
+  .grid-btn:hover {
+    border: 2px solid white;
+    background-color: magenta;
+  }

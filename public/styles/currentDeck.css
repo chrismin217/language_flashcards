@@ -1,0 +1,18 @@
+#current-deck {
+  position: absolute;
+  left: 407.5px;
+  width: 100px;
+  height: 70px;
+  border: 1px solid black;
+}
+#current-deck-label {
+  position: relative;
+  display: block;
+  text-align: center;
+  color: maroon;
+  font-weight: bold;
+  font-size: 12px;
+}
+#current-deck-name {
+
+}

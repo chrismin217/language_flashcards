@@ -1,18 +1,23 @@
 /*FIRST SET OF OPTIONS FOR TIME CONSTRAINT*/
 #time-options {
   position: absolute;
-  left: 60px;
+  left: 30px;
   width: 100px;
   height: 70px;
   border: 1px solid black;
 }
+  #time-logo {
+    position: absolute;
+    width: 60px;
+    height: 52.5px;
+  }
   #current-time {
     position: absolute;
     z-index: 10;
     left: 0;
-    bottom: 0;
+    bottom: -2px;
     font-weight: bold;
-    color: white;
+    color: black;
   }
   #toggle-plus {
     position: absolute;

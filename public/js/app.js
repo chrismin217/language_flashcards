@@ -1,3 +1,5 @@
+console.log('app script.');
+
 /*User Options*/
 let options = {
   timeConstraint : 0.25,

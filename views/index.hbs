@@ -15,6 +15,13 @@
 	  </ul>
 	</div>
 	
+	<!-- User must be logged in to view their decks -->
+	<div id="deck-box">
+		<span id="deck-box-label"></span>
+		<ul id="deck-box-list"></ul>
+	</div>
+	<!-- Shows beneath dashboard -->
+	
 	<!-- Login Successful message -->
 	<div id="home-login">
 		<div id="up-arrow"></div>
@@ -23,7 +30,7 @@
 	<!-- Shows for 4 seconds.. -->
 
 	<div id="time-options">
-	  <div><img alt="" src="/assets/clock.png" width="70px" height="60px" /><span id="current-time"></span></div>
+	  <div><img id="time-logo" alt="" src="/assets/clock.png" /><span id="current-time"></span></div>
 	  <input id="toggle-plus" type="image" alt="" src="/assets/plus.png" />
 	  <input id="toggle-minus" type="image" alt="" src="/assets/minus.png" />
 	</div>
@@ -65,8 +72,17 @@
 		</div>
 	</div>
 
-	<input type="reset" value="Default" id="reset">
-	<input type="button" value="Generate" id="generate" onClick="renderGrid();">
+	<!-- Show the currently selected deck -->
+	<div id="current-deck">
+		<span id="current-deck-label">Current Deck</span>
+		<span id="current-deck-name"></span>
+	</div>
+	<!-- Either sample or user's decks -->
+
+	<input type="reset" value="Default" class="grid-btn" id="reset">
+	<input type="button" value="Generate" class="grid-btn" id="generate" onClick="renderGrid();"> 
+	<!-- Render demo or selected deck. -->
+
 
 	<div id="grid">
 		<!-- MAIN GRID IS HERE!! -->

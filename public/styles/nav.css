@@ -64,4 +64,73 @@
     font-weight: bold; 
   }
 
+/*User Deck Box*/
+#deck-box {
+  display: none;
+  position: absolute;
+  top: 80px;
+  right: 5px;
+  width: 405px;
+  height: 270px;
+  border: 4px solid black;
+  border-radius: 3px;
+}
+#deck-box-label {
+  display: inline-block;
+  position: absolute;
+  width: 100%;
+  height: 8%;
+  font-family: 'Varela Round', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  color: red;
+  padding: 2px;
+}
+#deck-box-list {
+  list-style-type: none;
+  position: relative;
+  top: 8%;
+  bottom: 0;
+  height: 92%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+.box-deck {
+  position: relative;
+  float: left;
+  width: 60px;
+  height: 60px;
+  margin: 3px;
+  cursor: pointer;
+}
+.box-deck-button {
+  position: absolute;
+  bottom: 0;
+  width: 60px;
+  height: 60px;
+}
+.box-deck-icon {
+  position: absolute;
+  bottom: -2px;
+  width: 58px;
+  height: 55px;
+}
+.box-deck-label {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  line-height: 11px;  
+  font-size: 9.5px;
+  color: maroon;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  padding: 1px;
+}
+  .box-deck-label:hover {
+    color: white;
+  }
+
 
