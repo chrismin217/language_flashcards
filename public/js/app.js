@@ -68,6 +68,7 @@ let colsDown = document.getElementById('col-down').addEventListener("click", fun
 
 /* CURRENT DECK BOX */
 let currentDeckName = document.getElementById("current-deck-name"); //change based on some data
+let currentDeckIcon = document.getElementById("current-deck-icon");
 
 /* GRID */
 const grid = document.getElementById('grid');
@@ -220,6 +221,7 @@ function clearGrid() {
 function selectDeck(deck) {
   Object.assign(options.currentDeck, deck);
   currentDeckName.innerHTML = options.currentDeck.title;
+  currentDeckIcon.style.display = "block";
 }; 
 
 /* Sample Decks */
@@ -292,6 +294,7 @@ decksReq.send();
 const reset = document.getElementById("reset").addEventListener("click", function() {
 
   let defaults = {
+    currentDeck : {},
     timeConstraint : 0.25,
     targetLangRatio : 0,
     gridRows : 2,
@@ -304,6 +307,8 @@ const reset = document.getElementById("reset").addEventListener("click", functio
   const ratio = document.getElementById("ratio");
   ratio.value = 0;
 
+  currentDeckIcon.style.display = "none";
+  currentDeckName.innerHTML = '';
   currentTime.innerHTML = resetOptions.timeConstraint + ' sec';
   ratioVal.innerHTML = resetOptions.targetLangRatio + "%";
   rows.value = resetOptions.gridRows;

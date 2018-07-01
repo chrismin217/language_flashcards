@@ -232,7 +232,7 @@ app.delete('/api/decks/:id', (req, res) => {
 /*Samples*/
 app.get('/api/demo/:id/:num', (req, res) => {
 
-  let deckId = req.params.id;
+  let deckId = req.params.id - 1;
   let numOfCards = req.params.num;
   let chosenSampleDeck = sampleDeck[deckId];
 
