@@ -78,7 +78,12 @@ function renderGrid() {
 
   if (options.gridHasCards) {
     clearGrid();
-  } 
+  }
+
+  if (!options.currentDeck.title) {
+    alert('Please select a deck.');
+    return false;
+  }
 
   let totalCards = options.gridRows * options.gridCols;
   let totalTarget = Math.round(totalCards * options.targetLangRatio);
@@ -219,6 +224,7 @@ function clearGrid() {
 
 /* Deck Selection */
 function selectDeck(deck) {
+  clearGrid();
   Object.assign(options.currentDeck, deck);
   currentDeckName.innerHTML = options.currentDeck.title;
   currentDeckIcon.style.display = "block";
@@ -294,7 +300,6 @@ decksReq.send();
 const reset = document.getElementById("reset").addEventListener("click", function() {
 
   let defaults = {
-    currentDeck : {},
     timeConstraint : 0.25,
     targetLangRatio : 0,
     gridRows : 2,
@@ -307,8 +312,6 @@ const reset = document.getElementById("reset").addEventListener("click", functio
   const ratio = document.getElementById("ratio");
   ratio.value = 0;
 
-  currentDeckIcon.style.display = "none";
-  currentDeckName.innerHTML = '';
   currentTime.innerHTML = resetOptions.timeConstraint + ' sec';
   ratioVal.innerHTML = resetOptions.targetLangRatio + "%";
   rows.value = resetOptions.gridRows;
