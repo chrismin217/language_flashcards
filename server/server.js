@@ -232,20 +232,20 @@ app.delete('/api/decks/:id', (req, res) => {
 /*Samples*/
 app.get('/api/demo/:id/:num', (req, res) => {
 
-  console.log(req.params);
+  let deckId = req.params.id;
+  let numOfCards = req.params.num;
+  let chosenSampleDeck = sampleDeck[deckId];
 
-  let num = req.params.num;
-  let cards = [];
+  let result = [];
 
-  /*make it so random is unique.. later*/
-  for (let i = 0; i < num; i++) {
-    let random = Math.floor(Math.random() * sampleDeck.length);
-    cards.push(sampleDeck[random]);
+  /*randomCard is not always unique.. fix*/
+  for (let i = 0; i < numOfCards; i++) {
+    let randomCard = Math.floor(Math.random() * chosenSampleDeck.length);
+    result.push(chosenSampleDeck[randomCard]);
   }
 
-  console.log(cards);
-
-  res.json(cards);
+  console.log(result);
+  res.json(result);
 
 });
 

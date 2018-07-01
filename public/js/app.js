@@ -37,8 +37,6 @@ const ratio = document.getElementById('ratio').addEventListener("input", functio
 });
 
 /* GRID SIZE BOX */
-const grid = document.getElementById('grid');
-const generate = document.getElementById('generate');
 const rows = document.getElementById('toggle-rows');
 const cols = document.getElementById('toggle-cols');
 
@@ -71,8 +69,9 @@ let colsDown = document.getElementById('col-down').addEventListener("click", fun
 /* CURRENT DECK BOX */
 let currentDeckName = document.getElementById("current-deck-name"); //change based on some data
 
-
-
+/* GRID */
+const grid = document.getElementById('grid');
+const generate = document.getElementById('generate');
 
 function renderGrid() {
 
@@ -118,7 +117,6 @@ function renderGrid() {
 
       //otherwise, use a random dice roll to determine the decision.
       let diceRoll = Math.random();
-      console.log(diceRoll);
       if (diceRoll < options.targetLangRatio) {
         frontContent.innerHTML = answer;
         backContent.innerHTML = question;
@@ -197,14 +195,16 @@ function renderGrid() {
 
   }); //END eventListener
 
-  /*let requestUrl = '';
+  let requestUrl = '';
   if (options.currentDeck.type == 'sample') {
-    requestUrl = 'http://127.0.0.1:8080/api/demo/' + totalCards;
+    requestUrl = 'http://127.0.0.1:8080/api/demo/' + options.currentDeck.id + '/' + totalCards;
+    console.log('generate button click requestUrl');
+    console.log(requestUrl);
   } else {
     requestUrl = 'http://127.0.0.1:8080/api/cards/' + options.currentDeck.id; 
-  }*/
+  }
 
-  cardsReq.open("GET", 'http://127.0.0.1:8080/api/demo/1/' + totalCards, true);
+  cardsReq.open("GET", requestUrl, true);
   cardsReq.send();
 
   options.gridHasCards = true;
@@ -219,7 +219,21 @@ function clearGrid() {
 /* Deck Selection */
 function selectDeck(deck) {
   Object.assign(options.currentDeck, deck);
+  currentDeckName.innerHTML = options.currentDeck.title;
 }; 
+
+/* Sample Decks */
+/* for loop had strange error.. this can change later */
+let sampleDecks = document.getElementsByClassName("sample-deck");
+let sampleDeckCounter = 1;
+Array.prototype.forEach.call(sampleDecks, function(deck) {
+  deck.deckData = {
+    type : 'sample',
+    id : sampleDeckCounter,
+    title : deck.children[1].innerHTML
+  };
+  sampleDeckCounter += 1;
+});
 
 /* Logged-in user Deck Box */
 let decksReq = new XMLHttpRequest();
@@ -237,7 +251,6 @@ decksReq.addEventListener("load", function() {
   for (let i = 0; i < deckBoxItems.length; i++) {
     
     let deckData = deckBoxItems[i];
-    console.log(deckData);
 
     let boxDeck = document.createElement("li");
     let boxDeckButton = document.createElement("a");
